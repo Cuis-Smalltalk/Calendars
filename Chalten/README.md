@@ -1,4 +1,4 @@
-# Cuis-Smalltalk-Chalten
+# Chalten
 Implementation of a rich Gregorian calendar model.
 It depends on Aconcagua (https://github.com/Cuis-Smalltalk/Measures/tree/master/Aconcagua)
 
