@@ -1,6 +1,6 @@
 # Cuis-Smalltalk-Chalten
 Implementation of a rich Gregorian calendar model.
-It depends on Aconcagua (https://github.com/hernanwilkinson/Cuis-Smalltalk-Aconcagua)
+It depends on Aconcagua (https://github.com/Cuis-Smalltalk/Measures/tree/master/Aconcagua)
 
 ## Why a new model of Dates?
 This model was created due to the Smalltalk-80's model problems. That model does not provide good solutions to all possible time related problems mainly because:
@@ -16,13 +16,13 @@ Let’s see an example. A year represents a point in time but with less resoluti
 
 ## What are the principal abstractions?
 ### PointInTime Hierarchy
-![PointInTime Hierarchy](/doc/PointInTimeHierarchy.png)
+![PointInTime Hierarchy](/Chalten/doc/InclusionRuleHierarchy.png)
 ### TimeLineFilter Hierarchy
-![TimeLineFilter Hierarchy](/doc/TimeLineFilterHierarchy.png)
+![TimeLineFilter Hierarchy](/Chalten/doc/TimeLineFilterHierarchy.png)
 ### InclusionRule Hierarchy
-![InclusionRule Hierarchy](/doc/InclusionRuleHierarchy.png)
+![InclusionRule Hierarchy](/Chalten/doc/InclusionRuleHierarchy.png)
 
-## What's the behavior that the model provides?
+## What's the behavior that the model provides?
 Not only the metaphor helped us to understand the problem and create a model based on it, but it also allowed us to easily define the expected behaviour of the model, such as:
 * Determine which point comes before or after another (ordering of time points along the time line).
 * Go from one point in the time line to another.
@@ -32,7 +32,7 @@ Not only the metaphor helped us to understand the problem and create a model bas
 * Represent intervals between points.
 * Filter the time line with certain rules
 
-##Why dates are inmutable and validated when they are created?
+## Why dates are inmutable and validated when they are created?
 Something we have noticed about time entities is that they are immutable; they do not change, they are immutable like the numbers. A given date such as January 1st of 2005 should not allow its year, month or day to be changed. Therefore, the abstractions we use to model the time domain entities are immutable, they behave like “value objects”.
 Immutable objects allow us to have a simpler model and not to worry about inconsistent objects, invalid modifications or invariance invalidity during a certain time.
 The model also verifies, when creating an object, if the new instance will be valid. If that is true, the object is created, otherwise an exception is signaled. Therefore, the code that verifies if an object is valid is located in one place and ensures that no invalid time objects exist.
@@ -151,7 +151,7 @@ nonWorkingDays includes: (July ninth, 2005) “Returns true”
 nonWorkingDays includes: (July eighth, 2005) “Returns false”
 nonWorkingDays includes: (July sixteenth, 2005) “Returns true, it is Saturday”
 ```
-## What is a RelativeGregorianDate?
+## What is a RelativeGregorianDate?
 In the financial domain, settlement dates are usually expressed as a distance from the trade date in a given calendar. For example, a trader can buy bonds on a Thursday, but the settlement date is set to happen within 48 hours using the clearing house’s calendar. That usually means that the trader’s institution will receive the bonds on the next Monday, but this is true only if that Monday is a working day and it could have been true at the time the operation was done. But sometimes non-working days are created due to non-expected events (i.e., the death of some important person) and a working day is declared to be non-working.
 In our example, if Monday is declared as non-working day, the new settlement date for the trade will be Tuesday. To model this new type of entity we created an abstraction called RelativeGregorianDate that is a date relative to a time line filter given a certain time span. See Code Sample 20 for an example. Note that the settle date is declared using the negated non-working days filter because settlements can occur only on working days.
 ```Smalltalk
@@ -169,14 +169,16 @@ aSettleDate absoluteDate. “Now it returns 11/01/2005 because the filter has ch
 The time line does not have a known end or beginning, but the mere fact that we, as human, can think on them means that they have to be reified. Two objects are provided to represent these entities. They are “TheEndOfTime” and “TheBeginningOfTime”. The object “TheEndOfTime” is always greater than any point in time and “TheBeginningOfTime” is always less than any point in time.
 These objects are useful to create open intervals towards infinite and minus infinite. They allow programmers to create intervals and filters on the whole time line and to create streams with no end. When using these objects, the programmer has to have special care because iterating over an interval with no end and/or beginning will never stop
 At this time, the implementation of these two objects is too basic, we will create a better implementation for them.
+
 ## How reliable is the model?
 The model was developed using Test Driven Development (TDD) and it has almost 700 tests.
 The tests cover a 100 % of the model’s code.
-##Who wrote it?
+
+## Who wrote it?
 The model was develop mainly by Hernán Wilkinson but with valuable contributions from Luciano Romeo, Maximiliano Taborda, Maximiliano Contieri, Juan Pablo Tirelli, Diego Fernandez, Gabriel Cotelli and Mariano Saura
 
-## What are the Smalltalks where it runs?
-The model works on VASmalltalk, VisualWorks, Pharo, Squeak and GemStone.
+## What are the Smalltalks where it runs?
+The model works on Cuis, VASmalltalk, VisualWorks, Pharo, Squeak and GemStone.
 
 ## Are you going to port it to other languages?
 We do not have plans to port it to other languages at this time.
