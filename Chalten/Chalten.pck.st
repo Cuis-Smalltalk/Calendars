@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3562] on 4 February 2019 at 3:10:11 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3590] on 19 February 2019 at 3:15:45 pm'!
 'Description Parameter rename in GregoarianMonth>>#,'!
-!provides: 'Chalten' 1 11!
+!provides: 'Chalten' 1 13!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: #'Chalten-TimeModel'!
 SystemOrganization addCategory: #'Chalten-TimeLineFilterModel'!
@@ -2493,7 +2493,7 @@ today
 	^FixedGregorianDate today dayOfMonth
 ! !
 
-!GregorianMonth methodsFor: 'month of year creation' stamp: 'HAW 1/21/2019 08:11:36'!
+!GregorianMonth methodsFor: 'month of year creation' stamp: 'HAW 2/19/2019 15:14:03'!
 , aYearNumber
 
 	^self ofYear: (GregorianYear number: aYearNumber)! !
