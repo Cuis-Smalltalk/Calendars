@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3590] on 19 February 2019 at 3:15:45 pm'!
-'Description Parameter rename in GregoarianMonth>>#,'!
-!provides: 'Chalten' 1 13!
+'From Cuis 5.0 [latest update: #3958] on 16 November 2019 at 12:50:19 pm'!
+'Description Prints time with 2 digits for minutes and seconds'!
+!provides: 'Chalten' 1 14!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: #'Chalten-TimeModel'!
 SystemOrganization addCategory: #'Chalten-TimeLineFilterModel'!
@@ -839,6 +839,199 @@ NaturalNumbersTestUniverse class
 	instanceVariableNames: 'uniqueInstance'!
 
 
+!FixedGregorianDate methodsFor: 'printing'!
+printOn: aStream
+
+	self month printOn: aStream.
+	aStream space.
+	dayNumber printOn: aStream.
+	aStream nextPut: $,.
+	aStream space.
+	self year number printOn: aStream! !
+
+!FilteredGregorianDate methodsFor: 'printing'!
+printOn: aStream
+
+	date printOn: aStream! !
+
+!RelativeGregorianDate methodsFor: 'printing'!
+printOn: aStream
+
+	^self absoluteDate printOn: aStream! !
+
+!GregorianDateTime methodsFor: 'printing' stamp: 'HAW 1/15/2019 19:22:59'!
+printOn: aStream
+
+	aStream 
+		print: date;
+		nextPutAll: ' at ';
+		print: timeOfDay.
+		! !
+
+!GregorianDay methodsFor: 'accessing'!
+name
+	
+	^name! !
+
+!GregorianDay methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: name! !
+
+!GregorianDayOfMonth methodsFor: 'printing'!
+printOn: aStream
+
+	month printOn: aStream.
+	aStream space.
+	dayNumber printOn: aStream! !
+
+!GregorianMonth methodsFor: 'accessing'!
+name
+	
+	self subclassResponsibility! !
+
+!GregorianMonth methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: self name! !
+
+!FebruaryGregorianMonth methodsFor: 'accessing'!
+name
+	
+	^GregorianMonth februaryName! !
+
+!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
+name
+	
+	^name! !
+
+!JanuaryGregorianMonth methodsFor: 'accessing'!
+name
+	
+	^GregorianMonth januaryName! !
+
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
+name
+	
+	^name! !
+
+!GregorianMonthOfYear methodsFor: 'accessing'!
+name
+	
+	^month name! !
+
+!GregorianMonthOfYear methodsFor: 'printing'!
+printOn: aStream
+
+	month printOn: aStream.
+	aStream nextPutAll: ' of '.
+	year printOn: aStream! !
+
+!GregorianYear methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: 'Year '.
+	self number printOn: aStream! !
+
+!TimeOfDay methodsFor: 'printing' stamp: 'HAW 11/14/2019 07:26:20'!
+printOn: aStream
+
+	self hours amount printOn: aStream.
+	aStream nextPut: $:.
+	self minutes amount printOn: aStream base: 10 nDigits: 2.
+	aStream nextPut: $:.
+	self seconds amount printOn: aStream base: 10 nDigits: 2.
+	! !
+
+!InvalidGregorianDayNameException methodsFor: 'accessing'!
+name
+
+	^name! !
+
+!InvalidGregorianMonthNameException methodsFor: 'accessing'!
+name
+
+	^name! !
+
+!GregorianTimespan methodsFor: 'printing'!
+printOn: aStream
+
+	duration printOn: aStream.
+	aStream nextPutAll: ' from '.
+	from printOn: aStream! !
+
+!ArgentineLaw23555Rule methodsFor: 'printing'!
+printOn: aStream
+
+	self dayOfMonth printOn: aStream.
+	aStream nextPutAll: ' transferable holiday by Argentine Law 23555'! !
+
+!CardinalDayMonthRule methodsFor: 'printing'!
+printOn: aStream
+
+	self cardinal printOn: aStream.
+	aStream space.
+	self day printOn: aStream.
+	aStream nextPutAll: ' of '.
+	self month printOn: aStream! !
+
+!DayOfMonthRule methodsFor: 'printing'!
+printOn: aStream
+
+	self decoratedRule printOn: aStream! !
+
+!IntervalConstrainedInclusionRule methodsFor: 'printing' stamp: 'mx 4/2/2006 19:41'!
+printOn: aStream
+
+	aStream nextPutAll: 'From: '.
+	self from printOn: aStream.
+	aStream nextPutAll: ' to: '.
+	self to printOn: aStream.
+	aStream nextPutAll: ' -> '.
+	decoratedRule printOn: aStream! !
+
+!SpecificDayRule methodsFor: 'printing'!
+printOn: aStream
+
+	self decoratedRule printOn: aStream! !
+
+!SpecificObjectInclusionRule methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: 'Includes: '.
+	self object printOn: aStream! !
+
+!TimeLineFilterBehavior methodsFor: 'printing'!
+name
+
+	self subclassResponsibility! !
+
+!TimeLineFilterBehavior methodsFor: 'printing'!
+printOn: aStream 
+	self name isNil 
+		ifTrue: [self unnamedPrintOn: aStream]
+		ifFalse: [self namedPrintOn: aStream]! !
+
+!NegatedTimeLineFilter methodsFor: 'accessing'!
+name
+
+	^originalTimeLineFilter name! !
+
+!TimeLineFilter methodsFor: 'accessing'!
+name
+
+	^name! !
+
+!AllDatesUniverse methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: 'Every Days'! !
+
+!NaturalNumbersTestUniverse methodsFor: 'printing'!
+printOn: aStream
+
+	aStream nextPutAll: 'Natural Numbers'! !
+
 !PointInTime methodsFor: 'querying' stamp: 'HAW 1/16/2019 22:48:29'!
 absoluteDistanceTo: aPointInTime
 
@@ -1286,16 +1479,6 @@ nextMonth: aMeasure
 	
 	^(monthOfYear next: aMeasure) onOrLast: dayNumber! !
 
-!FixedGregorianDate methodsFor: 'printing'!
-printOn: aStream
-
-	self month printOn: aStream.
-	aStream space.
-	dayNumber printOn: aStream.
-	aStream nextPut: $,.
-	aStream space.
-	self year number printOn: aStream! !
-
 !FixedGregorianDate class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 18:13:23'!
 fromDate: aDate
 
@@ -1531,11 +1714,6 @@ previousFiltered
 			(timeLineFilter next: (GregorianTimespan from: self duration: GregorianDay oneDay negated))
 		timeLineFilter: timeLineFilter! !
 
-!FilteredGregorianDate methodsFor: 'printing'!
-printOn: aStream
-
-	date printOn: aStream! !
-
 !FilteredGregorianDate methodsFor: 'evaluating'!
 value
 
@@ -1680,11 +1858,6 @@ next: aMeasure
 
 	^self absoluteDate next: aMeasure! !
 
-!RelativeGregorianDate methodsFor: 'printing'!
-printOn: aStream
-
-	^self absoluteDate printOn: aStream! !
-
 !RelativeGregorianDate methodsFor: 'evaluating'!
 value
 
@@ -1812,15 +1985,6 @@ initializeDate: aGregorianDate timeOfDay: aTimeOfDay
 	date := aGregorianDate.
 	timeOfDay := aTimeOfDay! !
 
-!GregorianDateTime methodsFor: 'printing' stamp: 'HAW 1/15/2019 19:22:59'!
-printOn: aStream
-
-	aStream 
-		print: date;
-		nextPutAll: ' at ';
-		print: timeOfDay.
-		! !
-
 !GregorianDateTime class methodsFor: 'instance creation'!
 date: aGregorianDate timeOfDay: aTimeOfDay 
 	^self new initializeDate: aGregorianDate timeOfDay: aTimeOfDay! !
@@ -1872,11 +2036,6 @@ theEndOfTime
 amountOfDaysPerWeek
 	
 	^self class amountOfDaysPerWeek! !
-
-!GregorianDay methodsFor: 'accessing'!
-name
-	
-	^name! !
 
 !GregorianDay methodsFor: 'accessing' stamp: 'HAW 3/25/2017 19:11:51'!
 numberOfDaysSinceSunday
@@ -1950,11 +2109,6 @@ next: aNumberOfDays
 
 	^self class sinceSunday: aNumberOfDays + self numberOfDaysSinceSunday \\ self class numberOfDaysPerWeek.
 ! !
-
-!GregorianDay methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: name! !
 
 !GregorianDay class methodsFor: 'initialization - private'!
 add: aGregorianDay
@@ -2457,13 +2611,6 @@ numberOfDaysToEndOfYear
 
 	^self distanceTo: GregorianMonth december lastDayOfMonth! !
 
-!GregorianDayOfMonth methodsFor: 'printing'!
-printOn: aStream
-
-	month printOn: aStream.
-	aStream space.
-	dayNumber printOn: aStream! !
-
 !GregorianDayOfMonth methodsFor: 'interval protocol'!
 to: aGregorianDayOfMonth everyDayNumber: aDayNumber
 
@@ -2517,11 +2664,6 @@ ofYear: aGregorianYear
 amountOfMonthsPerYear
 
 	^self class amountOfMonthsPerYear! !
-
-!GregorianMonth methodsFor: 'accessing'!
-name
-	
-	self subclassResponsibility! !
 
 !GregorianMonth methodsFor: 'accessing'!
 number
@@ -2818,11 +2960,6 @@ next: aMeasure
 			ifTrue: [ self class numbered: monthNumber ]
 			ifFalse: [ self class numbered: self amountOfMonthsPerYear + monthNumber ] ]
 ! !
-
-!GregorianMonth methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: self name! !
 
 !GregorianMonth class methodsFor: 'initialization - private'!
 add: aMonthDefinition 
@@ -3235,11 +3372,6 @@ initializeGlobalVariables
 	Smalltalk at: #December put: self december! !
 
 !FebruaryGregorianMonth methodsFor: 'accessing'!
-name
-	
-	^GregorianMonth februaryName! !
-
-!FebruaryGregorianMonth methodsFor: 'accessing'!
 number
 	
 	^GregorianMonth februaryNumber! !
@@ -3298,11 +3430,6 @@ initializeNumberOfDaysFromJanuaryFirst
 	previous := self previous.
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
-
-!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
-name
-	
-	^name! !
 
 !ThirtyDaysGregorianMonth methodsFor: 'accessing'!
 number
@@ -3382,11 +3509,6 @@ thirtyfirst
 	^GregorianDayOfMonth month: self dayNumber: 31! !
 
 !JanuaryGregorianMonth methodsFor: 'accessing'!
-name
-	
-	^GregorianMonth januaryName! !
-
-!JanuaryGregorianMonth methodsFor: 'accessing'!
 number
 	
 	^GregorianMonth januaryNumber! !
@@ -3437,11 +3559,6 @@ initializeNumberOfDaysFromJanuaryFirst
 	previous := self previous.
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
-
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
-name
-	
-	^name! !
 
 !NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
 number
@@ -3517,11 +3634,6 @@ month
 monthNumber
 
 	^month number! !
-
-!GregorianMonthOfYear methodsFor: 'accessing'!
-name
-	
-	^month name! !
 
 !GregorianMonthOfYear methodsFor: 'accessing'!
 year
@@ -3668,13 +3780,6 @@ previousMonth: aGregorianMonth
 previousMonth: aGregorianMonth in: aNumberOfYears
 
 	^self nextMonth: aGregorianMonth in: aNumberOfYears negated! !
-
-!GregorianMonthOfYear methodsFor: 'printing'!
-printOn: aStream
-
-	month printOn: aStream.
-	aStream nextPutAll: ' of '.
-	year printOn: aStream! !
 
 !GregorianMonthOfYear class methodsFor: 'instance creation by month'!
 aprilOf: aGregorianYear 
@@ -4012,12 +4117,6 @@ numberOfDaysFromJanuaryFirstFor: aGregorianMonth
 	
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: 'Year '.
-	self number printOn: aStream! !
-
 !GregorianYear class methodsFor: 'instance creation - private'!
 createYear: aNumber 
 
@@ -4237,15 +4336,6 @@ initializeTimeFromMidnight: aTimeMeasure
 next: aTimeMeasure 
 
 	^self class timeFromMidnight: timeFromMidnight + aTimeMeasure! !
-
-!TimeOfDay methodsFor: 'printing'!
-printOn: aStream
-
-	self hours amount printOn: aStream.
-	aStream nextPut: $:.
-	self minutes amount printOn: aStream.
-	aStream nextPut: $:.
-	self seconds amount printOn: aStream! !
 
 !TimeOfDay methodsFor: 'instance creation' stamp: 'HAW 12/17/2018 17:21:12'!
 : anAmountOfSeconds
@@ -4697,11 +4787,6 @@ description
 
 	^'{1} is an invalid name for a day' format: { name }! !
 
-!InvalidGregorianDayNameException methodsFor: 'accessing'!
-name
-
-	^name! !
-
 !InvalidGregorianDayNameException methodsFor: 'initialization'!
 initializeName: aName
 
@@ -4746,11 +4831,6 @@ signalDayNumber: aDayNumber
 description
 
 	^'{1} is an invalid name for a month' format: { name }! !
-
-!InvalidGregorianMonthNameException methodsFor: 'accessing'!
-name
-
-	^name! !
 
 !InvalidGregorianMonthNameException methodsFor: 'initialization'!
 initializeName: aName
@@ -11136,13 +11216,6 @@ initializeFrom: aGregorianDate duration: aTimeMeasure
 	from := aGregorianDate.
 	duration := aTimeMeasure! !
 
-!GregorianTimespan methodsFor: 'printing'!
-printOn: aStream
-
-	duration printOn: aStream.
-	aStream nextPutAll: ' from '.
-	from printOn: aStream! !
-
 !GregorianTimespan methodsFor: 'evaluating'!
 value
 
@@ -11371,12 +11444,6 @@ initializeDayOfMonth: aGregorianDayOfMonth
 	dayOfMonth := aGregorianDayOfMonth.
 ! !
 
-!ArgentineLaw23555Rule methodsFor: 'printing'!
-printOn: aStream
-
-	self dayOfMonth printOn: aStream.
-	aStream nextPutAll: ' transferable holiday by Argentine Law 23555'! !
-
 !ArgentineLaw23555Rule class methodsFor: 'instance creating'!
 dayOfMonth: aGregorianDayOfMonth 
 
@@ -11417,15 +11484,6 @@ initializeCardinal: aNumber day: aGregorianDay month: aGregorianMonth
 	month := aGregorianMonth.
 ! !
 
-!CardinalDayMonthRule methodsFor: 'printing'!
-printOn: aStream
-
-	self cardinal printOn: aStream.
-	aStream space.
-	self day printOn: aStream.
-	aStream nextPutAll: ' of '.
-	self month printOn: aStream! !
-
 !CardinalDayMonthRule class methodsFor: 'instance creating'!
 cardinal: aNumber day: aGregorianDay month: aGregorianMonth 
  
@@ -11449,11 +11507,6 @@ includes: aGregorianDate
 initializeRule: anInclusionRule
 
 	decoratedRule := anInclusionRule! !
-
-!DayOfMonthRule methodsFor: 'printing'!
-printOn: aStream
-
-	self decoratedRule printOn: aStream! !
 
 !DayOfMonthRule class methodsFor: 'instance creation'!
 rule: anInclusionRule
@@ -11490,16 +11543,6 @@ initializeOn: anInterval apply: anInclusionRule
 
 	interval := anInterval.
 	decoratedRule := anInclusionRule! !
-
-!IntervalConstrainedInclusionRule methodsFor: 'printing' stamp: 'mx 4/2/2006 19:41'!
-printOn: aStream
-
-	aStream nextPutAll: 'From: '.
-	self from printOn: aStream.
-	aStream nextPutAll: ' to: '.
-	self to printOn: aStream.
-	aStream nextPutAll: ' -> '.
-	decoratedRule printOn: aStream! !
 
 !IntervalConstrainedInclusionRule methodsFor: 'querying - private'!
 shouldHandle: aMagnitude
@@ -11546,11 +11589,6 @@ initializeRule: anInclusionRule
 
 	decoratedRule := anInclusionRule! !
 
-!SpecificDayRule methodsFor: 'printing'!
-printOn: aStream
-
-	self decoratedRule printOn: aStream! !
-
 !SpecificDayRule class methodsFor: 'instance creation'!
 rule: anInclusionRule
 
@@ -11570,12 +11608,6 @@ initializeFor: anObject
 object
 
 	^object! !
-
-!SpecificObjectInclusionRule methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: 'Includes: '.
-	self object printOn: aStream! !
 
 !SpecificObjectInclusionRule class methodsFor: 'instance creation'!
 for: anObject
@@ -11650,19 +11682,8 @@ numberOfDaysBetween: aGregorianDate and: anotherGregorianDate
 		unit: TimeUnits day! !
 
 !TimeLineFilterBehavior methodsFor: 'printing'!
-name
-
-	self subclassResponsibility! !
-
-!TimeLineFilterBehavior methodsFor: 'printing'!
 namedPrintOn: aStream 
 	aStream nextPutAll: self name asString! !
-
-!TimeLineFilterBehavior methodsFor: 'printing'!
-printOn: aStream 
-	self name isNil 
-		ifTrue: [self unnamedPrintOn: aStream]
-		ifFalse: [self namedPrintOn: aStream]! !
 
 !TimeLineFilterBehavior methodsFor: 'printing'!
 unnamedPrintOn: aStream
@@ -11682,11 +11703,6 @@ includes: aGregorianDate
 initializeFor: aTimeLineFilter
 
 	originalTimeLineFilter := aTimeLineFilter! !
-
-!NegatedTimeLineFilter methodsFor: 'accessing'!
-name
-
-	^originalTimeLineFilter name! !
 
 !NegatedTimeLineFilter methodsFor: 'accessing'!
 negated
@@ -11836,11 +11852,6 @@ initializeNamed: aName
 	name := aName! !
 
 !TimeLineFilter methodsFor: 'accessing'!
-name
-
-	^name! !
-
-!TimeLineFilter methodsFor: 'accessing'!
 negated
 
 	^negatedTimeLineFilter! !
@@ -11951,11 +11962,6 @@ includes: anObject
 
 	^anObject isGregorianDate! !
 
-!AllDatesUniverse methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: 'Every Days'! !
-
 !AllDatesUniverse class methodsFor: 'initialization'!
 initialize
 
@@ -12015,11 +12021,6 @@ do: aBlock
 includes: anObject
 
 	^anObject isInteger! !
-
-!NaturalNumbersTestUniverse methodsFor: 'printing'!
-printOn: aStream
-
-	aStream nextPutAll: 'Natural Numbers'! !
 
 !NaturalNumbersTestUniverse class methodsFor: 'initialization'!
 initialize
