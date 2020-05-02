@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #3958] on 16 November 2019 at 12:50:19 pm'!
-'Description Prints time with 2 digits for minutes and seconds'!
-!provides: 'Chalten' 1 14!
+'From Cuis 5.0 [latest update: #4109] on 1 May 2020 at 11:40:02 pm'!
+'Description timespan creation sending #after: and #before: to a time measure'!
+!provides: 'Chalten' 1 15!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: #'Chalten-TimeModel'!
 SystemOrganization addCategory: #'Chalten-TimeLineFilterModel'!
@@ -2027,11 +2027,6 @@ theEndOfTime
 
 	^theEndOfTime! !
 
-!GregorianDay methodsFor: 'magnitude protocol'!
-< aGregorianDay
-
-	^positionInWeek < aGregorianDay positionInWeek! !
-
 !GregorianDay methodsFor: 'accessing'!
 amountOfDaysPerWeek
 	
@@ -2046,6 +2041,11 @@ numberOfDaysSinceSunday
 positionInWeek
 
 	^positionInWeek! !
+
+!GregorianDay methodsFor: 'magnitude protocol'!
+< aGregorianDay
+
+	^positionInWeek < aGregorianDay positionInWeek! !
 
 !GregorianDay methodsFor: 'interval protocol - private'!
 defaultIntervalIncrement
@@ -2640,6 +2640,21 @@ today
 	^FixedGregorianDate today dayOfMonth
 ! !
 
+!GregorianMonth methodsFor: 'accessing'!
+amountOfMonthsPerYear
+
+	^self class amountOfMonthsPerYear! !
+
+!GregorianMonth methodsFor: 'accessing'!
+number
+	
+	self subclassResponsibility! !
+
+!GregorianMonth methodsFor: 'accessing'!
+oneMonth
+	
+	^self class oneMonth! !
+
 !GregorianMonth methodsFor: 'month of year creation' stamp: 'HAW 2/19/2019 15:14:03'!
 , aYearNumber
 
@@ -2659,21 +2674,6 @@ ofYear: aGregorianYear
 < aGregorianMonthDefinition
 
 	^self number < aGregorianMonthDefinition number! !
-
-!GregorianMonth methodsFor: 'accessing'!
-amountOfMonthsPerYear
-
-	^self class amountOfMonthsPerYear! !
-
-!GregorianMonth methodsFor: 'accessing'!
-number
-	
-	self subclassResponsibility! !
-
-!GregorianMonth methodsFor: 'accessing'!
-oneMonth
-	
-	^self class oneMonth! !
 
 !GregorianMonth methodsFor: 'interval protocol - private'!
 defaultIntervalIncrement
@@ -3417,6 +3417,11 @@ new
 
 	^uniqueInstance! !
 
+!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
+number
+	
+	^number! !
+
 !ThirtyDaysGregorianMonth methodsFor: 'initialization'!
 initializeNamed: aString number: aNumber
 	name := aString.
@@ -3430,11 +3435,6 @@ initializeNumberOfDaysFromJanuaryFirst
 	previous := self previous.
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
-
-!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
-number
-	
-	^number! !
 
 !ThirtyDaysGregorianMonth methodsFor: 'enumerating'!
 next
@@ -3546,6 +3546,11 @@ new
 
 	^uniqueInstance! !
 
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
+number
+	
+	^number! !
+
 !NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'initialization'!
 initializeNamed: aString number: aNumber
 	name := aString.
@@ -3559,11 +3564,6 @@ initializeNumberOfDaysFromJanuaryFirst
 	previous := self previous.
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
-
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
-number
-	
-	^number! !
 
 !NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'enumerating'!
 next
@@ -3602,19 +3602,6 @@ named: aString number: aNumber
 
 	^self new initializeNamed: aString number: aNumber! !
 
-!GregorianMonthOfYear methodsFor: 'magnitude protocol'!
-< aGregorianMonth
-
-	^year < aGregorianMonth year 
-		or: [ year = aGregorianMonth year and: [ self month < aGregorianMonth month ] ]! !
-
-!GregorianMonthOfYear methodsFor: 'comparing'!
-= anObject
-
-	^self class = anObject class 
-		and: [month = anObject month 
-		and: [year = anObject year]]! !
-
 !GregorianMonthOfYear methodsFor: 'accessing'!
 amountOfMonthsPerYear
 	
@@ -3639,6 +3626,19 @@ monthNumber
 year
 	
 	^year! !
+
+!GregorianMonthOfYear methodsFor: 'magnitude protocol'!
+< aGregorianMonth
+
+	^year < aGregorianMonth year 
+		or: [ year = aGregorianMonth year and: [ self month < aGregorianMonth month ] ]! !
+
+!GregorianMonthOfYear methodsFor: 'comparing'!
+= anObject
+
+	^self class = anObject class 
+		and: [month = anObject month 
+		and: [year = anObject year]]! !
 
 !GregorianMonthOfYear methodsFor: 'accessing - days'!
 cardinal: aNumber day:  aGregorianDay
@@ -9889,6 +9889,16 @@ testAsInterval
 	
 	self assert: timespan asInterval = interval! !
 
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 5/1/2020 23:29:57'!
+testCanCreateATimespanAfterATimeMeasure
+	
+	self assert: January/4/2020 equals:  (3*day after: January/1/2020) to! !
+
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 5/1/2020 23:30:43'!
+testCanCreateATimespanBeforeATimeMeasure
+	
+	self assert: January/1/2020 equals:  (3*day before: January/4/2020) to! !
+
 !GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
 testEqual
 
@@ -11181,6 +11191,11 @@ new
 		and: [ from = anObject from 
 		and: [ duration = anObject duration ]]! !
 
+!GregorianTimespan methodsFor: 'comparing'!
+hash
+
+	^from hash bitXor: duration hash! !
+
 !GregorianTimespan methodsFor: 'converting' stamp: 'HAW 3/25/2017 20:46:07'!
 asInterval
 
@@ -11199,11 +11214,6 @@ duration
 from
 
 	^from! !
-
-!GregorianTimespan methodsFor: 'accessing'!
-hash
-
-	^from hash bitXor: duration hash! !
 
 !GregorianTimespan methodsFor: 'accessing'!
 to
@@ -11614,6 +11624,15 @@ for: anObject
 
 	^self new initializeFor: anObject! !
 
+!TimeLineFilterBehavior methodsFor: 'printing'!
+namedPrintOn: aStream 
+	aStream nextPutAll: self name asString! !
+
+!TimeLineFilterBehavior methodsFor: 'printing'!
+unnamedPrintOn: aStream
+
+	aStream nextPutAll: 'unnamed time line filter'! !
+
 !TimeLineFilterBehavior methodsFor: 'enumerating'!
 daysBetween: aGregorianDate and: anotherGregorianDate
 
@@ -11681,18 +11700,14 @@ numberOfDaysBetween: aGregorianDate and: anotherGregorianDate
 		amount: (self daysBetween: aGregorianDate and: anotherGregorianDate) size
 		unit: TimeUnits day! !
 
-!TimeLineFilterBehavior methodsFor: 'printing'!
-namedPrintOn: aStream 
-	aStream nextPutAll: self name asString! !
-
-!TimeLineFilterBehavior methodsFor: 'printing'!
-unnamedPrintOn: aStream
-
-	aStream nextPutAll: 'unnamed time line filter'! !
-
 !TimeLineFilterBehavior methodsFor: 'accessing'!
 negated
 	self subclassResponsibility! !
+
+!NegatedTimeLineFilter methodsFor: 'accessing'!
+negated
+	
+	^originalTimeLineFilter! !
 
 !NegatedTimeLineFilter methodsFor: 'querying - included'!
 includes: aGregorianDate
@@ -11704,15 +11719,20 @@ initializeFor: aTimeLineFilter
 
 	originalTimeLineFilter := aTimeLineFilter! !
 
-!NegatedTimeLineFilter methodsFor: 'accessing'!
-negated
-	
-	^originalTimeLineFilter! !
-
 !NegatedTimeLineFilter class methodsFor: 'instance creation'!
 for: aTimeLineFilter
 
 	^self new initializeFor: aTimeLineFilter! !
+
+!TimeLineFilter methodsFor: 'accessing'!
+negated
+
+	^negatedTimeLineFilter! !
+
+!TimeLineFilter methodsFor: 'accessing'!
+rules
+
+	^inclusionSet rules! !
 
 !TimeLineFilter methodsFor: 'comparing'!
 = anObject
@@ -11850,16 +11870,6 @@ initialize
 initializeNamed: aName
 
 	name := aName! !
-
-!TimeLineFilter methodsFor: 'accessing'!
-negated
-
-	^negatedTimeLineFilter! !
-
-!TimeLineFilter methodsFor: 'accessing'!
-rules
-
-	^inclusionSet rules! !
 
 !TimeLineFilter methodsFor: 'rules - removing'!
 removeAllRules
@@ -12063,6 +12073,16 @@ asMilliseconds
 for: anAmountOfTime
 
 	^self forSeconds: (anAmountOfTime convertTo: TimeUnits second) amount! !
+
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 5/1/2020 23:22:12'!
+after: aPointInTime
+
+	^GregorianTimespan from: aPointInTime duration: self! !
+
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 5/1/2020 23:31:27'!
+before: aPointInTime
+
+	^GregorianTimespan from: aPointInTime duration: self negated ! !
 DefaultPointInTimeIntervalStrategy initialize!
 MoreThanOnePointInTimeIntervalStrategy initialize!
 RoundedTimelineIntervalStrategy initialize!
