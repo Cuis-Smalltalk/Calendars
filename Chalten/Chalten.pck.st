@@ -1,840 +1,840 @@
-'From Cuis 5.0 [latest update: #4109] on 1 May 2020 at 11:40:02 pm'!
-'Description timespan creation sending #after: and #before: to a time measure'!
-!provides: 'Chalten' 1 15!
+'From Cuis 5.0 [latest update: #4913] on 5 November 2021 at 9:11:29 pm'!
+'Description printing changes due to use of * '!
+!provides: 'Chalten' 1 16!
 !requires: 'Aconcagua' 1 1 nil!
-SystemOrganization addCategory: #'Chalten-TimeModel'!
-SystemOrganization addCategory: #'Chalten-TimeLineFilterModel'!
-SystemOrganization addCategory: #'Chalten-TimeLineFilterModelTests'!
-SystemOrganization addCategory: #'Chalten-TimeModelTests'!
+SystemOrganization addCategory: 'Chalten-TimeModel'!
+SystemOrganization addCategory: 'Chalten-TimeLineFilterModel'!
+SystemOrganization addCategory: 'Chalten-TimeLineFilterModelTests'!
+SystemOrganization addCategory: 'Chalten-TimeModelTests'!
 
 
-!classDefinition: #PointInTime category: #'Chalten-TimeModel'!
+!classDefinition: #PointInTime category: 'Chalten-TimeModel'!
 IntervalAwareMagnitude subclass: #PointInTime
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'PointInTime class' category: #'Chalten-TimeModel'!
+!classDefinition: 'PointInTime class' category: 'Chalten-TimeModel'!
 PointInTime class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDate category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianDate category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianDate
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianDate class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianDate class' category: 'Chalten-TimeModel'!
 GregorianDate class
 	instanceVariableNames: ''!
 
-!classDefinition: #FixedGregorianDate category: #'Chalten-TimeModel'!
+!classDefinition: #FixedGregorianDate category: 'Chalten-TimeModel'!
 GregorianDate subclass: #FixedGregorianDate
 	instanceVariableNames: 'dayNumber monthOfYear'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'FixedGregorianDate class' category: #'Chalten-TimeModel'!
+!classDefinition: 'FixedGregorianDate class' category: 'Chalten-TimeModel'!
 FixedGregorianDate class
 	instanceVariableNames: 'theBeginningOfTime theEndOfTime'!
 
-!classDefinition: #FilteredGregorianDate category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #FilteredGregorianDate category: 'Chalten-TimeLineFilterModel'!
 GregorianDate subclass: #FilteredGregorianDate
 	instanceVariableNames: 'date timeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'FilteredGregorianDate class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'FilteredGregorianDate class' category: 'Chalten-TimeLineFilterModel'!
 FilteredGregorianDate class
 	instanceVariableNames: ''!
 
-!classDefinition: #RelativeGregorianDate category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #RelativeGregorianDate category: 'Chalten-TimeLineFilterModel'!
 GregorianDate subclass: #RelativeGregorianDate
 	instanceVariableNames: 'timespan timeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'RelativeGregorianDate class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'RelativeGregorianDate class' category: 'Chalten-TimeLineFilterModel'!
 RelativeGregorianDate class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDateTime category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianDateTime category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianDateTime
 	instanceVariableNames: 'timeOfDay date'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianDateTime class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianDateTime class' category: 'Chalten-TimeModel'!
 GregorianDateTime class
 	instanceVariableNames: 'theBeginningOfTime theEndOfTime'!
 
-!classDefinition: #GregorianDay category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianDay category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianDay
 	instanceVariableNames: 'name positionInWeek'
 	classVariableNames: 'Days MinusOneDay OneDay SevenDays ThirtyDays ThirtyOneDays ThreeHundredSixtyDays ThreeHundredSixtyFiveDays ThreeHundredSixtySixDays TwentyEightDays TwentyNineDays TwoDays ZeroDays'
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianDay class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianDay class' category: 'Chalten-TimeModel'!
 GregorianDay class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDayOfMonth category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianDayOfMonth category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianDayOfMonth
 	instanceVariableNames: 'month dayNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianDayOfMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianDayOfMonth class' category: 'Chalten-TimeModel'!
 GregorianDayOfMonth class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianMonth category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianMonth
 	instanceVariableNames: ''
 	classVariableNames: 'FourMonths Months OneMonth SixMonths ThreeMonths TwelveMonths TwoMonths ZeroMonths'
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianMonth class' category: 'Chalten-TimeModel'!
 GregorianMonth class
 	instanceVariableNames: ''!
 
-!classDefinition: #FebruaryGregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #FebruaryGregorianMonth category: 'Chalten-TimeModel'!
 GregorianMonth subclass: #FebruaryGregorianMonth
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'FebruaryGregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'FebruaryGregorianMonth class' category: 'Chalten-TimeModel'!
 FebruaryGregorianMonth class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #ThirtyDaysGregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #ThirtyDaysGregorianMonth category: 'Chalten-TimeModel'!
 GregorianMonth subclass: #ThirtyDaysGregorianMonth
 	instanceVariableNames: 'name number numberOfDaysFromJanuaryFirstInNonLeapYear numberOfDaysFromJanuaryFirst'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'ThirtyDaysGregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'ThirtyDaysGregorianMonth class' category: 'Chalten-TimeModel'!
 ThirtyDaysGregorianMonth class
 	instanceVariableNames: ''!
 
-!classDefinition: #ThirtyOneDaysGregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #ThirtyOneDaysGregorianMonth category: 'Chalten-TimeModel'!
 GregorianMonth subclass: #ThirtyOneDaysGregorianMonth
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'ThirtyOneDaysGregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'ThirtyOneDaysGregorianMonth class' category: 'Chalten-TimeModel'!
 ThirtyOneDaysGregorianMonth class
 	instanceVariableNames: ''!
 
-!classDefinition: #JanuaryGregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #JanuaryGregorianMonth category: 'Chalten-TimeModel'!
 ThirtyOneDaysGregorianMonth subclass: #JanuaryGregorianMonth
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'JanuaryGregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'JanuaryGregorianMonth class' category: 'Chalten-TimeModel'!
 JanuaryGregorianMonth class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #NonSpecificThirtyOneDaysGregorianMonth category: #'Chalten-TimeModel'!
+!classDefinition: #NonSpecificThirtyOneDaysGregorianMonth category: 'Chalten-TimeModel'!
 ThirtyOneDaysGregorianMonth subclass: #NonSpecificThirtyOneDaysGregorianMonth
 	instanceVariableNames: 'name number numberOfDaysFromJanuaryFirstInNonLeapYear numberOfDaysFromJanuaryFirst'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'NonSpecificThirtyOneDaysGregorianMonth class' category: #'Chalten-TimeModel'!
+!classDefinition: 'NonSpecificThirtyOneDaysGregorianMonth class' category: 'Chalten-TimeModel'!
 NonSpecificThirtyOneDaysGregorianMonth class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianMonthOfYear category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianMonthOfYear category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianMonthOfYear
 	instanceVariableNames: 'year month'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianMonthOfYear class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianMonthOfYear class' category: 'Chalten-TimeModel'!
 GregorianMonthOfYear class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianYear category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianYear category: 'Chalten-TimeModel'!
 PointInTime subclass: #GregorianYear
 	instanceVariableNames: ''
 	classVariableNames: 'OneYear ZeroYears'
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianYear class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianYear class' category: 'Chalten-TimeModel'!
 GregorianYear class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianLeapYear category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianLeapYear category: 'Chalten-TimeModel'!
 GregorianYear subclass: #GregorianLeapYear
 	instanceVariableNames: 'number numberOfDaysFromBaseDate'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianLeapYear class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianLeapYear class' category: 'Chalten-TimeModel'!
 GregorianLeapYear class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianNonLeapYear category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianNonLeapYear category: 'Chalten-TimeModel'!
 GregorianYear subclass: #GregorianNonLeapYear
 	instanceVariableNames: 'number numberOfDaysFromBaseDate'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianNonLeapYear class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianNonLeapYear class' category: 'Chalten-TimeModel'!
 GregorianNonLeapYear class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeOfDay category: #'Chalten-TimeModel'!
+!classDefinition: #TimeOfDay category: 'Chalten-TimeModel'!
 PointInTime subclass: #TimeOfDay
 	instanceVariableNames: 'timeFromMidnight'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'TimeOfDay class' category: #'Chalten-TimeModel'!
+!classDefinition: 'TimeOfDay class' category: 'Chalten-TimeModel'!
 TimeOfDay class
 	instanceVariableNames: 'firstTimeOfDay lastTimeOfDay noon oneMillisecond oneSecond twentyFourHours zeroHours'!
 
-!classDefinition: #DefinedByRules category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #DefinedByRules category: 'Chalten-TimeLineFilterModel'!
 Collection subclass: #DefinedByRules
 	instanceVariableNames: 'rules universe'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'DefinedByRules class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'DefinedByRules class' category: 'Chalten-TimeLineFilterModel'!
 DefinedByRules class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeLineFilterStream category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #TimeLineFilterStream category: 'Chalten-TimeLineFilterModel'!
 Stream subclass: #TimeLineFilterStream
 	instanceVariableNames: 'from current timeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'TimeLineFilterStream class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'TimeLineFilterStream class' category: 'Chalten-TimeLineFilterModel'!
 TimeLineFilterStream class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidDayOfMonthException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidDayOfMonthException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidDayOfMonthException
 	instanceVariableNames: 'month dayNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidDayOfMonthException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidDayOfMonthException class' category: 'Chalten-TimeModel'!
 InvalidDayOfMonthException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianDateException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianDateException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianDateException
 	instanceVariableNames: 'dayNumber monthOfYear'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianDateException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianDateException class' category: 'Chalten-TimeModel'!
 InvalidGregorianDateException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianDayNameException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianDayNameException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianDayNameException
 	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianDayNameException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianDayNameException class' category: 'Chalten-TimeModel'!
 InvalidGregorianDayNameException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianDayNumberException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianDayNumberException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianDayNumberException
 	instanceVariableNames: 'dayNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianDayNumberException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianDayNumberException class' category: 'Chalten-TimeModel'!
 InvalidGregorianDayNumberException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianMonthNameException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianMonthNameException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianMonthNameException
 	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianMonthNameException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianMonthNameException class' category: 'Chalten-TimeModel'!
 InvalidGregorianMonthNameException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianMonthNumberException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianMonthNumberException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianMonthNumberException
 	instanceVariableNames: 'number'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianMonthNumberException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianMonthNumberException class' category: 'Chalten-TimeModel'!
 InvalidGregorianMonthNumberException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidGregorianYearNumberException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidGregorianYearNumberException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidGregorianYearNumberException
 	instanceVariableNames: 'number'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidGregorianYearNumberException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidGregorianYearNumberException class' category: 'Chalten-TimeModel'!
 InvalidGregorianYearNumberException class
 	instanceVariableNames: ''!
 
-!classDefinition: #InvalidTimeOfDayException category: #'Chalten-TimeModel'!
+!classDefinition: #InvalidTimeOfDayException category: 'Chalten-TimeModel'!
 Error subclass: #InvalidTimeOfDayException
 	instanceVariableNames: 'time'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'InvalidTimeOfDayException class' category: #'Chalten-TimeModel'!
+!classDefinition: 'InvalidTimeOfDayException class' category: 'Chalten-TimeModel'!
 InvalidTimeOfDayException class
 	instanceVariableNames: ''!
 
-!classDefinition: #DateNotIncludedInTimeLineFilterException category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #DateNotIncludedInTimeLineFilterException category: 'Chalten-TimeLineFilterModel'!
 Error subclass: #DateNotIncludedInTimeLineFilterException
 	instanceVariableNames: 'date timeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'DateNotIncludedInTimeLineFilterException class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'DateNotIncludedInTimeLineFilterException class' category: 'Chalten-TimeLineFilterModel'!
 DateNotIncludedInTimeLineFilterException class
 	instanceVariableNames: ''!
 
-!classDefinition: #NotIterateUniverseException category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #NotIterateUniverseException category: 'Chalten-TimeLineFilterModel'!
 Error subclass: #NotIterateUniverseException
 	instanceVariableNames: 'universe'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'NotIterateUniverseException class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'NotIterateUniverseException class' category: 'Chalten-TimeLineFilterModel'!
 NotIterateUniverseException class
 	instanceVariableNames: ''!
 
-!classDefinition: #AllDatesUniverseTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #AllDatesUniverseTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #AllDatesUniverseTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'AllDatesUniverseTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'AllDatesUniverseTest class' category: 'Chalten-TimeLineFilterModelTests'!
 AllDatesUniverseTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ArgentineLaw23555RuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #ArgentineLaw23555RuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #ArgentineLaw23555RuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'ArgentineLaw23555RuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'ArgentineLaw23555RuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 ArgentineLaw23555RuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #CardinalDayMonthRuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #CardinalDayMonthRuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #CardinalDayMonthRuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'CardinalDayMonthRuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'CardinalDayMonthRuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 CardinalDayMonthRuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #DayOfMonthRuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #DayOfMonthRuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #DayOfMonthRuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'DayOfMonthRuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'DayOfMonthRuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 DayOfMonthRuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #DefinedByRulesTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #DefinedByRulesTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #DefinedByRulesTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'DefinedByRulesTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'DefinedByRulesTest class' category: 'Chalten-TimeLineFilterModelTests'!
 DefinedByRulesTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #FilteredGregorianDateTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #FilteredGregorianDateTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #FilteredGregorianDateTest
 	instanceVariableNames: 'today defaultFilteredDate argentineTimeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'FilteredGregorianDateTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'FilteredGregorianDateTest class' category: 'Chalten-TimeLineFilterModelTests'!
 FilteredGregorianDateTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #IntervalConstrainedInclusionRuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #IntervalConstrainedInclusionRuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #IntervalConstrainedInclusionRuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'IntervalConstrainedInclusionRuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'IntervalConstrainedInclusionRuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 IntervalConstrainedInclusionRuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #NegatedTimeLineFilterTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #NegatedTimeLineFilterTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #NegatedTimeLineFilterTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'NegatedTimeLineFilterTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'NegatedTimeLineFilterTest class' category: 'Chalten-TimeLineFilterModelTests'!
 NegatedTimeLineFilterTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #RelativeGregorianDateTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #RelativeGregorianDateTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #RelativeGregorianDateTest
 	instanceVariableNames: 'relativeDate absoluteDate timeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'RelativeGregorianDateTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'RelativeGregorianDateTest class' category: 'Chalten-TimeLineFilterModelTests'!
 RelativeGregorianDateTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SpecificDayRuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #SpecificDayRuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #SpecificDayRuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'SpecificDayRuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'SpecificDayRuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 SpecificDayRuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SpecificObjectInclusionRuleTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #SpecificObjectInclusionRuleTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #SpecificObjectInclusionRuleTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'SpecificObjectInclusionRuleTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'SpecificObjectInclusionRuleTest class' category: 'Chalten-TimeLineFilterModelTests'!
 SpecificObjectInclusionRuleTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeLineFilterStreamTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #TimeLineFilterStreamTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #TimeLineFilterStreamTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'TimeLineFilterStreamTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'TimeLineFilterStreamTest class' category: 'Chalten-TimeLineFilterModelTests'!
 TimeLineFilterStreamTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeLineFilterTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #TimeLineFilterTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #TimeLineFilterTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'TimeLineFilterTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'TimeLineFilterTest class' category: 'Chalten-TimeLineFilterModelTests'!
 TimeLineFilterTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #UniverseTest category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #UniverseTest category: 'Chalten-TimeLineFilterModelTests'!
 TestCase subclass: #UniverseTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'UniverseTest class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'UniverseTest class' category: 'Chalten-TimeLineFilterModelTests'!
 UniverseTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #FebruaryGregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #FebruaryGregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #FebruaryGregorianMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'FebruaryGregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'FebruaryGregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 FebruaryGregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #FixedGregorianDateTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #FixedGregorianDateTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #FixedGregorianDateTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'FixedGregorianDateTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'FixedGregorianDateTest class' category: 'Chalten-TimeModelTests'!
 FixedGregorianDateTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDateTimeTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianDateTimeTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianDateTimeTest
 	instanceVariableNames: 'december31Of2003 december31Of2003On23Hours59Minutes59Seconds januaryFirstOf2004 januaryFirstOf2004On00Hours00Minutes01Seconds januaryFirstOf2004On03Hours januaryFirstOf2004On23Hours59Minutes58Seconds januaryFirstOf2004On23Hours59Minutes59Seconds januarySecondOf2004 januarySecondOf2004On00Hours00Minutes01Seconds januarySecondOf2004On23Hours januarySecondOf2004On23Hours59Minutes59Seconds januaryThirdOf2004'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianDateTimeTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianDateTimeTest class' category: 'Chalten-TimeModelTests'!
 GregorianDateTimeTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDayOfMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianDayOfMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianDayOfMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianDayOfMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianDayOfMonthTest class' category: 'Chalten-TimeModelTests'!
 GregorianDayOfMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianDayTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianDayTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianDayTest
 	instanceVariableNames: 'sunday monday thursday wednesday tuesday friday saturday'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianDayTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianDayTest class' category: 'Chalten-TimeModelTests'!
 GregorianDayTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianMonthOfYearTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianMonthOfYearTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianMonthOfYearTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianMonthOfYearTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianMonthOfYearTest class' category: 'Chalten-TimeModelTests'!
 GregorianMonthOfYearTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianMonthTest
 	instanceVariableNames: 'january february march april may june july august september october november december'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 GregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianTimespanTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianTimespanTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianTimespanTest
 	instanceVariableNames: 'januaryFirstOf2004 january31Of2004'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianTimespanTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianTimespanTest class' category: 'Chalten-TimeModelTests'!
 GregorianTimespanTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #GregorianYearTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #GregorianYearTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #GregorianYearTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'GregorianYearTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'GregorianYearTest class' category: 'Chalten-TimeModelTests'!
 GregorianYearTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #JanuaryGregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #JanuaryGregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #JanuaryGregorianMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'JanuaryGregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'JanuaryGregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 JanuaryGregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #MoreThanOnePointInTimeIntervalStrategyTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #MoreThanOnePointInTimeIntervalStrategyTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #MoreThanOnePointInTimeIntervalStrategyTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'MoreThanOnePointInTimeIntervalStrategyTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'MoreThanOnePointInTimeIntervalStrategyTest class' category: 'Chalten-TimeModelTests'!
 MoreThanOnePointInTimeIntervalStrategyTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #NonSpecificThirtyOneDaysGregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #NonSpecificThirtyOneDaysGregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #NonSpecificThirtyOneDaysGregorianMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'NonSpecificThirtyOneDaysGregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'NonSpecificThirtyOneDaysGregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 NonSpecificThirtyOneDaysGregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ThirtyDaysGregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #ThirtyDaysGregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #ThirtyDaysGregorianMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'ThirtyDaysGregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'ThirtyDaysGregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 ThirtyDaysGregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ThirtyOneDaysGregorianMonthTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #ThirtyOneDaysGregorianMonthTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #ThirtyOneDaysGregorianMonthTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'ThirtyOneDaysGregorianMonthTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'ThirtyOneDaysGregorianMonthTest class' category: 'Chalten-TimeModelTests'!
 ThirtyOneDaysGregorianMonthTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeOfDayTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #TimeOfDayTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #TimeOfDayTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'TimeOfDayTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'TimeOfDayTest class' category: 'Chalten-TimeModelTests'!
 TimeOfDayTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeUnitsTest category: #'Chalten-TimeModelTests'!
+!classDefinition: #TimeUnitsTest category: 'Chalten-TimeModelTests'!
 TestCase subclass: #TimeUnitsTest
 	instanceVariableNames: 'timeUnits'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModelTests'!
-!classDefinition: 'TimeUnitsTest class' category: #'Chalten-TimeModelTests'!
+!classDefinition: 'TimeUnitsTest class' category: 'Chalten-TimeModelTests'!
 TimeUnitsTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #PointInTimeIntervalStrategy category: #'Chalten-TimeModel'!
+!classDefinition: #PointInTimeIntervalStrategy category: 'Chalten-TimeModel'!
 IntervalStrategy subclass: #PointInTimeIntervalStrategy
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'PointInTimeIntervalStrategy class' category: #'Chalten-TimeModel'!
+!classDefinition: 'PointInTimeIntervalStrategy class' category: 'Chalten-TimeModel'!
 PointInTimeIntervalStrategy class
 	instanceVariableNames: ''!
 
-!classDefinition: #DefaultPointInTimeIntervalStrategy category: #'Chalten-TimeModel'!
+!classDefinition: #DefaultPointInTimeIntervalStrategy category: 'Chalten-TimeModel'!
 PointInTimeIntervalStrategy subclass: #DefaultPointInTimeIntervalStrategy
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'DefaultPointInTimeIntervalStrategy class' category: #'Chalten-TimeModel'!
+!classDefinition: 'DefaultPointInTimeIntervalStrategy class' category: 'Chalten-TimeModel'!
 DefaultPointInTimeIntervalStrategy class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #MoreThanOnePointInTimeIntervalStrategy category: #'Chalten-TimeModel'!
+!classDefinition: #MoreThanOnePointInTimeIntervalStrategy category: 'Chalten-TimeModel'!
 PointInTimeIntervalStrategy subclass: #MoreThanOnePointInTimeIntervalStrategy
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'MoreThanOnePointInTimeIntervalStrategy class' category: #'Chalten-TimeModel'!
+!classDefinition: 'MoreThanOnePointInTimeIntervalStrategy class' category: 'Chalten-TimeModel'!
 MoreThanOnePointInTimeIntervalStrategy class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #RoundedTimelineIntervalStrategy category: #'Chalten-TimeModel'!
+!classDefinition: #RoundedTimelineIntervalStrategy category: 'Chalten-TimeModel'!
 PointInTimeIntervalStrategy subclass: #RoundedTimelineIntervalStrategy
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'RoundedTimelineIntervalStrategy class' category: #'Chalten-TimeModel'!
+!classDefinition: 'RoundedTimelineIntervalStrategy class' category: 'Chalten-TimeModel'!
 RoundedTimelineIntervalStrategy class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #GregorianTimespan category: #'Chalten-TimeModel'!
+!classDefinition: #GregorianTimespan category: 'Chalten-TimeModel'!
 Object subclass: #GregorianTimespan
 	instanceVariableNames: 'from duration'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'GregorianTimespan class' category: #'Chalten-TimeModel'!
+!classDefinition: 'GregorianTimespan class' category: 'Chalten-TimeModel'!
 GregorianTimespan class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeModelInitialization category: #'Chalten-TimeModel'!
+!classDefinition: #TimeModelInitialization category: 'Chalten-TimeModel'!
 Object subclass: #TimeModelInitialization
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'TimeModelInitialization class' category: #'Chalten-TimeModel'!
+!classDefinition: 'TimeModelInitialization class' category: 'Chalten-TimeModel'!
 TimeModelInitialization class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeUnits category: #'Chalten-TimeModel'!
+!classDefinition: #TimeUnits category: 'Chalten-TimeModel'!
 Object subclass: #TimeUnits
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeModel'!
-!classDefinition: 'TimeUnits class' category: #'Chalten-TimeModel'!
+!classDefinition: 'TimeUnits class' category: 'Chalten-TimeModel'!
 TimeUnits class
 	instanceVariableNames: 'day hour minute second millisecond week month year'!
 
-!classDefinition: #InclusionRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #InclusionRule category: 'Chalten-TimeLineFilterModel'!
 Object subclass: #InclusionRule
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'InclusionRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'InclusionRule class' category: 'Chalten-TimeLineFilterModel'!
 InclusionRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #ArgentineLaw23555Rule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #ArgentineLaw23555Rule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #ArgentineLaw23555Rule
 	instanceVariableNames: 'dayOfMonth'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'ArgentineLaw23555Rule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'ArgentineLaw23555Rule class' category: 'Chalten-TimeLineFilterModel'!
 ArgentineLaw23555Rule class
 	instanceVariableNames: ''!
 
-!classDefinition: #CardinalDayMonthRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #CardinalDayMonthRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #CardinalDayMonthRule
 	instanceVariableNames: 'day month cardinal'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'CardinalDayMonthRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'CardinalDayMonthRule class' category: 'Chalten-TimeLineFilterModel'!
 CardinalDayMonthRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #DayOfMonthRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #DayOfMonthRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #DayOfMonthRule
 	instanceVariableNames: 'decoratedRule'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'DayOfMonthRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'DayOfMonthRule class' category: 'Chalten-TimeLineFilterModel'!
 DayOfMonthRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #IntervalConstrainedInclusionRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #IntervalConstrainedInclusionRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #IntervalConstrainedInclusionRule
 	instanceVariableNames: 'interval decoratedRule'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'IntervalConstrainedInclusionRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'IntervalConstrainedInclusionRule class' category: 'Chalten-TimeLineFilterModel'!
 IntervalConstrainedInclusionRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #PluggableInclusionRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #PluggableInclusionRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #PluggableInclusionRule
 	instanceVariableNames: 'block'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'PluggableInclusionRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'PluggableInclusionRule class' category: 'Chalten-TimeLineFilterModel'!
 PluggableInclusionRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #SpecificDayRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #SpecificDayRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #SpecificDayRule
 	instanceVariableNames: 'decoratedRule'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'SpecificDayRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'SpecificDayRule class' category: 'Chalten-TimeLineFilterModel'!
 SpecificDayRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #SpecificObjectInclusionRule category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #SpecificObjectInclusionRule category: 'Chalten-TimeLineFilterModel'!
 InclusionRule subclass: #SpecificObjectInclusionRule
 	instanceVariableNames: 'object'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'SpecificObjectInclusionRule class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'SpecificObjectInclusionRule class' category: 'Chalten-TimeLineFilterModel'!
 SpecificObjectInclusionRule class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeLineFilterBehavior category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #TimeLineFilterBehavior category: 'Chalten-TimeLineFilterModel'!
 Object subclass: #TimeLineFilterBehavior
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'TimeLineFilterBehavior class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'TimeLineFilterBehavior class' category: 'Chalten-TimeLineFilterModel'!
 TimeLineFilterBehavior class
 	instanceVariableNames: ''!
 
-!classDefinition: #NegatedTimeLineFilter category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #NegatedTimeLineFilter category: 'Chalten-TimeLineFilterModel'!
 TimeLineFilterBehavior subclass: #NegatedTimeLineFilter
 	instanceVariableNames: 'originalTimeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'NegatedTimeLineFilter class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'NegatedTimeLineFilter class' category: 'Chalten-TimeLineFilterModel'!
 NegatedTimeLineFilter class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeLineFilter category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #TimeLineFilter category: 'Chalten-TimeLineFilterModel'!
 TimeLineFilterBehavior subclass: #TimeLineFilter
 	instanceVariableNames: 'inclusionSet name negatedTimeLineFilter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'TimeLineFilter class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'TimeLineFilter class' category: 'Chalten-TimeLineFilterModel'!
 TimeLineFilter class
 	instanceVariableNames: ''!
 
-!classDefinition: #Universe category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #Universe category: 'Chalten-TimeLineFilterModel'!
 Object subclass: #Universe
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'Universe class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'Universe class' category: 'Chalten-TimeLineFilterModel'!
 Universe class
 	instanceVariableNames: ''!
 
-!classDefinition: #AllDatesUniverse category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #AllDatesUniverse category: 'Chalten-TimeLineFilterModel'!
 Universe subclass: #AllDatesUniverse
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'AllDatesUniverse class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'AllDatesUniverse class' category: 'Chalten-TimeLineFilterModel'!
 AllDatesUniverse class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #AllUniverse category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: #AllUniverse category: 'Chalten-TimeLineFilterModel'!
 Universe subclass: #AllUniverse
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModel'!
-!classDefinition: 'AllUniverse class' category: #'Chalten-TimeLineFilterModel'!
+!classDefinition: 'AllUniverse class' category: 'Chalten-TimeLineFilterModel'!
 AllUniverse class
 	instanceVariableNames: 'uniqueInstance'!
 
-!classDefinition: #NaturalNumbersTestUniverse category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: #NaturalNumbersTestUniverse category: 'Chalten-TimeLineFilterModelTests'!
 Universe subclass: #NaturalNumbersTestUniverse
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Chalten-TimeLineFilterModelTests'!
-!classDefinition: 'NaturalNumbersTestUniverse class' category: #'Chalten-TimeLineFilterModelTests'!
+!classDefinition: 'NaturalNumbersTestUniverse class' category: 'Chalten-TimeLineFilterModelTests'!
 NaturalNumbersTestUniverse class
 	instanceVariableNames: 'uniqueInstance'!
 
@@ -9925,10 +9925,10 @@ testHash
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) hash
 		= (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) hash! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'mx 4/3/2006 20:25'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/5/2021 20:42:22'!
 testPrintString
 
-	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) printString = '1 day from January 1, 2004'! !
+	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) printString = '1 * day from January 1, 2004'! !
 
 !GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
 testTo
@@ -10872,7 +10872,7 @@ testCreationSecond
 	self assert: time milliseconds = (TimeUnits millisecond with: 0)
 ! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 11/5/2021 20:42:37'!
 testInvalidCreation
 
 	self 
@@ -10880,14 +10880,14 @@ testInvalidCreation
 		raise: InvalidTimeOfDayException
 		withExceptionDo: [:anException |
 			self assert: anException time = (TimeUnits hour with: 24).
-			self assert: anException description = 'The time 24 hours is invalid for one day' ].
+			self assert: anException description = 'The time 24 * hours is invalid for one day' ].
 		
 	self 
 		should: [ TimeOfDay timeFromMidnight: (TimeUnits millisecond with: -1) ] 
 		raise: InvalidTimeOfDayException
 		withExceptionDo: [:anException |
 			self assert: anException time = (TimeUnits millisecond with: -1).
-			self assert: anException description = 'The time -1 millisecond is invalid for one day' ]! !
+			self assert: anException description = 'The time -1 * millisecond is invalid for one day' ]! !
 
 !TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 18:32:05'!
 testNow
