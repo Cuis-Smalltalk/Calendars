@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4913] on 5 November 2021 at 9:11:29 pm'!
-'Description printing changes due to use of * '!
-!provides: 'Chalten' 1 16!
+'From Cuis 5.0 [latest update: #4913] on 10 November 2021 at 9:42:28 pm'!
+'Description improvements'!
+!provides: 'Chalten' 1 17!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: 'Chalten-TimeModel'!
 SystemOrganization addCategory: 'Chalten-TimeLineFilterModel'!
@@ -1100,6 +1100,11 @@ atNoon
 atTimeOfDay: aTimeOfDay 
 
 	^GregorianDateTime date: self timeOfDay: aTimeOfDay! !
+
+!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 11/10/2021 21:35:06'!
+dateTimes
+	
+	^self atMidnight to: self atLastTimeOfDay by: 1*second! !
 
 !GregorianDate methodsFor: 'accessing - days'!
 day
@@ -5682,8 +5687,8 @@ testTo
 	self assert: rule to = 10
 ! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 3/25/2017 20:36:23'!
-testDaysBetween
+!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 11/10/2021 21:21:11'!
+testDatesBetween
 
 	| timeLineFilter days |
 	
@@ -5692,7 +5697,7 @@ testDaysBetween
 		addRules: (Array with: (timeLineFilter dayRule: GregorianDay saturday) with: (timeLineFilter dayRule: GregorianDay sunday))
 		from: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
 		
-	days := timeLineFilter negated daysBetween: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)
+	days := timeLineFilter negated datesBetween: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)
 		and: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 05).
 	self assert: days size = 8.
 	self deny: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
@@ -6469,6 +6474,22 @@ testDateRule
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 01 dayNumber: 01))! !
 
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 11/10/2021 21:21:22'!
+testDatesBetween
+
+	| timeLineFilter days |
+	
+	timeLineFilter := TimeLineFilter new.
+	timeLineFilter 
+		addRules: (Array with: (timeLineFilter dayRule: GregorianDay saturday) with: (timeLineFilter dayRule: GregorianDay sunday))
+		from: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
+		
+	days := timeLineFilter datesBetween: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)
+		and: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 05).
+	self assert: days size = 2.
+	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
+	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
+
 !TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
 testDayOfMonthRule
 
@@ -6486,22 +6507,6 @@ testDayRule
 	rule := TimeLineFilter dayRule: GregorianDay saturday.
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
-
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
-testDaysBetween
-
-	| timeLineFilter days |
-	
-	timeLineFilter := TimeLineFilter new.
-	timeLineFilter 
-		addRules: (Array with: (timeLineFilter dayRule: GregorianDay saturday) with: (timeLineFilter dayRule: GregorianDay sunday))
-		from: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
-		
-	days := timeLineFilter daysBetween: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)
-		and: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 05).
-	self assert: days size = 2.
-	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
-	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
 !TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
 testExcludedFromTo
@@ -6699,8 +6704,8 @@ testNextPositiveDuration
 		((date nextDay: GregorianDay saturday) nextDay: GregorianDay saturday).
 	self assert: (timeLineFilter next: (GregorianTimespan from: date duration: (TimeUnits day with: 0))) = date! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
-testNumberOfDaysBetweenTwoDates
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 11/10/2021 21:22:02'!
+testNumberOfDatesBetweenTwoDates
 
 	| timeLineFilter rule1 rule2 rule3 |
 
@@ -6711,7 +6716,7 @@ testNumberOfDaysBetweenTwoDates
 
 	timeLineFilter addRules: (OrderedCollection with: rule1 with: rule2 with: rule3).
 
-	self assert: (timeLineFilter negated numberOfDaysBetween: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 01)
+	self assert: (timeLineFilter negated numberOfDatesBetween: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 01)
 		and: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 20)) = (TimeUnits day with: 17)! !
 
 !TimeLineFilterTest methodsFor: 'test'!
@@ -11633,8 +11638,8 @@ unnamedPrintOn: aStream
 
 	aStream nextPutAll: 'unnamed time line filter'! !
 
-!TimeLineFilterBehavior methodsFor: 'enumerating'!
-daysBetween: aGregorianDate and: anotherGregorianDate
+!TimeLineFilterBehavior methodsFor: 'enumerating' stamp: 'HAW 11/10/2021 21:20:59'!
+datesBetween: aGregorianDate and: anotherGregorianDate
 
 	^(aGregorianDate to: anotherGregorianDate) select: [:each | self includes: each]! !
 
@@ -11693,11 +11698,11 @@ includesAll: aCollection
 
 	^aCollection allSatisfy: [:each | self includes: each]! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: 'HAW 3/25/2017 19:12:30'!
-numberOfDaysBetween: aGregorianDate and: anotherGregorianDate
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: 'HAW 11/10/2021 21:21:41'!
+numberOfDatesBetween: aGregorianDate and: anotherGregorianDate
 
 	^SimpleMeasure
-		amount: (self daysBetween: aGregorianDate and: anotherGregorianDate) size
+		amount: (self datesBetween: aGregorianDate and: anotherGregorianDate) size
 		unit: TimeUnits day! !
 
 !TimeLineFilterBehavior methodsFor: 'accessing'!
@@ -12083,6 +12088,13 @@ after: aPointInTime
 before: aPointInTime
 
 	^GregorianTimespan from: aPointInTime duration: self negated ! !
+
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 11/10/2021 16:10:59'!
+from: aPointInTime countingIn: aTimeLineFilter
+
+	^RelativeGregorianDate
+		timespan: (self after: aPointInTime)
+		using: aTimeLineFilter ! !
 DefaultPointInTimeIntervalStrategy initialize!
 MoreThanOnePointInTimeIntervalStrategy initialize!
 RoundedTimelineIntervalStrategy initialize!
