@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4913] on 10 November 2021 at 9:42:28 pm'!
-'Description improvements'!
-!provides: 'Chalten' 1 17!
+'From Cuis 5.0 [latest update: #4972] on 12 November 2021 at 12:21:33 pm'!
+'Description Fixed some tests'!
+!provides: 'Chalten' 1 18!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: 'Chalten-TimeModel'!
 SystemOrganization addCategory: 'Chalten-TimeLineFilterModel'!
@@ -1101,10 +1101,10 @@ atTimeOfDay: aTimeOfDay
 
 	^GregorianDateTime date: self timeOfDay: aTimeOfDay! !
 
-!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 11/10/2021 21:35:06'!
+!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 11/12/2021 12:16:26'!
 dateTimes
 	
-	^self atMidnight to: self atLastTimeOfDay by: 1*second! !
+	^self atMidnight to: self atLastTimeOfDay ! !
 
 !GregorianDate methodsFor: 'accessing - days'!
 day
@@ -9894,15 +9894,15 @@ testAsInterval
 	
 	self assert: timespan asInterval = interval! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 5/1/2020 23:29:57'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/12/2021 12:19:40'!
 testCanCreateATimespanAfterATimeMeasure
 	
-	self assert: January/4/2020 equals:  (3*day after: January/1/2020) to! !
+	self assert: January/4/2020 equals: (3*TimeUnits day after: January/1/2020) to! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 5/1/2020 23:30:43'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/12/2021 12:19:48'!
 testCanCreateATimespanBeforeATimeMeasure
 	
-	self assert: January/1/2020 equals:  (3*day before: January/4/2020) to! !
+	self assert: January/1/2020 equals:  (3*TimeUnits day before: January/4/2020) to! !
 
 !GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
 testEqual
