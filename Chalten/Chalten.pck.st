@@ -1,6 +1,6 @@
-'From Cuis7.5 [latest update: #7428] on 20 August 2025 at 12:10:21 pm'!
-'Description Fixed some tests for singular unit'!
-!provides: 'Chalten' 1 19!
+'From Cuis7.7 [latest update: #7880] on 22 April 2026 at 9:45:34 am'!
+'Description Fix invalid creation test for TimeOfDay.'!
+!provides: 'Chalten' 1 20!
 !requires: 'Aconcagua' 1 1 nil!
 SystemOrganization addCategory: #'Chalten-TimeModel'!
 SystemOrganization addCategory: #'Chalten-TimeLineFilterModel'!
@@ -839,129 +839,129 @@ TimeUnitsTest class
 	instanceVariableNames: ''!
 
 
-!PointInTimeIntervalStrategy methodsFor: 'enumerating'!
+!PointInTimeIntervalStrategy methodsFor: 'enumerating' stamp: ''!
 advanceFrom: from by: by
 
 	^from next: by! !
 
-!PointInTimeIntervalStrategy methodsFor: 'enumerating'!
+!PointInTimeIntervalStrategy methodsFor: 'enumerating' stamp: ''!
 advanceFrom: from steps: steps by: by
 
 	^from next: (steps * by)! !
 
-!DefaultPointInTimeIntervalStrategy methodsFor: 'enumerating'!
+!DefaultPointInTimeIntervalStrategy methodsFor: 'enumerating' stamp: ''!
 stepsFrom: fromPointInTime to: toPointInTime by: aDistance
 	
 	^(fromPointInTime distanceTo: toPointInTime) / aDistance! !
 
-!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!DefaultPointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!DefaultPointInTimeIntervalStrategy class methodsFor: 'instance creation'!
+!DefaultPointInTimeIntervalStrategy class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!MoreThanOnePointInTimeIntervalStrategy methodsFor: 'testing'!
+!MoreThanOnePointInTimeIntervalStrategy methodsFor: 'testing' stamp: ''!
 isValidIntervalFrom: aStart to: aStop by: aStep
 
 	^(self stepsFrom: aStart to: aStop by: aStep) > 0! !
 
-!MoreThanOnePointInTimeIntervalStrategy methodsFor: 'enumerating'!
+!MoreThanOnePointInTimeIntervalStrategy methodsFor: 'enumerating' stamp: ''!
 stepsFrom: fromPointInTime to: toPointInTime by: aDistance
 	
 	^(fromPointInTime distanceTo: toPointInTime) / aDistance! !
 
-!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization'!
+!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'instance creation'!
+!MoreThanOnePointInTimeIntervalStrategy class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!RoundedTimelineIntervalStrategy methodsFor: 'enumerating'!
+!RoundedTimelineIntervalStrategy methodsFor: 'enumerating' stamp: ''!
 stepsFrom: from to: to by: by
 
 	^by > 0
 		ifTrue: [ (from distanceTo: to) / by ]
 		ifFalse: [ (from distanceFrom: to) / by negated ]! !
 
-!RoundedTimelineIntervalStrategy class methodsFor: 'initialization'!
+!RoundedTimelineIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!RoundedTimelineIntervalStrategy class methodsFor: 'initialization'!
+!RoundedTimelineIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!RoundedTimelineIntervalStrategy class methodsFor: 'initialization'!
+!RoundedTimelineIntervalStrategy class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!RoundedTimelineIntervalStrategy class methodsFor: 'instance creation'!
+!RoundedTimelineIntervalStrategy class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!InclusionRule methodsFor: 'querying'!
+!InclusionRule methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	self subclassResponsibility! !
 
-!ArgentineLaw23555Rule methodsFor: 'printing'!
+!ArgentineLaw23555Rule methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	self dayOfMonth printOn: aStream.
 	aStream nextPutAll: ' transferable holiday by Argentine Law 23555'! !
 
-!ArgentineLaw23555Rule methodsFor: 'accessing'!
+!ArgentineLaw23555Rule methodsFor: 'accessing' stamp: ''!
 dayOfMonth
 	
 	^dayOfMonth! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying - private'!
+!ArgentineLaw23555Rule methodsFor: 'querying - private' stamp: ''!
 goToNextMondayIfNeeded: aGregorianDate 
 
 	^(self mustGoToNextMonday: aGregorianDate) 
 			ifTrue: [aGregorianDate nextDay: GregorianDay monday]
 			ifFalse: [aGregorianDate]! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying - private'!
+!ArgentineLaw23555Rule methodsFor: 'querying - private' stamp: ''!
 goToPreviousMondayIfNeeded: aGregorianDate 
 
 	^(self mustGoToPreviousMonday: aGregorianDate) 
 			ifTrue: [aGregorianDate previousDay: GregorianDay monday]
 			ifFalse: [aGregorianDate]! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying - private'!
+!ArgentineLaw23555Rule methodsFor: 'querying - private' stamp: ''!
 goToPreviousOrNextMonday: aGregorianDate 
 
 	| gregorianDate |
@@ -971,17 +971,17 @@ goToPreviousOrNextMonday: aGregorianDate
 	
 	^gregorianDate! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying - private'!
+!ArgentineLaw23555Rule methodsFor: 'querying - private' stamp: ''!
 mustGoToNextMonday: aGregorianDate 
 
 	^aGregorianDate day = GregorianDay thursday or: [ aGregorianDate day = GregorianDay friday ]! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying - private'!
+!ArgentineLaw23555Rule methodsFor: 'querying - private' stamp: ''!
 mustGoToPreviousMonday: aGregorianDate 
 
 	^aGregorianDate day = GregorianDay tuesday or: [ aGregorianDate day = GregorianDay wednesday ]! !
 
-!ArgentineLaw23555Rule methodsFor: 'querying'!
+!ArgentineLaw23555Rule methodsFor: 'querying' stamp: ''!
 includes: aGregorianDate 
 
 	| includedDate |
@@ -991,24 +991,24 @@ includes: aGregorianDate
 	
 	^aGregorianDate = includedDate! !
 
-!ArgentineLaw23555Rule methodsFor: 'initialization'!
+!ArgentineLaw23555Rule methodsFor: 'initialization' stamp: ''!
 initializeDayOfMonth: aGregorianDayOfMonth
 
 	dayOfMonth := aGregorianDayOfMonth.
 ! !
 
-!ArgentineLaw23555Rule class methodsFor: 'instance creating'!
+!ArgentineLaw23555Rule class methodsFor: 'instance creating' stamp: ''!
 dayOfMonth: aGregorianDayOfMonth 
 
 	^self new initializeDayOfMonth: aGregorianDayOfMonth! !
 
-!ArgentineLaw23555Rule class methodsFor: 'instance creating'!
+!ArgentineLaw23555Rule class methodsFor: 'instance creating' stamp: ''!
 monthNumber: aMonthNumber dayNumber: aDayNumber 
 
 	^self dayOfMonth: (GregorianDayOfMonth monthNumber: aMonthNumber dayNumber: aDayNumber)
 ! !
 
-!CardinalDayMonthRule methodsFor: 'printing'!
+!CardinalDayMonthRule methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	self cardinal printOn: aStream.
@@ -1017,28 +1017,28 @@ printOn: aStream
 	aStream nextPutAll: ' of '.
 	self month printOn: aStream! !
 
-!CardinalDayMonthRule methodsFor: 'accessing'!
+!CardinalDayMonthRule methodsFor: 'accessing' stamp: ''!
 cardinal
 
 	^cardinal! !
 
-!CardinalDayMonthRule methodsFor: 'accessing'!
+!CardinalDayMonthRule methodsFor: 'accessing' stamp: ''!
 day
 
 	^day! !
 
-!CardinalDayMonthRule methodsFor: 'accessing'!
+!CardinalDayMonthRule methodsFor: 'accessing' stamp: ''!
 month
 
 	^month! !
 
-!CardinalDayMonthRule methodsFor: 'querying'!
+!CardinalDayMonthRule methodsFor: 'querying' stamp: ''!
 includes: aGregorianDate
 
 	^aGregorianDate = ((month ofYear: aGregorianDate year) cardinal: cardinal day: day)
 ! !
 
-!CardinalDayMonthRule methodsFor: 'initialization'!
+!CardinalDayMonthRule methodsFor: 'initialization' stamp: ''!
 initializeCardinal: aNumber day: aGregorianDay month: aGregorianMonth
 
 	cardinal := aNumber.
@@ -1046,7 +1046,7 @@ initializeCardinal: aNumber day: aGregorianDay month: aGregorianMonth
 	month := aGregorianMonth.
 ! !
 
-!CardinalDayMonthRule class methodsFor: 'instance creating'!
+!CardinalDayMonthRule class methodsFor: 'instance creating' stamp: ''!
 cardinal: aNumber day: aGregorianDay month: aGregorianMonth 
  
 	^self new 
@@ -1055,32 +1055,32 @@ cardinal: aNumber day: aGregorianDay month: aGregorianMonth
 		month: aGregorianMonth
 ! !
 
-!DayOfMonthRule methodsFor: 'printing'!
+!DayOfMonthRule methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	self decoratedRule printOn: aStream! !
 
-!DayOfMonthRule methodsFor: 'accessing'!
+!DayOfMonthRule methodsFor: 'accessing' stamp: ''!
 decoratedRule
 
 	^decoratedRule! !
 
-!DayOfMonthRule methodsFor: 'querying'!
+!DayOfMonthRule methodsFor: 'querying' stamp: ''!
 includes: aGregorianDate 
 	
 	^decoratedRule includes: aGregorianDate dayOfMonth! !
 
-!DayOfMonthRule methodsFor: 'initialization'!
+!DayOfMonthRule methodsFor: 'initialization' stamp: ''!
 initializeRule: anInclusionRule
 
 	decoratedRule := anInclusionRule! !
 
-!DayOfMonthRule class methodsFor: 'instance creation'!
+!DayOfMonthRule class methodsFor: 'instance creation' stamp: ''!
 rule: anInclusionRule
 
 	^self new initializeRule: anInclusionRule! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'printing' stamp: 'mx 4/2/2006 19:41'!
+!IntervalConstrainedInclusionRule methodsFor: 'printing' stamp: 'mx 2/Apr/2006 19:41:00'!
 printOn: aStream
 
 	aStream nextPutAll: 'From: '.
@@ -1090,144 +1090,144 @@ printOn: aStream
 	aStream nextPutAll: ' -> '.
 	decoratedRule printOn: aStream! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'accessing'!
+!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: ''!
 decoratedRule
 
 	^decoratedRule! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: 'mx 4/2/2006 19:41'!
+!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: 'mx 2/Apr/2006 19:41:00'!
 from
 
 	^interval first! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'accessing'!
+!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: ''!
 interval
 
 	^interval! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: 'mx 4/2/2006 19:42'!
+!IntervalConstrainedInclusionRule methodsFor: 'accessing' stamp: 'mx 2/Apr/2006 19:42:00'!
 to
 
 	^interval last! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'querying'!
+!IntervalConstrainedInclusionRule methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^(self shouldHandle: anObject) and: [ self decoratedRule includes: anObject ]! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'initialization'!
+!IntervalConstrainedInclusionRule methodsFor: 'initialization' stamp: ''!
 initializeOn: anInterval apply: anInclusionRule 
 
 	interval := anInterval.
 	decoratedRule := anInclusionRule! !
 
-!IntervalConstrainedInclusionRule methodsFor: 'querying - private'!
+!IntervalConstrainedInclusionRule methodsFor: 'querying - private' stamp: ''!
 shouldHandle: aMagnitude
 
 	^interval includes: aMagnitude! !
 
-!IntervalConstrainedInclusionRule class methodsFor: 'instance creating'!
+!IntervalConstrainedInclusionRule class methodsFor: 'instance creating' stamp: ''!
 from: aMagnitude to: anotherMagnitude  apply: anInclusionRule
 
 	^self on: (aMagnitude to: anotherMagnitude) apply: anInclusionRule! !
 
-!IntervalConstrainedInclusionRule class methodsFor: 'instance creating'!
+!IntervalConstrainedInclusionRule class methodsFor: 'instance creating' stamp: ''!
 on: anInterval apply: anInclusionRule 
 
 	^self new initializeOn: anInterval apply: anInclusionRule! !
 
-!PluggableInclusionRule methodsFor: 'querying'!
+!PluggableInclusionRule methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^block value: anObject! !
 
-!PluggableInclusionRule methodsFor: 'initialization'!
+!PluggableInclusionRule methodsFor: 'initialization' stamp: ''!
 initializeBlock: aBlock 
 	
 	block := aBlock! !
 
-!PluggableInclusionRule class methodsFor: 'instance creation'!
+!PluggableInclusionRule class methodsFor: 'instance creation' stamp: ''!
 block: aBlock 
 	
 	^self new initializeBlock: aBlock! !
 
-!SpecificDayRule methodsFor: 'printing'!
+!SpecificDayRule methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	self decoratedRule printOn: aStream! !
 
-!SpecificDayRule methodsFor: 'accessing'!
+!SpecificDayRule methodsFor: 'accessing' stamp: ''!
 decoratedRule
 
 	^decoratedRule! !
 
-!SpecificDayRule methodsFor: 'querying'!
+!SpecificDayRule methodsFor: 'querying' stamp: ''!
 includes: aGregorianDate 
 	
 	^decoratedRule includes: aGregorianDate day! !
 
-!SpecificDayRule methodsFor: 'initialization'!
+!SpecificDayRule methodsFor: 'initialization' stamp: ''!
 initializeRule: anInclusionRule
 
 	decoratedRule := anInclusionRule! !
 
-!SpecificDayRule class methodsFor: 'instance creation'!
+!SpecificDayRule class methodsFor: 'instance creation' stamp: ''!
 rule: anInclusionRule
 
 	^self new initializeRule: anInclusionRule! !
 
-!SpecificObjectInclusionRule methodsFor: 'printing'!
+!SpecificObjectInclusionRule methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: 'Includes: '.
 	self object printOn: aStream! !
 
-!SpecificObjectInclusionRule methodsFor: 'querying'!
+!SpecificObjectInclusionRule methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^object = anObject! !
 
-!SpecificObjectInclusionRule methodsFor: 'initialization'!
+!SpecificObjectInclusionRule methodsFor: 'initialization' stamp: ''!
 initializeFor: anObject
 
 	object := anObject! !
 
-!SpecificObjectInclusionRule methodsFor: 'accessing'!
+!SpecificObjectInclusionRule methodsFor: 'accessing' stamp: ''!
 object
 
 	^object! !
 
-!SpecificObjectInclusionRule class methodsFor: 'instance creation'!
+!SpecificObjectInclusionRule class methodsFor: 'instance creation' stamp: ''!
 for: anObject
 
 	^self new initializeFor: anObject! !
 
-!TimeLineFilterBehavior methodsFor: 'printing'!
+!TimeLineFilterBehavior methodsFor: 'printing' stamp: ''!
 name
 
 	self subclassResponsibility! !
 
-!TimeLineFilterBehavior methodsFor: 'printing'!
+!TimeLineFilterBehavior methodsFor: 'printing' stamp: ''!
 namedPrintOn: aStream 
 	aStream nextPutAll: self name asString! !
 
-!TimeLineFilterBehavior methodsFor: 'printing'!
+!TimeLineFilterBehavior methodsFor: 'printing' stamp: ''!
 printOn: aStream 
 	self name isNil 
 		ifTrue: [self unnamedPrintOn: aStream]
 		ifFalse: [self namedPrintOn: aStream]! !
 
-!TimeLineFilterBehavior methodsFor: 'printing'!
+!TimeLineFilterBehavior methodsFor: 'printing' stamp: ''!
 unnamedPrintOn: aStream
 
 	aStream nextPutAll: 'unnamed time line filter'! !
 
-!TimeLineFilterBehavior methodsFor: 'enumerating' stamp: 'HAW 11/10/2021 21:20:59'!
+!TimeLineFilterBehavior methodsFor: 'enumerating' stamp: 'HAW 10/Nov/2021 21:20:59'!
 datesBetween: aGregorianDate and: anotherGregorianDate
 
 	^(aGregorianDate to: anotherGregorianDate) select: [:each | self includes: each]! !
 
-!TimeLineFilterBehavior methodsFor: 'enumerating'!
+!TimeLineFilterBehavior methodsFor: 'enumerating' stamp: ''!
 next: aTimespan
 
 	| stream |
@@ -1236,104 +1236,104 @@ next: aTimespan
 	stream skip: aTimespan duration.
 	^stream current! !
 
-!TimeLineFilterBehavior methodsFor: 'enumerating'!
+!TimeLineFilterBehavior methodsFor: 'enumerating' stamp: ''!
 streamFrom: aGregorianDate 
 
 	^TimeLineFilterStream from: aGregorianDate using: self! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - excluded'!
+!TimeLineFilterBehavior methodsFor: 'querying - excluded' stamp: ''!
 excludedFrom: aGregorianDate to: anotherGregorianDate
 
 	^self negated includedFrom: aGregorianDate to: anotherGregorianDate
 ! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - excluded'!
+!TimeLineFilterBehavior methodsFor: 'querying - excluded' stamp: ''!
 excludedIn: anInterval
 
 	^self negated includedIn: anInterval! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - excluded'!
+!TimeLineFilterBehavior methodsFor: 'querying - excluded' stamp: ''!
 excludes: aGregorianDate
 
 	^self negated includes: aGregorianDate! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - excluded'!
+!TimeLineFilterBehavior methodsFor: 'querying - excluded' stamp: ''!
 excludesAll: aCollection
 
 	^self negated includesAll: aCollection! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included'!
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: ''!
 includedFrom: aGregorianDate to: anotherGregorianDate
  
 	^self includedIn: (aGregorianDate to: anotherGregorianDate)
 ! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included'!
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: ''!
 includedIn: anInterval
 
 	^anInterval select: [:each | self includes: each]! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included'!
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: ''!
 includes: aGregorianDate
 	self subclassResponsibility! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included'!
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: ''!
 includesAll: aCollection
 
 	^aCollection allSatisfy: [:each | self includes: each]! !
 
-!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: 'HAW 11/10/2021 21:21:41'!
+!TimeLineFilterBehavior methodsFor: 'querying - included' stamp: 'HAW 10/Nov/2021 21:21:41'!
 numberOfDatesBetween: aGregorianDate and: anotherGregorianDate
 
 	^SimpleMeasure
 		amount: (self datesBetween: aGregorianDate and: anotherGregorianDate) size
 		unit: TimeUnits day! !
 
-!TimeLineFilterBehavior methodsFor: 'accessing'!
+!TimeLineFilterBehavior methodsFor: 'accessing' stamp: ''!
 negated
 	self subclassResponsibility! !
 
-!NegatedTimeLineFilter methodsFor: 'accessing'!
+!NegatedTimeLineFilter methodsFor: 'accessing' stamp: ''!
 name
 
 	^originalTimeLineFilter name! !
 
-!NegatedTimeLineFilter methodsFor: 'accessing'!
+!NegatedTimeLineFilter methodsFor: 'accessing' stamp: ''!
 negated
 	
 	^originalTimeLineFilter! !
 
-!NegatedTimeLineFilter methodsFor: 'querying - included'!
+!NegatedTimeLineFilter methodsFor: 'querying - included' stamp: ''!
 includes: aGregorianDate
 	
 	^(originalTimeLineFilter includes: aGregorianDate) not! !
 
-!NegatedTimeLineFilter methodsFor: 'initialization'!
+!NegatedTimeLineFilter methodsFor: 'initialization' stamp: ''!
 initializeFor: aTimeLineFilter
 
 	originalTimeLineFilter := aTimeLineFilter! !
 
-!NegatedTimeLineFilter class methodsFor: 'instance creation'!
+!NegatedTimeLineFilter class methodsFor: 'instance creation' stamp: ''!
 for: aTimeLineFilter
 
 	^self new initializeFor: aTimeLineFilter! !
 
-!TimeLineFilter methodsFor: 'accessing'!
+!TimeLineFilter methodsFor: 'accessing' stamp: ''!
 name
 
 	^name! !
 
-!TimeLineFilter methodsFor: 'accessing'!
+!TimeLineFilter methodsFor: 'accessing' stamp: ''!
 negated
 
 	^negatedTimeLineFilter! !
 
-!TimeLineFilter methodsFor: 'accessing'!
+!TimeLineFilter methodsFor: 'accessing' stamp: ''!
 rules
 
 	^inclusionSet rules! !
 
-!TimeLineFilter methodsFor: 'comparing'!
+!TimeLineFilter methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self == anObject or: [
@@ -1342,154 +1342,154 @@ rules
 		]
 	]! !
 
-!TimeLineFilter methodsFor: 'comparing'!
+!TimeLineFilter methodsFor: 'comparing' stamp: ''!
 hash
 
 	^name hash! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addArgentineLaw23555Rule: aGregorianDayOfMonth 
 	^self addRule: (self argentineLaw23555Rule: aGregorianDayOfMonth)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addCardinal: aNumber day: aGregorianDay monthRule: aGregorianMonth 
 	^self addRule: (self 
 				cardinal: aNumber
 				day: aGregorianDay
 				monthRule: aGregorianMonth)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addDateRule: aGregorianDate 
 	
 	^self addRule: (self dateRule: aGregorianDate)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addDayOfMonthRule: aGregorianDayOfMonth 
 	
 	^self addRule: (self dayOfMonthRule: aGregorianDayOfMonth)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addDayRule: aGregorianDay 
 
 	^self addRule: (self dayRule: aGregorianDay)
 	! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addRule: aRule for: anInterval
 
 	^self addRule: (self rule: aRule on: anInterval)
 ! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: 'HAW 3/25/2017 20:37:27'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: 'HAW 25/Mar/2017 20:37:27'!
 addRule: aRule from: aGregorianDate
 
 	^self addRule: (self rule: aRule from: aGregorianDate to: FixedGregorianDate theEndOfTime)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addRule: aRule from: aGregorianDate to: anotherGregorianDate
 
 	^self addRule: (self rule: aRule from: aGregorianDate to: anotherGregorianDate)! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addRules: aRuleCollection for: anIntervalOfDays
 
 	aRuleCollection do: [:each | self addRule: each for: anIntervalOfDays]! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: 'HAW 3/25/2017 20:37:44'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: 'HAW 25/Mar/2017 20:37:44'!
 addRules: aRuleCollection from: aGregorianDate
 
 	self addRules: aRuleCollection from: aGregorianDate to: FixedGregorianDate theEndOfTime! !
 
-!TimeLineFilter methodsFor: 'rules - adding specific rules'!
+!TimeLineFilter methodsFor: 'rules - adding specific rules' stamp: ''!
 addRules: aRuleCollection from: aGregorianDate to: anotherGregorianDate
 
 	self addRules: aRuleCollection for: (aGregorianDate to: anotherGregorianDate)! !
 
-!TimeLineFilter methodsFor: 'rules - adding generic rules'!
+!TimeLineFilter methodsFor: 'rules - adding generic rules' stamp: ''!
 addRule: anInclusionRule
 
 	^inclusionSet addRule: anInclusionRule.
 ! !
 
-!TimeLineFilter methodsFor: 'rules - adding generic rules'!
+!TimeLineFilter methodsFor: 'rules - adding generic rules' stamp: ''!
 addRules: aCollectionOfInclusionRules
 
 	^inclusionSet addRules: aCollectionOfInclusionRules.
 ! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 argentineLaw23555Rule: aGregorianDayOfMonth 
 	^self class argentineLaw23555Rule: aGregorianDayOfMonth! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 cardinal: aNumber day: aGregorianDay monthRule: aGregorianMonth 
 	^self class 
 		cardinal: aNumber
 		day: aGregorianDay
 		monthRule: aGregorianMonth! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 dateRule: aGregorianDate 
 
 	^self class dateRule: aGregorianDate! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 dayOfMonthRule: aGregorianDayOfMonth
 
 	^self class dayOfMonthRule: aGregorianDayOfMonth
 ! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 dayRule: aGregorianDay
 
 	^self class dayRule: aGregorianDay! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 rule: anInclusionRule from: aGregorianDate to: anotherGregorianDate
 
 	^self class rule: anInclusionRule from: aGregorianDate to: anotherGregorianDate! !
 
-!TimeLineFilter methodsFor: 'rules - creating'!
+!TimeLineFilter methodsFor: 'rules - creating' stamp: ''!
 rule: anInclusionRule on: anInterval
 
 	^self class rule: anInclusionRule on: anInterval! !
 
-!TimeLineFilter methodsFor: 'querying - included'!
+!TimeLineFilter methodsFor: 'querying - included' stamp: ''!
 includes: aGregorianDate
 
 	^inclusionSet includes: aGregorianDate! !
 
-!TimeLineFilter methodsFor: 'initialization'!
+!TimeLineFilter methodsFor: 'initialization' stamp: ''!
 initialize
 
 	inclusionSet := DefinedByRules for: AllDatesUniverse new.
 	negatedTimeLineFilter := NegatedTimeLineFilter for: self! !
 
-!TimeLineFilter methodsFor: 'initialization'!
+!TimeLineFilter methodsFor: 'initialization' stamp: ''!
 initializeNamed: aName
 
 	name := aName! !
 
-!TimeLineFilter methodsFor: 'rules - removing'!
+!TimeLineFilter methodsFor: 'rules - removing' stamp: ''!
 removeAllRules
 
 	^inclusionSet removeAllRules! !
 
-!TimeLineFilter methodsFor: 'rules - removing'!
+!TimeLineFilter methodsFor: 'rules - removing' stamp: ''!
 removeRule: anInclusionRule
 
 	^inclusionSet removeRule: anInclusionRule! !
 
-!TimeLineFilter methodsFor: 'querying - rules'!
+!TimeLineFilter methodsFor: 'querying - rules' stamp: ''!
 rulesThatInclude: aGregorianDate
 
 	^inclusionSet rulesThatInclude: aGregorianDate! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 argentineLaw23555Rule: aGregorianDayOfMonth 
 	^ArgentineLaw23555Rule dayOfMonth: aGregorianDayOfMonth! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 cardinal: aNumber day: aGregorianDay monthRule: aGregorianMonth 
 
 	^CardinalDayMonthRule 
@@ -1498,189 +1498,189 @@ cardinal: aNumber day: aGregorianDay monthRule: aGregorianMonth
 		month: aGregorianMonth.
 ! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 dateRule: aGregorianDate 
 
 	^SpecificObjectInclusionRule for: aGregorianDate.
 ! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 dayOfMonthRule: aGregorianDayOfMonth
 
 	^DayOfMonthRule rule: (SpecificObjectInclusionRule for: aGregorianDayOfMonth)! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 dayRule: aGregorianDay
 
 	^SpecificDayRule rule: (SpecificObjectInclusionRule for: aGregorianDay)! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 rule: anInclusionRule from: aGregorianDate to: anotherGregorianDate
 
 	^self rule: anInclusionRule on: (aGregorianDate to: anotherGregorianDate)! !
 
-!TimeLineFilter class methodsFor: 'rules - creating'!
+!TimeLineFilter class methodsFor: 'rules - creating' stamp: ''!
 rule: anInclusionRule on: anInterval
 
 	^IntervalConstrainedInclusionRule on: anInterval apply: anInclusionRule! !
 
-!TimeLineFilter class methodsFor: 'instance creation'!
+!TimeLineFilter class methodsFor: 'instance creation' stamp: ''!
 fromString: aString
 
 	^self named: aString! !
 
-!TimeLineFilter class methodsFor: 'instance creation'!
+!TimeLineFilter class methodsFor: 'instance creation' stamp: ''!
 named: aName
 
 	^self new initializeNamed: aName! !
 
-!TimeLineFilter class methodsFor: 'instance creation'!
+!TimeLineFilter class methodsFor: 'instance creation' stamp: ''!
 new
 	
 	^super new initialize! !
 
-!Universe methodsFor: 'iterating'!
+!Universe methodsFor: 'iterating' stamp: ''!
 do: aBlock 
 	
 	self subclassResponsibility! !
 
-!Universe methodsFor: 'querying'!
+!Universe methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	self subclassResponsibility! !
 
-!AllDatesUniverse methodsFor: 'printing'!
+!AllDatesUniverse methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: 'Every Days'! !
 
-!AllDatesUniverse methodsFor: 'iterating'!
+!AllDatesUniverse methodsFor: 'iterating' stamp: ''!
 do: aBlock 
 	
 	^NotIterateUniverseException signalUniverse: self! !
 
-!AllDatesUniverse methodsFor: 'accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!AllDatesUniverse methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 from
 
 	^FixedGregorianDate theBeginningOfTime
 	! !
 
-!AllDatesUniverse methodsFor: 'accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!AllDatesUniverse methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 to
 
 	^FixedGregorianDate theEndOfTime
 	! !
 
-!AllDatesUniverse methodsFor: 'querying'!
+!AllDatesUniverse methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^anObject isGregorianDate! !
 
-!AllDatesUniverse class methodsFor: 'initialization'!
+!AllDatesUniverse class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!AllDatesUniverse class methodsFor: 'initialization'!
+!AllDatesUniverse class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!AllDatesUniverse class methodsFor: 'initialization'!
+!AllDatesUniverse class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!AllDatesUniverse class methodsFor: 'instance creation'!
+!AllDatesUniverse class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!AllUniverse methodsFor: 'iterating'!
+!AllUniverse methodsFor: 'iterating' stamp: ''!
 do: aBlock 
 	
 	^NotIterateUniverseException signalUniverse: self! !
 
-!AllUniverse methodsFor: 'querying'!
+!AllUniverse methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^true! !
 
-!AllUniverse class methodsFor: 'initialization'!
+!AllUniverse class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!AllUniverse class methodsFor: 'initialization'!
+!AllUniverse class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!AllUniverse class methodsFor: 'initialization'!
+!AllUniverse class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!AllUniverse class methodsFor: 'instance creation'!
+!AllUniverse class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!NaturalNumbersTestUniverse methodsFor: 'printing'!
+!NaturalNumbersTestUniverse methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: 'Natural Numbers'! !
 
-!NaturalNumbersTestUniverse methodsFor: 'iterating'!
+!NaturalNumbersTestUniverse methodsFor: 'iterating' stamp: ''!
 do: aBlock 
 	
 	^NotIterateUniverseException signalUniverse: self! !
 
-!NaturalNumbersTestUniverse methodsFor: 'querying'!
+!NaturalNumbersTestUniverse methodsFor: 'querying' stamp: ''!
 includes: anObject
 
 	^anObject isInteger! !
 
-!NaturalNumbersTestUniverse class methodsFor: 'initialization'!
+!NaturalNumbersTestUniverse class methodsFor: 'initialization' stamp: ''!
 initialize
 
 	self initializeUniqueInstance! !
 
-!NaturalNumbersTestUniverse class methodsFor: 'initialization'!
+!NaturalNumbersTestUniverse class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!NaturalNumbersTestUniverse class methodsFor: 'initialization'!
+!NaturalNumbersTestUniverse class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!NaturalNumbersTestUniverse class methodsFor: 'instance creation'!
+!NaturalNumbersTestUniverse class methodsFor: 'instance creation' stamp: ''!
 new
 
 	^uniqueInstance! !
 
-!GregorianTimespan methodsFor: 'printing'!
+!GregorianTimespan methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	duration printOn: aStream.
 	aStream nextPutAll: ' from '.
 	from printOn: aStream! !
 
-!GregorianTimespan methodsFor: 'comparing'!
+!GregorianTimespan methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self class = anObject class
 		and: [ from = anObject from 
 		and: [ duration = anObject duration ]]! !
 
-!GregorianTimespan methodsFor: 'comparing'!
+!GregorianTimespan methodsFor: 'comparing' stamp: ''!
 hash
 
 	^from hash bitXor: duration hash! !
 
-!GregorianTimespan methodsFor: 'converting' stamp: 'HAW 3/25/2017 20:46:07'!
+!GregorianTimespan methodsFor: 'converting' stamp: 'HAW 25/Mar/2017 20:46:07'!
 asInterval
 
 	^ArithmeticObjectInterval
@@ -1689,45 +1689,45 @@ asInterval
 		by: (duration unit with: 1)
 		intervalStrategy: DefaultPointInTimeIntervalStrategy new.! !
 
-!GregorianTimespan methodsFor: 'accessing'!
+!GregorianTimespan methodsFor: 'accessing' stamp: ''!
 duration
 
 	^duration! !
 
-!GregorianTimespan methodsFor: 'accessing'!
+!GregorianTimespan methodsFor: 'accessing' stamp: ''!
 from
 
 	^from! !
 
-!GregorianTimespan methodsFor: 'accessing'!
+!GregorianTimespan methodsFor: 'accessing' stamp: ''!
 to
 	
 	^from next: duration! !
 
-!GregorianTimespan methodsFor: 'initialization'!
+!GregorianTimespan methodsFor: 'initialization' stamp: ''!
 initializeFrom: aGregorianDate duration: aTimeMeasure
 
 	from := aGregorianDate.
 	duration := aTimeMeasure! !
 
-!GregorianTimespan methodsFor: 'evaluating'!
+!GregorianTimespan methodsFor: 'evaluating' stamp: ''!
 value
 
 	^self class from: from value duration: duration! !
 
-!GregorianTimespan class methodsFor: 'instance creation'!
+!GregorianTimespan class methodsFor: 'instance creation' stamp: ''!
 from: aGregorianDate duration: aTimeMeasure
 
 	^self new initializeFrom: aGregorianDate duration: aTimeMeasure
 
 ! !
 
-!GregorianTimespan class methodsFor: 'instance creation'!
+!GregorianTimespan class methodsFor: 'instance creation' stamp: ''!
 fromInterval: anInterval
 
 	^self from: anInterval from duration: (anInterval from distanceTo: anInterval to)! !
 
-!TimeModelInitialization class methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeModelInitialization class methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:23'!
 initialize
 
 	"Everything is initialized here because there are dependencies of how the objects are initialized.
@@ -1743,12 +1743,12 @@ initialize
 	TimeOfDay initializeCommonObjects.
 	GregorianDateTime initializeTheBeginningAndTheEndOfTime! !
 
-!TimeModelInitialization class methodsFor: 'initialization'!
+!TimeModelInitialization class methodsFor: 'initialization' stamp: ''!
 initializeAfterLoad
 
 	self initialize! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 allUnits
 	
 	^OrderedCollection new
@@ -1762,52 +1762,52 @@ allUnits
 		add: year;
 		yourself.! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 day
 	
 	^day! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 hour
 	
 	^hour! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 millisecond
 	
 	^millisecond! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 minute
 
 	^minute! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 month
 	
 	^month! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 second
 
 	^second! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 week
 
 	^week! !
 
-!TimeUnits class methodsFor: 'accessing - units'!
+!TimeUnits class methodsFor: 'accessing - units' stamp: ''!
 year
 	
 	^year! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeDay
 
 	day := BaseUnit named: 'day'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeHour
 
 	hour := ProportionalDerivedUnit 
@@ -1815,7 +1815,7 @@ initializeHour
 		conversionFactor: 1/24
 		named: 'hour'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeMillisecond
 
 	millisecond := ProportionalDerivedUnit 
@@ -1823,7 +1823,7 @@ initializeMillisecond
 		conversionFactor: 1/(1000*60*60*24)
 		named: 'millisecond'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeMinute
 
 	minute := ProportionalDerivedUnit 
@@ -1831,12 +1831,12 @@ initializeMinute
 		conversionFactor: 1/(24*60)
 		named: 'minute'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeMonth
 
 	month := BaseUnit nameForOne: 'month' nameForMany: 'months'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeSecond
 
 	second := ProportionalDerivedUnit 
@@ -1844,7 +1844,7 @@ initializeSecond
 		conversionFactor: 1/(24*60*60)
 		named: 'second'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeTimeUnits
 
 	self initializeDay.
@@ -1857,7 +1857,7 @@ initializeTimeUnits
 	self initializeYear
 ! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeWeek
 
 	week := ProportionalDerivedUnit 
@@ -1865,7 +1865,7 @@ initializeWeek
 		conversionFactor: GregorianDay amountOfDaysPerWeek
 		named: 'week'! !
 
-!TimeUnits class methodsFor: 'initialization'!
+!TimeUnits class methodsFor: 'initialization' stamp: ''!
 initializeYear
 
 	year := ProportionalDerivedUnit 
@@ -1873,172 +1873,172 @@ initializeYear
 		conversionFactor:  GregorianMonth amountOfMonthsPerYear
 		named: 'year'! !
 
-!TimeUnits class methodsFor: 'initialization' stamp: 'HAW 8/22/2017 11:59:11'!
+!TimeUnits class methodsFor: 'initialization' stamp: 'HAW 22/Aug/2017 11:59:11'!
 installUnitsAsGlobals
 
 	self allUnits do: [ :aUnit | Smalltalk at: aUnit name asSymbol put: aUnit ]	! !
 
-!DefinedByRules methodsFor: 'adding/removing'!
+!DefinedByRules methodsFor: 'adding/removing' stamp: ''!
 add: newObject
 
 	Error signal: 'To add elements is not allowed by ', self class name! !
 
-!DefinedByRules methodsFor: 'adding/removing'!
+!DefinedByRules methodsFor: 'adding/removing' stamp: ''!
 remove: oldObject ifAbsent: anExceptionBlock
 
 	Error signal: 'To remove elements is not allowed by ', self class name! !
 
-!DefinedByRules methodsFor: 'add/removing rules'!
+!DefinedByRules methodsFor: 'add/removing rules' stamp: ''!
 addRule: anInclusionRule
 
 	^rules add: anInclusionRule
 	! !
 
-!DefinedByRules methodsFor: 'add/removing rules'!
+!DefinedByRules methodsFor: 'add/removing rules' stamp: ''!
 addRules: aCollection 
 
 	^rules addAll: aCollection.! !
 
-!DefinedByRules methodsFor: 'add/removing rules' stamp: 'mx 4/2/2006 19:27'!
+!DefinedByRules methodsFor: 'add/removing rules' stamp: 'mx 2/Apr/2006 19:27:00'!
 removeAllRules
 	
 	^rules removeAll: rules copy! !
 
-!DefinedByRules methodsFor: 'add/removing rules'!
+!DefinedByRules methodsFor: 'add/removing rules' stamp: ''!
 removeRule: anInclusionRule
 
 	^rules remove: anInclusionRule
 ! !
 
-!DefinedByRules methodsFor: 'iterating'!
+!DefinedByRules methodsFor: 'iterating' stamp: ''!
 do: aBlock 
 	
 	universe do: [ :anObject | (self includes: anObject) ifTrue: [ aBlock value: anObject ] ]! !
 
-!DefinedByRules methodsFor: 'querying - excluded'!
+!DefinedByRules methodsFor: 'querying - excluded' stamp: ''!
 excludedFrom: aMagnitude to: anotherMagnitude
 
 	^self excludedIn: (aMagnitude to: anotherMagnitude)
 	
 ! !
 
-!DefinedByRules methodsFor: 'querying - excluded'!
+!DefinedByRules methodsFor: 'querying - excluded' stamp: ''!
 excludedIn: anInterval
 
 	^anInterval select: [ :each | self excludes: each ]! !
 
-!DefinedByRules methodsFor: 'querying - excluded'!
+!DefinedByRules methodsFor: 'querying - excluded' stamp: ''!
 excludes: anObject
 
 	^(self includes: anObject) not! !
 
-!DefinedByRules methodsFor: 'querying - excluded'!
+!DefinedByRules methodsFor: 'querying - excluded' stamp: ''!
 excludesAll: aCollection
 
 	^aCollection allSatisfy: [:each | self excludes: each]! !
 
-!DefinedByRules methodsFor: 'querying - included'!
+!DefinedByRules methodsFor: 'querying - included' stamp: ''!
 includedFrom: aMagnitude to: anotherMagnitude
  
 	^self includedIn: (aMagnitude to: anotherMagnitude)! !
 
-!DefinedByRules methodsFor: 'querying - included'!
+!DefinedByRules methodsFor: 'querying - included' stamp: ''!
 includedIn: anInterval
 
 	^anInterval select: [:each | self includes: each]! !
 
-!DefinedByRules methodsFor: 'querying - included'!
+!DefinedByRules methodsFor: 'querying - included' stamp: ''!
 includes: anObject
 
 	^(universe includes: anObject ) and: [rules anySatisfy: [ :anInclusionRule | anInclusionRule includes: anObject ]]! !
 
-!DefinedByRules methodsFor: 'querying - included'!
+!DefinedByRules methodsFor: 'querying - included' stamp: ''!
 includesAll: aCollection
 
 	^aCollection allSatisfy: [:anObject | self includes: anObject]! !
 
-!DefinedByRules methodsFor: 'initialization'!
+!DefinedByRules methodsFor: 'initialization' stamp: ''!
 initializeFor: aUniverse
 	
 	rules := OrderedCollection new.
 	universe := aUniverse! !
 
-!DefinedByRules methodsFor: 'testing'!
+!DefinedByRules methodsFor: 'testing' stamp: ''!
 isEmpty
 	"Only for performance"
 	
 	self do: [ :anObject | ^false ].
 	^true! !
 
-!DefinedByRules methodsFor: 'testing'!
+!DefinedByRules methodsFor: 'testing' stamp: ''!
 notEmpty
 	"Only for performance"
 	
 	^self isEmpty not! !
 
-!DefinedByRules methodsFor: 'accessing'!
+!DefinedByRules methodsFor: 'accessing' stamp: ''!
 rules
 
 	^rules copy! !
 
-!DefinedByRules methodsFor: 'accessing'!
+!DefinedByRules methodsFor: 'accessing' stamp: ''!
 size
 
 	^self inject: 0 into: [ :size :anObject | size + 1 ].! !
 
-!DefinedByRules methodsFor: 'accessing'!
+!DefinedByRules methodsFor: 'accessing' stamp: ''!
 species
 
 	^OrderedCollection! !
 
-!DefinedByRules methodsFor: 'accessing'!
+!DefinedByRules methodsFor: 'accessing' stamp: ''!
 universe
 
 	^universe! !
 
-!DefinedByRules methodsFor: 'querying - rules'!
+!DefinedByRules methodsFor: 'querying - rules' stamp: ''!
 rulesThatInclude: anObject
 
 	^rules select: [ :anInclusionRule | anInclusionRule includes: anObject ]
 ! !
 
-!DefinedByRules class methodsFor: 'instance creating'!
+!DefinedByRules class methodsFor: 'instance creating' stamp: ''!
 for: aUniverse 
 
 	^self new initializeFor: aUniverse! !
 
-!DefinedByRules class methodsFor: 'instance creating'!
+!DefinedByRules class methodsFor: 'instance creating' stamp: ''!
 forAllUniverse
 
 	^(self for: AllUniverse new)
 		addRule: (PluggableInclusionRule block: [:anObject | true]);
 		yourself! !
 
-!TimeLineFilterStream methodsFor: 'querying'!
+!TimeLineFilterStream methodsFor: 'querying' stamp: ''!
 atEnd
 	
 	^false! !
 
-!TimeLineFilterStream methodsFor: 'accessing'!
+!TimeLineFilterStream methodsFor: 'accessing' stamp: ''!
 current
 
 	^current! !
 
-!TimeLineFilterStream methodsFor: 'initialization'!
+!TimeLineFilterStream methodsFor: 'initialization' stamp: ''!
 initializeFrom: aGregorianDate using: aTimeLineFilter
 
 	from := aGregorianDate.
 	timeLineFilter := aTimeLineFilter.
 	self reset! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 next
 	
 	current := self peek.	
 	^current.
 ! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 peek
 	
 	| nextDate |
@@ -2049,7 +2049,7 @@ peek
 
 	^nextDate! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 peekPrevious
 	
 	| nextDate |
@@ -2060,19 +2060,19 @@ peekPrevious
 
 	^nextDate! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	current := self peekPrevious.	
 	^current.
 ! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 reset
 	current := from.
 	! !
 
-!TimeLineFilterStream methodsFor: 'enumerating'!
+!TimeLineFilterStream methodsFor: 'enumerating' stamp: ''!
 skip: aNumberOfDays
 
 	| daysToSkip |
@@ -2082,255 +2082,255 @@ skip: aNumberOfDays
 		ifTrue: [ daysToSkip timesRepeat: [ self next ] ]
 		ifFalse: [ daysToSkip negated timesRepeat: [ self previous ] ]! !
 
-!TimeLineFilterStream class methodsFor: 'instance creation'!
+!TimeLineFilterStream class methodsFor: 'instance creation' stamp: ''!
 from: aGregorianDate using: aTimeLineFilter
 
 	^self new initializeFrom: aGregorianDate using: aTimeLineFilter! !
 
-!TimeLineFilterStream class methodsFor: 'instance creation' stamp: 'mx 4/2/2006 19:33'!
+!TimeLineFilterStream class methodsFor: 'instance creation' stamp: 'mx 2/Apr/2006 19:33:00'!
 new
 
 	^self basicNew! !
 
-!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing'!
+!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing' stamp: ''!
 date
 
 	^date! !
 
-!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:33:59'!
+!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:33:59'!
 description
 
 	^'{1} is not included in the {2} time line filter' format: { date .timeLineFilter }! !
 
-!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing'!
+!DateNotIncludedInTimeLineFilterException methodsFor: 'accessing' stamp: ''!
 timeLineFilter
 
 	^timeLineFilter! !
 
-!DateNotIncludedInTimeLineFilterException methodsFor: 'initialization'!
+!DateNotIncludedInTimeLineFilterException methodsFor: 'initialization' stamp: ''!
 initializeDate: aDate timeLineFilter: aTimeLineFilter 
 	date := aDate.
 	timeLineFilter := aTimeLineFilter! !
 
-!DateNotIncludedInTimeLineFilterException class methodsFor: 'instance creation'!
+!DateNotIncludedInTimeLineFilterException class methodsFor: 'instance creation' stamp: ''!
 date: aDate timeLineFilter: aTimeLineFilter 
 	^self new initializeDate: aDate timeLineFilter: aTimeLineFilter! !
 
-!DateNotIncludedInTimeLineFilterException class methodsFor: 'signaling'!
+!DateNotIncludedInTimeLineFilterException class methodsFor: 'signaling' stamp: ''!
 signalDate: aDate timeLineFilter: aTimeLineFilter 
 	(self date: aDate timeLineFilter: aTimeLineFilter) signal! !
 
-!NotIterateUniverseException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:33:05'!
+!NotIterateUniverseException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:33:05'!
 description
 
 	^'The universe {1} can''t be iterated' format: { universe }! !
 
-!NotIterateUniverseException methodsFor: 'accessing'!
+!NotIterateUniverseException methodsFor: 'accessing' stamp: ''!
 universe
 
 	^universe! !
 
-!NotIterateUniverseException methodsFor: 'initialization'!
+!NotIterateUniverseException methodsFor: 'initialization' stamp: ''!
 initializeUniverse: anUniverse
 
 	universe := anUniverse.! !
 
-!NotIterateUniverseException class methodsFor: 'signaling'!
+!NotIterateUniverseException class methodsFor: 'signaling' stamp: ''!
 signalUniverse: anUniverse
 
 	(self universe: anUniverse) signal! !
 
-!NotIterateUniverseException class methodsFor: 'instance creation'!
+!NotIterateUniverseException class methodsFor: 'instance creation' stamp: ''!
 universe: anUniverse
 
 	^self new initializeUniverse: anUniverse! !
 
-!InvalidDayOfMonthException methodsFor: 'accessing'!
+!InvalidDayOfMonthException methodsFor: 'accessing' stamp: ''!
 dayNumber
 
 	^dayNumber! !
 
-!InvalidDayOfMonthException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:19:57'!
+!InvalidDayOfMonthException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:19:57'!
 description
 
 	^'Day of month {1} invalid for {2}' format: { dayNumber .month }! !
 
-!InvalidDayOfMonthException methodsFor: 'accessing'!
+!InvalidDayOfMonthException methodsFor: 'accessing' stamp: ''!
 month
 
 	^month! !
 
-!InvalidDayOfMonthException methodsFor: 'initialization'!
+!InvalidDayOfMonthException methodsFor: 'initialization' stamp: ''!
 initializeMonth: aMonth dayNumber: aDayNumber
 
 	month := aMonth.
 	dayNumber := aDayNumber.! !
 
-!InvalidDayOfMonthException class methodsFor: 'instance creation'!
+!InvalidDayOfMonthException class methodsFor: 'instance creation' stamp: ''!
 month: aMonth dayNumber: aDayNumber
 
 	^self new initializeMonth: aMonth dayNumber: aDayNumber! !
 
-!InvalidDayOfMonthException class methodsFor: 'signaling'!
+!InvalidDayOfMonthException class methodsFor: 'signaling' stamp: ''!
 signalMonth: aMonth dayNumber: aDayNumber
 
 	(self month: aMonth dayNumber: aDayNumber) signal! !
 
-!InvalidGregorianDateException methodsFor: 'accessing'!
+!InvalidGregorianDateException methodsFor: 'accessing' stamp: ''!
 dayNumber
 	^dayNumber! !
 
-!InvalidGregorianDateException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:09:45'!
+!InvalidGregorianDateException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:09:45'!
 description
 
 	^'The day {1} is invalid for the month {2}' format: { dayNumber .monthOfYear }! !
 
-!InvalidGregorianDateException methodsFor: 'accessing'!
+!InvalidGregorianDateException methodsFor: 'accessing' stamp: ''!
 monthOfYear
 	^monthOfYear! !
 
-!InvalidGregorianDateException methodsFor: 'initialization'!
+!InvalidGregorianDateException methodsFor: 'initialization' stamp: ''!
 initializeMonthOfYear: aGregorianMonth dayNumber: aDayNumber
 
 	monthOfYear := aGregorianMonth.
 	dayNumber := aDayNumber.! !
 
-!InvalidGregorianDateException class methodsFor: 'instance creation'!
+!InvalidGregorianDateException class methodsFor: 'instance creation' stamp: ''!
 monthOfYear: aGregorianMonth dayNumber: aDayNumber
 
 	^self new initializeMonthOfYear: aGregorianMonth dayNumber: aDayNumber! !
 
-!InvalidGregorianDateException class methodsFor: 'signaling'!
+!InvalidGregorianDateException class methodsFor: 'signaling' stamp: ''!
 signalMonth: aGregorianMonth dayNumber: aDayNumber
 
 	^(self monthOfYear: aGregorianMonth dayNumber: aDayNumber) signal! !
 
-!InvalidGregorianDayNameException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:20:56'!
+!InvalidGregorianDayNameException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:20:56'!
 description
 
 	^'{1} is an invalid name for a day' format: { name }! !
 
-!InvalidGregorianDayNameException methodsFor: 'accessing'!
+!InvalidGregorianDayNameException methodsFor: 'accessing' stamp: ''!
 name
 
 	^name! !
 
-!InvalidGregorianDayNameException methodsFor: 'initialization'!
+!InvalidGregorianDayNameException methodsFor: 'initialization' stamp: ''!
 initializeName: aName
 
 	name := aName.! !
 
-!InvalidGregorianDayNameException class methodsFor: 'instance creation'!
+!InvalidGregorianDayNameException class methodsFor: 'instance creation' stamp: ''!
 name: aName
 
 	^self new initializeName: aName! !
 
-!InvalidGregorianDayNameException class methodsFor: 'signaling'!
+!InvalidGregorianDayNameException class methodsFor: 'signaling' stamp: ''!
 signalName: aName
 
 	(self name: aName) signal! !
 
-!InvalidGregorianDayNumberException methodsFor: 'accessing'!
+!InvalidGregorianDayNumberException methodsFor: 'accessing' stamp: ''!
 dayNumber
 
 	^dayNumber! !
 
-!InvalidGregorianDayNumberException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:20:22'!
+!InvalidGregorianDayNumberException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:20:22'!
 description
 
 	^'The number {1} is invalid as a day of a week' format: { dayNumber }! !
 
-!InvalidGregorianDayNumberException methodsFor: 'initialization'!
+!InvalidGregorianDayNumberException methodsFor: 'initialization' stamp: ''!
 initializeDayNumber: aDayNumber
 
 	dayNumber := aDayNumber.! !
 
-!InvalidGregorianDayNumberException class methodsFor: 'instance creation'!
+!InvalidGregorianDayNumberException class methodsFor: 'instance creation' stamp: ''!
 dayNumber: aDayNumber
 
 	^self new initializeDayNumber: aDayNumber! !
 
-!InvalidGregorianDayNumberException class methodsFor: 'signaling'!
+!InvalidGregorianDayNumberException class methodsFor: 'signaling' stamp: ''!
 signalDayNumber: aDayNumber
 
 	(self dayNumber: aDayNumber) signal! !
 
-!InvalidGregorianMonthNameException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:21:29'!
+!InvalidGregorianMonthNameException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:21:29'!
 description
 
 	^'{1} is an invalid name for a month' format: { name }! !
 
-!InvalidGregorianMonthNameException methodsFor: 'accessing'!
+!InvalidGregorianMonthNameException methodsFor: 'accessing' stamp: ''!
 name
 
 	^name! !
 
-!InvalidGregorianMonthNameException methodsFor: 'initialization'!
+!InvalidGregorianMonthNameException methodsFor: 'initialization' stamp: ''!
 initializeName: aName
 
 	name := aName.! !
 
-!InvalidGregorianMonthNameException class methodsFor: 'instance creation'!
+!InvalidGregorianMonthNameException class methodsFor: 'instance creation' stamp: ''!
 name: aName
 
 	^self new initializeName: aName! !
 
-!InvalidGregorianMonthNameException class methodsFor: 'signaling'!
+!InvalidGregorianMonthNameException class methodsFor: 'signaling' stamp: ''!
 signalName: aName
 
 	(self name: aName) signal! !
 
-!InvalidGregorianMonthNumberException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:10:03'!
+!InvalidGregorianMonthNumberException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:10:03'!
 description
 
 	^'{1} is an invalid number for a month' format: { number }! !
 
-!InvalidGregorianMonthNumberException methodsFor: 'accessing'!
+!InvalidGregorianMonthNumberException methodsFor: 'accessing' stamp: ''!
 number
 
 	^number! !
 
-!InvalidGregorianMonthNumberException methodsFor: 'initialization'!
+!InvalidGregorianMonthNumberException methodsFor: 'initialization' stamp: ''!
 initializeNumber: aNumber
 
 	number := aNumber! !
 
-!InvalidGregorianMonthNumberException class methodsFor: 'instance creation'!
+!InvalidGregorianMonthNumberException class methodsFor: 'instance creation' stamp: ''!
 number: aNumber
 
 	^self new initializeNumber: aNumber! !
 
-!InvalidGregorianMonthNumberException class methodsFor: 'signaling'!
+!InvalidGregorianMonthNumberException class methodsFor: 'signaling' stamp: ''!
 signalNumber: aNumber
 
 	(self number: aNumber) signal! !
 
-!InvalidGregorianYearNumberException methodsFor: 'accessing' stamp: 'HAW 3/25/2017 18:10:41'!
+!InvalidGregorianYearNumberException methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 18:10:41'!
 description
 
 	^'{1} is an invalid number for a year' format: { number }! !
 
-!InvalidGregorianYearNumberException methodsFor: 'accessing'!
+!InvalidGregorianYearNumberException methodsFor: 'accessing' stamp: ''!
 number
 
 	^number! !
 
-!InvalidGregorianYearNumberException methodsFor: 'initialization'!
+!InvalidGregorianYearNumberException methodsFor: 'initialization' stamp: ''!
 initializeNumber: aNumber
 
 	number := aNumber! !
 
-!InvalidGregorianYearNumberException class methodsFor: 'instance creation'!
+!InvalidGregorianYearNumberException class methodsFor: 'instance creation' stamp: ''!
 number: aNumber
 
 	^self new initializeNumber: aNumber! !
 
-!InvalidGregorianYearNumberException class methodsFor: 'signaling'!
+!InvalidGregorianYearNumberException class methodsFor: 'signaling' stamp: ''!
 signalNumber: aNumber
 
 	(self number: aNumber) signal! !
 
-!InvalidTimeOfDayException methodsFor: 'accessing' stamp: 'HAW 12/17/2018 18:27:06'!
+!InvalidTimeOfDayException methodsFor: 'accessing' stamp: 'HAW 17/Dec/2018 18:27:06'!
 description
 
 	| timeToShow |
@@ -2341,287 +2341,287 @@ description
 		
 	^'The time {1} is invalid for one day' format: { timeToShow }! !
 
-!InvalidTimeOfDayException methodsFor: 'accessing'!
+!InvalidTimeOfDayException methodsFor: 'accessing' stamp: ''!
 time
 
 	^time! !
 
-!InvalidTimeOfDayException methodsFor: 'initialization'!
+!InvalidTimeOfDayException methodsFor: 'initialization' stamp: ''!
 initializeTime: aTime
 
 	time := aTime.! !
 
-!InvalidTimeOfDayException class methodsFor: 'signaling'!
+!InvalidTimeOfDayException class methodsFor: 'signaling' stamp: ''!
 signalTime: aTime
 
 	(self time: aTime) signal! !
 
-!InvalidTimeOfDayException class methodsFor: 'instance creation'!
+!InvalidTimeOfDayException class methodsFor: 'instance creation' stamp: ''!
 time: aTime
 
 	^self new initializeTime: aTime! !
 
-!PointInTime methodsFor: 'querying' stamp: 'HAW 1/16/2019 22:48:29'!
+!PointInTime methodsFor: 'querying' stamp: 'HAW 16/Jan/2019 22:48:29'!
 absoluteDistanceTo: aPointInTime
 
 	^(self distanceTo: aPointInTime) abs
 	
 ! !
 
-!PointInTime methodsFor: 'querying' stamp: 'HAW 1/16/2019 22:48:22'!
+!PointInTime methodsFor: 'querying' stamp: 'HAW 16/Jan/2019 22:48:22'!
 distanceFrom: aPointInTime
 
 	^aPointInTime distanceTo: self! !
 
-!PointInTime methodsFor: 'querying' stamp: 'HAW 1/16/2019 22:48:12'!
+!PointInTime methodsFor: 'querying' stamp: 'HAW 16/Jan/2019 22:48:12'!
 distanceTo: aPointInTime
 
 	self subclassResponsibility! !
 
-!PointInTime methodsFor: 'enumerating'!
+!PointInTime methodsFor: 'enumerating' stamp: ''!
 next
 	
 	^self next: self defaultIntervalIncrement! !
 
-!PointInTime methodsFor: 'enumerating' stamp: 'HAW 1/16/2019 22:49:10'!
+!PointInTime methodsFor: 'enumerating' stamp: 'HAW 16/Jan/2019 22:49:10'!
 next: aTimeMeasure
 
 	self subclassResponsibility! !
 
-!PointInTime methodsFor: 'enumerating'!
+!PointInTime methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	^self previous: self defaultIntervalIncrement! !
 
-!PointInTime methodsFor: 'enumerating' stamp: 'HAW 1/16/2019 22:49:17'!
+!PointInTime methodsFor: 'enumerating' stamp: 'HAW 16/Jan/2019 22:49:17'!
 previous: aTimeMeasure 
 	
 	^self next: aTimeMeasure negated! !
 
-!GregorianDate methodsFor: 'converting' stamp: 'mx 4/2/2006 19:12'!
+!GregorianDate methodsFor: 'converting' stamp: 'mx 2/Apr/2006 19:12:00'!
 asSmalltalkDate
 
 	^Date newDay: self dayNumber month: self month name year: self year number
 	
 ! !
 
-!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 1/16/2019 21:38:21'!
+!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 16/Jan/2019 21:38:21'!
 at: aTimeOfDay
 
 	^self atTimeOfDay: aTimeOfDay ! !
 
-!GregorianDate methodsFor: 'datetime creation'!
+!GregorianDate methodsFor: 'datetime creation' stamp: ''!
 atLastTimeOfDay
 	
 	^self atTimeOfDay: TimeOfDay lastTimeOfDay! !
 
-!GregorianDate methodsFor: 'datetime creation'!
+!GregorianDate methodsFor: 'datetime creation' stamp: ''!
 atMidnight
 	
 	^self atTimeOfDay: TimeOfDay midnight! !
 
-!GregorianDate methodsFor: 'datetime creation'!
+!GregorianDate methodsFor: 'datetime creation' stamp: ''!
 atNoon
 	
 	^self atTimeOfDay: TimeOfDay noon! !
 
-!GregorianDate methodsFor: 'datetime creation'!
+!GregorianDate methodsFor: 'datetime creation' stamp: ''!
 atTimeOfDay: aTimeOfDay 
 
 	^GregorianDateTime date: self timeOfDay: aTimeOfDay! !
 
-!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 11/12/2021 12:16:26'!
+!GregorianDate methodsFor: 'datetime creation' stamp: 'HAW 12/Nov/2021 12:16:26'!
 dateTimes
 	
 	^self atMidnight to: self atLastTimeOfDay ! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 day
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBeginningOfMonth
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfMonth
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing - days'!
+!GregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfYear
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 dayNumber
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 dayOfMonth
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 immutableValue
 	"It is necessary to turn it absolute so that it is immutable."
 
 	^self value! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 month
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 monthOfYear
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'accessing'!
+!GregorianDate methodsFor: 'accessing' stamp: ''!
 year
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'interval protocol - private'!
+!GregorianDate methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^GregorianDay oneDay! !
 
-!GregorianDate methodsFor: 'interval protocol - private' stamp: 'HAW 3/25/2017 20:45:42'!
+!GregorianDate methodsFor: 'interval protocol - private' stamp: 'HAW 25/Mar/2017 20:45:42'!
 intervalStrategy
 
 	^DefaultPointInTimeIntervalStrategy new! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 distanceTo: aGregorianDate 
 
 	^aGregorianDate numberOfDaysFromBaseDate - self numberOfDaysFromBaseDate! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 includes: aPointInTime
 
 	^aPointInTime date = self! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isApril
 
 	^self month isApril! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isAugust
 
 	^self month isAugust! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isDecember
 
 	^self month isDecember! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isFebruary
 
 	^self month isFebruary! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfMonth
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfYear
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isFriday
 
 	^self day isFriday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isGregorianDate
 
 	^true! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isJanuary
 
 	^self month isJanuary! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isJuly
 
 	^self month isJuly! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isJune
 
 	^self month isJune! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfMonth
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfYear
 	self subclassResponsibility! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isMarch
 
 	^self month isMarch! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isMay
 
 	^self month isMay! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isMonday
 
 	^self day isMonday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isNovember
 
 	^self month isNovember! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isOctober
 
 	^self month isOctober! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isSaturday
 
 	^self day isSaturday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isSeptember
 
 	^self month isSeptember! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isSunday
 
 	^self day isSunday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isThursday
 
 	^self day isThursday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isTuesday
 
 	^self day isTuesday! !
 
-!GregorianDate methodsFor: 'testing'!
+!GregorianDate methodsFor: 'testing' stamp: ''!
 isWednesday
 
 	^self day isWednesday! !
 
-!GregorianDate methodsFor: 'enumerating'!
+!GregorianDate methodsFor: 'enumerating' stamp: ''!
 nextDay: aGregorianDay 
 	
 	| day |
@@ -2631,12 +2631,12 @@ nextDay: aGregorianDay
 		ifTrue: [ self next: GregorianDay sevenDays ]
 		ifFalse: [ self next: (day distanceTo: aGregorianDay) ]! !
 
-!GregorianDate methodsFor: 'enumerating'!
+!GregorianDate methodsFor: 'enumerating' stamp: ''!
 nextDayOfMonth: aDayOfMonth
 
 	^self next: (self dayOfMonth distanceTo: aDayOfMonth)! !
 
-!GregorianDate methodsFor: 'enumerating'!
+!GregorianDate methodsFor: 'enumerating' stamp: ''!
 previousDay: aGregorianDay 
 
 	| day |
@@ -2648,160 +2648,160 @@ previousDay: aGregorianDay
 	
 	! !
 
-!GregorianDate methodsFor: 'enumerating'!
+!GregorianDate methodsFor: 'enumerating' stamp: ''!
 previousDayOfMonth: aDayOfMonth
 
 	^self previous: (self dayOfMonth distanceFrom: aDayOfMonth)! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate every: aCollectionOfDays
 
 	^(self to: aGregorianDate) select: [ :aDate | 	aCollectionOfDays includes: aDate day ]! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate everyDay: aGregorianDay 
 	
 	^self to: aGregorianDate every: (Array with: aGregorianDay)! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate everyDayNumber: aDayNumber
 
 	^self to: aGregorianDate everyDayNumbers: (Array with: aDayNumber)! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate everyDayNumbers: aCollectionOfDayNumbers
 
 	^(self to: aGregorianDate) select: [ :aDate | aCollectionOfDayNumbers includes: aDate dayNumber ]! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate everyDayOfMonth: aGregorianDayOfMonth 
 
 	^self to: aGregorianDate everyDayOfMonths: (Array with: aGregorianDayOfMonth)! !
 
-!GregorianDate methodsFor: 'interval protocol'!
+!GregorianDate methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDate everyDayOfMonths: aCollectionOfGregorianDayOfMonth 
 
 	^(self to: aGregorianDate) select: [ :aDate | aCollectionOfGregorianDayOfMonth includes: aDate dayOfMonth ]! !
 
-!FilteredGregorianDate methodsFor: 'printing'!
+!FilteredGregorianDate methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	date printOn: aStream! !
 
-!FilteredGregorianDate methodsFor: 'magnitude protocol'!
+!FilteredGregorianDate methodsFor: 'magnitude protocol' stamp: ''!
 < aDate
 
 	^date < aDate value! !
 
-!FilteredGregorianDate methodsFor: 'comparing'!
+!FilteredGregorianDate methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^date = anObject! !
 
-!FilteredGregorianDate methodsFor: 'comparing'!
+!FilteredGregorianDate methodsFor: 'comparing' stamp: ''!
 hash
 
 	^date hash! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 date
 	
 	^date! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 dayNumber
 
 	^date dayNumber! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 dayOfMonth
 
 	^date dayOfMonth! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 month
 	
 	^date month! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 monthOfYear
 	
 	^date monthOfYear! !
 
-!FilteredGregorianDate methodsFor: 'accessing'!
+!FilteredGregorianDate methodsFor: 'accessing' stamp: ''!
 year
 
 	^date year! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 day
 	
 	^date day! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 
 	^date numberOfDaysFromBaseDate! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBeginningOfMonth
 
 	^date numberOfDaysFromBeginningOfMonth! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^date numberOfDaysFromJanuaryFirst! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfMonth
 
 	^date numberOfDaysToEndOfMonth! !
 
-!FilteredGregorianDate methodsFor: 'accessing - days'!
+!FilteredGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfYear
 
 	^date numberOfDaysToEndOfYear! !
 
-!FilteredGregorianDate methodsFor: 'initialization'!
+!FilteredGregorianDate methodsFor: 'initialization' stamp: ''!
 initializeDate: aGregorianDate timeLineFilter: aTimeLineFilter
 
 	date := aGregorianDate.
 	timeLineFilter := aTimeLineFilter! !
 
-!FilteredGregorianDate methodsFor: 'testing'!
+!FilteredGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfMonth
 
 	^date isFirstDayOfMonth! !
 
-!FilteredGregorianDate methodsFor: 'testing'!
+!FilteredGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfYear
 
 	^date isFirstDayOfYear! !
 
-!FilteredGregorianDate methodsFor: 'testing'!
+!FilteredGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfMonth
 
 	^date isLastDayOfMonth! !
 
-!FilteredGregorianDate methodsFor: 'testing'!
+!FilteredGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfYear
 
 	^date isLastDayOfYear! !
 
-!FilteredGregorianDate methodsFor: 'enumerating'!
+!FilteredGregorianDate methodsFor: 'enumerating' stamp: ''!
 next: aMeasure 
 	
 	^date next: aMeasure! !
 
-!FilteredGregorianDate methodsFor: 'enumerating' stamp: 'mx 4/3/2006 20:24'!
+!FilteredGregorianDate methodsFor: 'enumerating' stamp: 'mx 3/Apr/2006 20:24:00'!
 nextFiltered
 
 	^self class
 		date: (timeLineFilter next: (GregorianTimespan from: self duration: GregorianDay oneDay))
 		timeLineFilter: timeLineFilter! !
 
-!FilteredGregorianDate methodsFor: 'enumerating' stamp: 'mx 4/3/2006 20:24'!
+!FilteredGregorianDate methodsFor: 'enumerating' stamp: 'mx 3/Apr/2006 20:24:00'!
 previousFiltered
 
 	^self class
@@ -2809,166 +2809,166 @@ previousFiltered
 			(timeLineFilter next: (GregorianTimespan from: self duration: GregorianDay oneDay negated))
 		timeLineFilter: timeLineFilter! !
 
-!FilteredGregorianDate methodsFor: 'evaluating'!
+!FilteredGregorianDate methodsFor: 'evaluating' stamp: ''!
 value
 
 	^date
 ! !
 
-!FilteredGregorianDate class methodsFor: 'preconditions'!
+!FilteredGregorianDate class methodsFor: 'preconditions' stamp: ''!
 assert: aTimeLineFilter includes: aGregorianDate
 
 	(aTimeLineFilter includes: aGregorianDate) 
 		ifFalse: [
 			DateNotIncludedInTimeLineFilterException signalDate: aGregorianDate timeLineFilter: aTimeLineFilter ]! !
 
-!FilteredGregorianDate class methodsFor: 'instance creation'!
+!FilteredGregorianDate class methodsFor: 'instance creation' stamp: ''!
 date: aGregorianDate timeLineFilter: aTimeLineFilter
 
 	self assert: aTimeLineFilter includes: aGregorianDate.
 	^self new initializeDate: aGregorianDate timeLineFilter: aTimeLineFilter! !
 
-!RelativeGregorianDate methodsFor: 'printing'!
+!RelativeGregorianDate methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	^self absoluteDate printOn: aStream! !
 
-!RelativeGregorianDate methodsFor: 'magnitude protocol'!
+!RelativeGregorianDate methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianDate
 
 	^self absoluteDate < aGregorianDate! !
 
-!RelativeGregorianDate methodsFor: 'comparing'!
+!RelativeGregorianDate methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self == anObject or: [
 		(self class = anObject class and: [self absoluteDate = anObject absoluteDate])
 			or: [self absoluteDate = anObject]]! !
 
-!RelativeGregorianDate methodsFor: 'comparing'!
+!RelativeGregorianDate methodsFor: 'comparing' stamp: ''!
 hash
 
 	^self absoluteDate hash! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 absoluteDate
 	"It is necessary to send #value for not assume that the dates of the time line filter are absolute ,
 	and also it is necessary to send #value to the timespan in order to obtain a relative timespan"
 	
 	^(timeLineFilter next: timespan value) value! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 dayNumber
 	
 	^self absoluteDate dayNumber! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 dayOfMonth
 
 	^self absoluteDate dayOfMonth! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 month
 
 	^self absoluteDate month! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 monthOfYear
 
 	^self absoluteDate monthOfYear! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 timeLineFilter
 
 	^timeLineFilter! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 timespan
 
 	^timespan! !
 
-!RelativeGregorianDate methodsFor: 'accessing'!
+!RelativeGregorianDate methodsFor: 'accessing' stamp: ''!
 year
 
 	^self absoluteDate year! !
 
-!RelativeGregorianDate methodsFor: 'visitor accepting'!
+!RelativeGregorianDate methodsFor: 'visitor accepting' stamp: ''!
 accept: aVisitor 
 
 	^aVisitor visitRelativeGregorianDate: self! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 day
 	
 	^self absoluteDate day! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 
 	^self absoluteDate numberOfDaysFromBaseDate! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBeginningOfMonth
 
 	^self absoluteDate numberOfDaysFromBeginningOfMonth! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^self absoluteDate numberOfDaysFromJanuaryFirst! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfMonth
 
 	^self absoluteDate numberOfDaysToEndOfMonth! !
 
-!RelativeGregorianDate methodsFor: 'accessing - days'!
+!RelativeGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfYear
 
 	^self absoluteDate numberOfDaysToEndOfYear! !
 
-!RelativeGregorianDate methodsFor: 'initialization'!
+!RelativeGregorianDate methodsFor: 'initialization' stamp: ''!
 initializeTimespan: aTimespan using: aTimeLineFilter
 	
 	timespan := aTimespan.
 	timeLineFilter := aTimeLineFilter! !
 
-!RelativeGregorianDate methodsFor: 'testing'!
+!RelativeGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfMonth
 	
 	^self absoluteDate isFirstDayOfMonth! !
 
-!RelativeGregorianDate methodsFor: 'testing'!
+!RelativeGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfYear
 
 	^self absoluteDate isFirstDayOfYear! !
 
-!RelativeGregorianDate methodsFor: 'testing'!
+!RelativeGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfMonth
 
 	^self absoluteDate isLastDayOfMonth! !
 
-!RelativeGregorianDate methodsFor: 'testing'!
+!RelativeGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfYear
 
 	^self absoluteDate isLastDayOfYear! !
 
-!RelativeGregorianDate methodsFor: 'enumerating'!
+!RelativeGregorianDate methodsFor: 'enumerating' stamp: ''!
 next: aMeasure
 
 	^self absoluteDate next: aMeasure! !
 
-!RelativeGregorianDate methodsFor: 'evaluating'!
+!RelativeGregorianDate methodsFor: 'evaluating' stamp: ''!
 value
 
 	^self absoluteDate! !
 
-!RelativeGregorianDate class methodsFor: 'instance creation'!
+!RelativeGregorianDate class methodsFor: 'instance creation' stamp: ''!
 timespan: aTimespan using: aTimeLineFilter
 	
 	^self new initializeTimespan: aTimespan using: aTimeLineFilter! !
 
-!FixedGregorianDate methodsFor: 'printing'!
+!FixedGregorianDate methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	self month printOn: aStream.
@@ -2978,13 +2978,13 @@ printOn: aStream
 	aStream space.
 	self year number printOn: aStream! !
 
-!FixedGregorianDate methodsFor: 'magnitude protocol'!
+!FixedGregorianDate methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianDate
 
 	^monthOfYear < aGregorianDate monthOfYear 
 		or: [ monthOfYear = aGregorianDate monthOfYear  and: [ dayNumber < aGregorianDate dayNumber ] ]! !
 
-!FixedGregorianDate methodsFor: 'comparing'!
+!FixedGregorianDate methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	| valuedObject |
@@ -2995,12 +2995,12 @@ printOn: aStream
 
 	^dayNumber = valuedObject dayNumber and: [ monthOfYear = valuedObject monthOfYear ]! !
 
-!FixedGregorianDate methodsFor: 'visitor accepting'!
+!FixedGregorianDate methodsFor: 'visitor accepting' stamp: ''!
 accept: aVisitor 
 
 	^aVisitor visitGregorianDate: self! !
 
-!FixedGregorianDate methodsFor: 'accessing - days'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: ''!
 day
 	"I obtain the days from first of January of 1900.
 	Two days are added because first of January of 1900 it was Monday and as first day of the week is Sunday
@@ -3014,88 +3014,88 @@ day
 	
 	^GregorianDay dayPositionedInWeek: dayPositionInWeek! !
 
-!FixedGregorianDate methodsFor: 'accessing - days'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	
 	^monthOfYear numberOfDaysFromBaseDate + self numberOfDaysFromBeginningOfMonth! !
 
-!FixedGregorianDate methodsFor: 'accessing - days' stamp: 'HAW 3/25/2017 19:10:35'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: 'HAW 25/Mar/2017 19:10:35'!
 numberOfDaysFromBeginningOfMonth
 	
 	^SimpleMeasure amount: (dayNumber - 1) unit: TimeUnits day! !
 
-!FixedGregorianDate methodsFor: 'accessing - days'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^monthOfYear numberOfDaysFromJanuaryFirst + self numberOfDaysFromBeginningOfMonth! !
 
-!FixedGregorianDate methodsFor: 'accessing - days' stamp: 'HAW 3/25/2017 19:02:03'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: 'HAW 25/Mar/2017 19:02:03'!
 numberOfDaysToEndOfMonth
 	
 	^monthOfYear numberOfDays - (SimpleMeasure amount: dayNumber unit: TimeUnits day)! !
 
-!FixedGregorianDate methodsFor: 'accessing - days'!
+!FixedGregorianDate methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfYear
 
 	^self distanceTo: monthOfYear year lastDate! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 dayNumber
 	
 	^dayNumber! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 dayOfMonth
 	
 	^GregorianDayOfMonth month: self month dayNumber: dayNumber! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 hash
 
 	^monthOfYear hash bitXor: dayNumber hash! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 month
 	
 	^monthOfYear month! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 monthOfYear
 	
 	^monthOfYear! !
 
-!FixedGregorianDate methodsFor: 'accessing'!
+!FixedGregorianDate methodsFor: 'accessing' stamp: ''!
 year
 
 	^monthOfYear year! !
 
-!FixedGregorianDate methodsFor: 'initialization'!
+!FixedGregorianDate methodsFor: 'initialization' stamp: ''!
 initializeMonthOfYear: aGregorianMonth dayNumber: aDayNumber
 
 	monthOfYear := aGregorianMonth.
 	dayNumber := aDayNumber! !
 
-!FixedGregorianDate methodsFor: 'testing'!
+!FixedGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfMonth
 	
 	^dayNumber = 1! !
 
-!FixedGregorianDate methodsFor: 'testing'!
+!FixedGregorianDate methodsFor: 'testing' stamp: ''!
 isFirstDayOfYear
 	
 	^self isFirstDayOfMonth and: [ self month = GregorianMonth january ]! !
 
-!FixedGregorianDate methodsFor: 'testing'!
+!FixedGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfMonth
 	
 	^monthOfYear lastDayNumber = dayNumber! !
 
-!FixedGregorianDate methodsFor: 'testing'!
+!FixedGregorianDate methodsFor: 'testing' stamp: ''!
 isLastDayOfYear
 	
 	^self year lastDate = self! !
 
-!FixedGregorianDate methodsFor: 'enumerating'!
+!FixedGregorianDate methodsFor: 'enumerating' stamp: ''!
 next: aMeasure 
 	
 	^(TimeUnits day sameDomainAs: aMeasure unit)
@@ -3103,17 +3103,17 @@ next: aMeasure
 		ifFalse: [ self nextMonth: aMeasure ]
 ! !
 
-!FixedGregorianDate methodsFor: 'enumerating'!
+!FixedGregorianDate methodsFor: 'enumerating' stamp: ''!
 nextMonth: aMeasure 
 	
 	^(monthOfYear next: aMeasure) onOrLast: dayNumber! !
 
-!FixedGregorianDate class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 18:13:23'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 18:13:23'!
 fromDate: aDate
 
 	^self yearNumber: aDate yearNumber monthNumber: aDate monthIndex dayNumber: aDate dayOfMonth! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 monthOfYear: aGregorianMonthOfYear dayNumber: dayNumber
 
 	(aGregorianMonthOfYear isValidDayNumber: dayNumber)
@@ -3121,7 +3121,7 @@ monthOfYear: aGregorianMonthOfYear dayNumber: dayNumber
 		
 	^self new initializeMonthOfYear: aGregorianMonthOfYear dayNumber: dayNumber! !
 
-!FixedGregorianDate class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 19:11:35'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 19:11:35'!
 newWithDaysFromBaseDate: aNumberOfDays
 
 	| days yearNumber approxYears dayCount year |
@@ -3147,25 +3147,25 @@ newWithDaysFromBaseDate: aNumberOfDays
 	
 	^self year: year numberOfDaysFromJanuaryFirst: (SimpleMeasure amount: days unit: TimeUnits day)! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 today
 	
 	^self fromDate: Date today.
 	
 ! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 tomorrow
 	
 	^self today next
 ! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 year: aGregorianYear month: aGregorianMonth dayNumber: aNumber
 
 	^self monthOfYear: (GregorianMonthOfYear year: aGregorianYear month: aGregorianMonth) dayNumber: aNumber! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 year: aGregorianYear numberOfDaysFromJanuaryFirst: aNumberOfDays 
 
 	| month remaindingDays |
@@ -3179,50 +3179,50 @@ year: aGregorianYear numberOfDaysFromJanuaryFirst: aNumberOfDays
 	
 	^self monthOfYear: month dayNumber: (remaindingDays amount + 1)! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 yearNumber: aYearNumber month: aGregorianMonth dayNumber: aDayNumber
 
 	^self monthOfYear: (GregorianMonthOfYear yearNumber: aYearNumber month: aGregorianMonth) dayNumber: aDayNumber! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 yearNumber: yearNumber monthNumber: monthNumber dayNumber: dayNumber
 
 	^self monthOfYear: (GregorianMonthOfYear yearNumber: yearNumber monthNumber: monthNumber) dayNumber: dayNumber! !
 
-!FixedGregorianDate class methodsFor: 'instance creation'!
+!FixedGregorianDate class methodsFor: 'instance creation' stamp: ''!
 yesterday
 	
 	^self today previous
 	
 ! !
 
-!FixedGregorianDate class methodsFor: 'initialization'!
+!FixedGregorianDate class methodsFor: 'initialization' stamp: ''!
 initializeTheBeginningAndTheEndOfTime
 
 	self initializeTheEndOfTime.
 	self initializeTheBeginningOfTime.! !
 
-!FixedGregorianDate class methodsFor: 'initialization'!
+!FixedGregorianDate class methodsFor: 'initialization' stamp: ''!
 initializeTheBeginningOfTime
 
 	theBeginningOfTime := self yearNumber: SmallInteger minVal monthNumber: 1 dayNumber: 1! !
 
-!FixedGregorianDate class methodsFor: 'initialization'!
+!FixedGregorianDate class methodsFor: 'initialization' stamp: ''!
 initializeTheEndOfTime
 
 	theEndOfTime := self yearNumber: SmallInteger maxVal monthNumber: 12 dayNumber: 31! !
 
-!FixedGregorianDate class methodsFor: 'accessing - special dates'!
+!FixedGregorianDate class methodsFor: 'accessing - special dates' stamp: ''!
 theBeginningOfTime
 
 	^theBeginningOfTime! !
 
-!FixedGregorianDate class methodsFor: 'accessing - special dates'!
+!FixedGregorianDate class methodsFor: 'accessing - special dates' stamp: ''!
 theEndOfTime
 
 	^theEndOfTime! !
 
-!GregorianDateTime methodsFor: 'printing' stamp: 'HAW 1/15/2019 19:22:59'!
+!GregorianDateTime methodsFor: 'printing' stamp: 'HAW 15/Jan/2019 19:22:59'!
 printOn: aStream
 
 	aStream 
@@ -3231,60 +3231,60 @@ printOn: aStream
 		print: timeOfDay.
 		! !
 
-!GregorianDateTime methodsFor: 'magnitude protocol'!
+!GregorianDateTime methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianDayTime
 
 	^date < aGregorianDayTime date
 		or: [ date = aGregorianDayTime date and: [ timeOfDay < aGregorianDayTime timeOfDay ]]! !
 
-!GregorianDateTime methodsFor: 'comparing'!
+!GregorianDateTime methodsFor: 'comparing' stamp: ''!
 = aGregorianDayTime
 
 	^self class = aGregorianDayTime class 
 		and: [ (self sameDayAs: aGregorianDayTime) 
 		and: [ (self sameTimeOfDayAs: aGregorianDayTime) ]]! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 date
 
 	^date! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 dayNumber
 	
 	^date dayNumber! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 hash
 
 	^date hash bitXor: timeOfDay hash! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 monthOfYear
 	
 	^date monthOfYear! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 timeOfDay
 
 	^timeOfDay! !
 
-!GregorianDateTime methodsFor: 'accessing'!
+!GregorianDateTime methodsFor: 'accessing' stamp: ''!
 year
 	
 	^date year! !
 
-!GregorianDateTime methodsFor: 'interval protocol - private'!
+!GregorianDateTime methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^TimeOfDay oneSecond! !
 
-!GregorianDateTime methodsFor: 'interval protocol - private' stamp: 'HAW 3/25/2017 20:45:46'!
+!GregorianDateTime methodsFor: 'interval protocol - private' stamp: 'HAW 25/Mar/2017 20:45:46'!
 intervalStrategy
 
 	^DefaultPointInTimeIntervalStrategy new! !
 
-!GregorianDateTime methodsFor: 'querying'!
+!GregorianDateTime methodsFor: 'querying' stamp: ''!
 distanceTo: aGregorianDayTime 
 
 	^(self sameDayAs: aGregorianDayTime) 
@@ -3293,41 +3293,41 @@ distanceTo: aGregorianDayTime
 			[(date distanceTo: aGregorianDayTime date) - GregorianDay oneDay 
 				+ self timeToEndOfDay + aGregorianDayTime timeFromMidnight]! !
 
-!GregorianDateTime methodsFor: 'querying'!
+!GregorianDateTime methodsFor: 'querying' stamp: ''!
 sameDayAs: aGregorianDayTime 
 
 	^date = aGregorianDayTime date! !
 
-!GregorianDateTime methodsFor: 'querying'!
+!GregorianDateTime methodsFor: 'querying' stamp: ''!
 sameTimeOfDayAs: aGregorianDayTime 
 	
 	^timeOfDay = aGregorianDayTime timeOfDay! !
 
-!GregorianDateTime methodsFor: 'querying'!
+!GregorianDateTime methodsFor: 'querying' stamp: ''!
 timeFromMidnight
 
 	^timeOfDay timeFromMidnight! !
 
-!GregorianDateTime methodsFor: 'querying'!
+!GregorianDateTime methodsFor: 'querying' stamp: ''!
 timeToEndOfDay 
 
 	^timeOfDay timeToEndOfDay! !
 
-!GregorianDateTime methodsFor: 'enumerating'!
+!GregorianDateTime methodsFor: 'enumerating' stamp: ''!
 firstTimeOfDay
 
 	^self class date: date timeOfDay: TimeOfDay firstTimeOfDay
 
 ! !
 
-!GregorianDateTime methodsFor: 'enumerating'!
+!GregorianDateTime methodsFor: 'enumerating' stamp: ''!
 lastTimeOfDay
 
 	^self class date: date timeOfDay: TimeOfDay lastTimeOfDay
 
 ! !
 
-!GregorianDateTime methodsFor: 'enumerating'!
+!GregorianDateTime methodsFor: 'enumerating' stamp: ''!
 next: aTimeMeasure
 
 	| timeToAdd daysToAdd newTime |
@@ -3342,17 +3342,17 @@ next: aTimeMeasure
 	
 ! !
 
-!GregorianDateTime methodsFor: 'initialization'!
+!GregorianDateTime methodsFor: 'initialization' stamp: ''!
 initializeDate: aGregorianDate timeOfDay: aTimeOfDay 
 
 	date := aGregorianDate.
 	timeOfDay := aTimeOfDay! !
 
-!GregorianDateTime class methodsFor: 'instance creation'!
+!GregorianDateTime class methodsFor: 'instance creation' stamp: ''!
 date: aGregorianDate timeOfDay: aTimeOfDay 
 	^self new initializeDate: aGregorianDate timeOfDay: aTimeOfDay! !
 
-!GregorianDateTime class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:35:32'!
+!GregorianDateTime class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:35:32'!
 now
 
 	| today now |
@@ -3364,131 +3364,131 @@ now
 	
 	^self date: today timeOfDay: now! !
 
-!GregorianDateTime class methodsFor: 'initialization'!
+!GregorianDateTime class methodsFor: 'initialization' stamp: ''!
 initializeTheBeginningAndTheEndOfTime
 
 	self initializeTheBeginningOfDateTime.
 	self initializeTheEndOfDateTime.! !
 
-!GregorianDateTime class methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTime class methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:23'!
 initializeTheBeginningOfDateTime
 
 	theBeginningOfTime := self date: FixedGregorianDate theBeginningOfTime timeOfDay: TimeOfDay firstTimeOfDay! !
 
-!GregorianDateTime class methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:20'!
+!GregorianDateTime class methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:20'!
 initializeTheEndOfDateTime
 
 	theEndOfTime := self date: FixedGregorianDate theEndOfTime timeOfDay: TimeOfDay lastTimeOfDay! !
 
-!GregorianDateTime class methodsFor: 'accessing - special dateTimes'!
+!GregorianDateTime class methodsFor: 'accessing - special dateTimes' stamp: ''!
 theBeginningOfTime
 
 	^theBeginningOfTime! !
 
-!GregorianDateTime class methodsFor: 'accessing - special dateTimes'!
+!GregorianDateTime class methodsFor: 'accessing - special dateTimes' stamp: ''!
 theEndOfTime
 
 	^theEndOfTime! !
 
-!GregorianDay methodsFor: 'accessing'!
+!GregorianDay methodsFor: 'accessing' stamp: ''!
 amountOfDaysPerWeek
 	
 	^self class amountOfDaysPerWeek! !
 
-!GregorianDay methodsFor: 'accessing'!
+!GregorianDay methodsFor: 'accessing' stamp: ''!
 name
 	
 	^name! !
 
-!GregorianDay methodsFor: 'accessing' stamp: 'HAW 3/25/2017 19:11:51'!
+!GregorianDay methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 19:11:51'!
 numberOfDaysSinceSunday
 
 	^SimpleMeasure amount: positionInWeek-1 unit: TimeUnits day! !
 
-!GregorianDay methodsFor: 'accessing'!
+!GregorianDay methodsFor: 'accessing' stamp: ''!
 positionInWeek
 
 	^positionInWeek! !
 
-!GregorianDay methodsFor: 'printing'!
+!GregorianDay methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: name! !
 
-!GregorianDay methodsFor: 'magnitude protocol'!
+!GregorianDay methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianDay
 
 	^positionInWeek < aGregorianDay positionInWeek! !
 
-!GregorianDay methodsFor: 'interval protocol - private'!
+!GregorianDay methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^self class oneDay! !
 
-!GregorianDay methodsFor: 'interval protocol - private'!
+!GregorianDay methodsFor: 'interval protocol - private' stamp: ''!
 intervalStrategy
 
 	^RoundedTimelineIntervalStrategy new! !
 
-!GregorianDay methodsFor: 'querying' stamp: 'HAW 3/25/2017 19:11:51'!
+!GregorianDay methodsFor: 'querying' stamp: 'HAW 25/Mar/2017 19:11:51'!
 distanceTo: aGregorianDay 
 	| numberOfDays |
 	numberOfDays := aGregorianDay positionInWeek - positionInWeek 
 				+ self amountOfDaysPerWeek rem: self amountOfDaysPerWeek.
 	^SimpleMeasure amount: numberOfDays unit: TimeUnits day! !
 
-!GregorianDay methodsFor: 'initialization'!
+!GregorianDay methodsFor: 'initialization' stamp: ''!
 initializeNamed: aString positionInWeek: aNumber 
 	name := aString.
 	positionInWeek := aNumber! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isFriday
 
 	^self = Friday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isMonday
 
 	^self = Monday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isSaturday
 
 	^self = Saturday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isSunday
 
 	^self = Sunday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isThursday
 
 	^self = Thursday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isTuesday
 
 	^self = Tuesday! !
 
-!GregorianDay methodsFor: 'testing'!
+!GregorianDay methodsFor: 'testing' stamp: ''!
 isWednesday
 
 	^self = Wednesday! !
 
-!GregorianDay methodsFor: 'enumerating'!
+!GregorianDay methodsFor: 'enumerating' stamp: ''!
 next: aNumberOfDays
 
 	^self class sinceSunday: aNumberOfDays + self numberOfDaysSinceSunday \\ self class numberOfDaysPerWeek.
 ! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 add: aGregorianDay
 
 	Days at: aGregorianDay positionInWeek put: aGregorianDay! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeDays
 
 	Days := Array new: self amountOfDaysPerWeek.
@@ -3500,117 +3500,117 @@ initializeDays
 	self add: self createFriday.
 	self add: self createSaturday! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeMinusOneDay
 
 	MinusOneDay := TimeUnits day with: -1! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeOneDay
 
 	OneDay := TimeUnits day with: 1! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeSevenDays
 
 	SevenDays := TimeUnits day with: self amountOfDaysPerWeek! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeThirtyDays
 
 	ThirtyDays := TimeUnits day with: 30! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeThirtyOneDays
 
 	ThirtyOneDays := TimeUnits day with: 31! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeThreeHundredSixtyDays
 
 	ThreeHundredSixtyDays := TimeUnits day with: 360! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeThreeHundredSixtyFiveDays
 
 	ThreeHundredSixtyFiveDays := TimeUnits day with: 365! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeThreeHundredSixtySixDays
 
 	ThreeHundredSixtySixDays := TimeUnits day with: 366! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeTwentyEightDays
 
 	TwentyEightDays := TimeUnits day with: 28! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeTwentyNineDays
 
 	TwentyNineDays := TimeUnits day with: 29! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeTwoDays
 
 	TwoDays := TimeUnits day with: 2! !
 
-!GregorianDay class methodsFor: 'initialization - private'!
+!GregorianDay class methodsFor: 'initialization - private' stamp: ''!
 initializeZeroDays
 
 	ZeroDays := TimeUnits day with: 0! !
 
-!GregorianDay class methodsFor: 'accessing'!
+!GregorianDay class methodsFor: 'accessing' stamp: ''!
 amountOfDaysPerWeek
 	
 	^7! !
 
-!GregorianDay class methodsFor: 'accessing'!
+!GregorianDay class methodsFor: 'accessing' stamp: ''!
 numberOfDaysPerWeek
 	
 	^self sevenDays! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createFriday
 
 	^self named: self fridayName positionInWeek: self fridayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createMonday
 
 	^self named: self mondayName positionInWeek: self mondayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createSaturday
 
 	^self named: self saturdayName positionInWeek: self saturdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createSunday
 
 	^self named: self sundayName positionInWeek: self sundayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createThursday
 
 	^self named: self thursdayName positionInWeek: self thursdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createTuesday
 
 	^self named: self tuesdayName positionInWeek: self tuesdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 createWednesday
 
 	^self named: self wednesdayName positionInWeek: self wednesdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day creation - private'!
+!GregorianDay class methodsFor: 'day creation - private' stamp: ''!
 named: aString positionInWeek: aNumber
 
 	^self new initializeNamed: aString positionInWeek: aNumber! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 dayPositionedInWeek: aNumber
 
 	(aNumber < 1 or: [aNumber > self amountOfDaysPerWeek])
@@ -3620,22 +3620,22 @@ dayPositionedInWeek: aNumber
 
 ! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 days
 
 	^Days copy! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 friday
 
 	^self dayPositionedInWeek: self fridayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 monday
 	
 	^self dayPositionedInWeek: self mondayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 named: aString
 
 	| lowercaseString |
@@ -3645,113 +3645,113 @@ named: aString
 		detect: [:aDay | aDay name asLowercase = lowercaseString]
 		ifNone: [InvalidGregorianDayNameException signalName: aString]! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 saturday
 
 	^self dayPositionedInWeek: self saturdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 sinceSunday: aNumberOfDays
 
 	^self dayPositionedInWeek: (aNumberOfDays convertTo: TimeUnits day) amount + 1! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 sunday
 
 	^self dayPositionedInWeek: self sundayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 thursday
 
 	^self dayPositionedInWeek: self thursdayPositionInWeek
 ! !
 
-!GregorianDay class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDay class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 today
 
 	^FixedGregorianDate today day! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 tuesday
 	
 	^self dayPositionedInWeek: self tuesdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'instance creation'!
+!GregorianDay class methodsFor: 'instance creation' stamp: ''!
 wednesday
 
 	^self dayPositionedInWeek: self wednesdayPositionInWeek! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 fridayName
 	
 	^'Friday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 mondayName
 
 	^'Monday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 saturdayName
 	
 	^'Saturday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 sundayName
 	
 	^'Sunday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 thursdayName
 
 	^'Thursday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 tuesdayName
 	
 	^'Tuesday'! !
 
-!GregorianDay class methodsFor: 'day names'!
+!GregorianDay class methodsFor: 'day names' stamp: ''!
 wednesdayName
 	
 	^'Wednesday'! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 fridayPositionInWeek
 	
 	^6! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 mondayPositionInWeek
 	
 	^2! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 saturdayPositionInWeek
 	
 	^7! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 sundayPositionInWeek
 	
 	^1! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 thursdayPositionInWeek
 	
 	^5! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 tuesdayPositionInWeek
 	
 	^3! !
 
-!GregorianDay class methodsFor: 'day positions in week'!
+!GregorianDay class methodsFor: 'day positions in week' stamp: ''!
 wednesdayPositionInWeek
 
 	^4! !
 
-!GregorianDay class methodsFor: 'initialization'!
+!GregorianDay class methodsFor: 'initialization' stamp: ''!
 initializeCommonObjects
 
 	self initializeDays.
@@ -3769,7 +3769,7 @@ initializeCommonObjects
 	self initializeThreeHundredSixtyFiveDays.
 	self initializeThreeHundredSixtySixDays! !
 
-!GregorianDay class methodsFor: 'initialization'!
+!GregorianDay class methodsFor: 'initialization' stamp: ''!
 initializeGlobalVariables
 
 	Smalltalk at: #Monday put: self monday.
@@ -3780,84 +3780,84 @@ initializeGlobalVariables
 	Smalltalk at: #Saturday put: self saturday.
 	Smalltalk at: #Sunday put: self sunday! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 minusOneDay
 
 	^MinusOneDay! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 oneDay
 
 	^OneDay! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 sevenDays
 
 	^SevenDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 thirtyDays
 
 	^ThirtyDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 thirtyOneDays
 
 	^ThirtyOneDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 threeHundredSixtyDays
 
 	^ThreeHundredSixtyDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 threeHundredSixtyFiveDays
 
 	^ThreeHundredSixtyFiveDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 threeHundredSixtySixDays
 
 	^ThreeHundredSixtySixDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 twentyEightDays
 
 	^TwentyEightDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 twentyNineDays
 
 	^TwentyNineDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 twoDays
 
 	^TwoDays! !
 
-!GregorianDay class methodsFor: 'common day measurements'!
+!GregorianDay class methodsFor: 'common day measurements' stamp: ''!
 zeroDays
 
 	^ZeroDays! !
 
-!GregorianDayOfMonth methodsFor: 'printing'!
+!GregorianDayOfMonth methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	month printOn: aStream.
 	aStream space.
 	dayNumber printOn: aStream! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - dates'!
+!GregorianDayOfMonth methodsFor: 'accessing - dates' stamp: ''!
 , aYearNumber
 
 	^self ofYear: (GregorianYear number: aYearNumber)! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - dates' stamp: 'HAW 4/17/2018 18:42:44'!
+!GregorianDayOfMonth methodsFor: 'accessing - dates' stamp: 'HAW 17/Apr/2018 18:42:44'!
 / aYearNumber
 
 	^self, aYearNumber ! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayOfMonth methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 ofYear: aGregorianYear 
 
 	^FixedGregorianDate 
@@ -3865,45 +3865,45 @@ ofYear: aGregorianYear
 		month: month
 		dayNumber: dayNumber! !
 
-!GregorianDayOfMonth methodsFor: 'magnitude protocol'!
+!GregorianDayOfMonth methodsFor: 'magnitude protocol' stamp: ''!
 < aDayOfMonth
 
 	^month < aDayOfMonth month
 		or: [ month = aDayOfMonth month and: [ dayNumber < aDayOfMonth dayNumber ] ].! !
 
-!GregorianDayOfMonth methodsFor: 'comparing'!
+!GregorianDayOfMonth methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self class=anObject class
 		and: [ month = anObject month 
 		and: [ dayNumber = anObject dayNumber ]].! !
 
-!GregorianDayOfMonth methodsFor: 'accessing'!
+!GregorianDayOfMonth methodsFor: 'accessing' stamp: ''!
 dayNumber
 	
 	^dayNumber! !
 
-!GregorianDayOfMonth methodsFor: 'accessing'!
+!GregorianDayOfMonth methodsFor: 'accessing' stamp: ''!
 hash
 
 	^month hash bitXor: dayNumber hash! !
 
-!GregorianDayOfMonth methodsFor: 'accessing'!
+!GregorianDayOfMonth methodsFor: 'accessing' stamp: ''!
 month
 	
 	^month! !
 
-!GregorianDayOfMonth methodsFor: 'interval protocol - private'!
+!GregorianDayOfMonth methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^GregorianDay oneDay! !
 
-!GregorianDayOfMonth methodsFor: 'interval protocol - private'!
+!GregorianDayOfMonth methodsFor: 'interval protocol - private' stamp: ''!
 intervalStrategy
 
 	^RoundedTimelineIntervalStrategy new! !
 
-!GregorianDayOfMonth methodsFor: 'querying'!
+!GregorianDayOfMonth methodsFor: 'querying' stamp: ''!
 distanceTo: aGregorianDayOfMonth 
 	| difference |
 	difference := aGregorianDayOfMonth numberOfDaysFromJanuaryFirst 
@@ -3912,33 +3912,33 @@ distanceTo: aGregorianDayOfMonth
 		ifTrue: [GregorianDay threeHundredSixtySixDays + difference]
 		ifFalse: [difference]! !
 
-!GregorianDayOfMonth methodsFor: 'querying'!
+!GregorianDayOfMonth methodsFor: 'querying' stamp: ''!
 isFirstDayOfMonth
 
 	^dayNumber = 1! !
 
-!GregorianDayOfMonth methodsFor: 'querying'!
+!GregorianDayOfMonth methodsFor: 'querying' stamp: ''!
 isFirstDayOfYear
 
 	^self isFirstDayOfMonth and: [ self month=GregorianMonth january ]! !
 
-!GregorianDayOfMonth methodsFor: 'querying'!
+!GregorianDayOfMonth methodsFor: 'querying' stamp: ''!
 isLastDayOfMonth
 
 	^month lastDayNumber=dayNumber! !
 
-!GregorianDayOfMonth methodsFor: 'querying'!
+!GregorianDayOfMonth methodsFor: 'querying' stamp: ''!
 isLastDayOfYear
 	
 	^month = GregorianMonth december and: [ month lastDayNumber = dayNumber]! !
 
-!GregorianDayOfMonth methodsFor: 'initialization'!
+!GregorianDayOfMonth methodsFor: 'initialization' stamp: ''!
 initializeMonth: aGregorianMonth dayNumber: aDayNumber
 
 	month := aGregorianMonth.
 	dayNumber := aDayNumber! !
 
-!GregorianDayOfMonth methodsFor: 'enumerating'!
+!GregorianDayOfMonth methodsFor: 'enumerating' stamp: ''!
 moveBackward: aNumberOfDays
 
 	^(aNumberOfDays >= month lastDayNumber)
@@ -3947,14 +3947,14 @@ moveBackward: aNumberOfDays
 		
 ! !
 
-!GregorianDayOfMonth methodsFor: 'enumerating'!
+!GregorianDayOfMonth methodsFor: 'enumerating' stamp: ''!
 moveForward: aNumberOfDays
 
 	^(aNumberOfDays > month lastDayNumber)
 		ifTrue: [ month next firstDayOfMonth moveForward: aNumberOfDays - month lastDayNumber ]
 		ifFalse: [ self class month: month dayNumber: aNumberOfDays ]! !
 
-!GregorianDayOfMonth methodsFor: 'enumerating'!
+!GregorianDayOfMonth methodsFor: 'enumerating' stamp: ''!
 next: aMeasure 
 
 	^aMeasure negative 
@@ -3963,7 +3963,7 @@ next: aMeasure
 
 ! !
 
-!GregorianDayOfMonth methodsFor: 'enumerating'!
+!GregorianDayOfMonth methodsFor: 'enumerating' stamp: ''!
 previous: aMeasure 
 
 	^aMeasure negative 
@@ -3971,37 +3971,37 @@ previous: aMeasure
 		ifFalse: [ self moveBackward: ((self numberOfDaysToEndOfMonth + aMeasure) convertTo: TimeUnits day) amount ]	
 ! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: 'HAW 3/25/2017 19:11:51'!
+!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: 'HAW 25/Mar/2017 19:11:51'!
 numberOfDaysFromBeginningOfMonth
 
 	^SimpleMeasure amount: (dayNumber - 1) unit: TimeUnits day! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - days'!
+!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^month numberOfDaysFromJanuaryFirst + self numberOfDaysFromBeginningOfMonth! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: 'HAW 3/25/2017 19:11:51'!
+!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: 'HAW 25/Mar/2017 19:11:51'!
 numberOfDaysToEndOfMonth
 
 	^month numberOfDays - (SimpleMeasure amount: dayNumber unit: TimeUnits day)! !
 
-!GregorianDayOfMonth methodsFor: 'accessing - days'!
+!GregorianDayOfMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysToEndOfYear
 
 	^self distanceTo: GregorianMonth december lastDayOfMonth! !
 
-!GregorianDayOfMonth methodsFor: 'interval protocol'!
+!GregorianDayOfMonth methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDayOfMonth everyDayNumber: aDayNumber
 
 	^self to: aGregorianDayOfMonth everyDayNumbers: (Array with: aDayNumber)! !
 
-!GregorianDayOfMonth methodsFor: 'interval protocol'!
+!GregorianDayOfMonth methodsFor: 'interval protocol' stamp: ''!
 to: aGregorianDayOfMonth everyDayNumbers: aCollectionOfDayNumbers
 
 	^(self to: aGregorianDayOfMonth) select: [ :aDayOfMonth | aCollectionOfDayNumbers includes: aDayOfMonth dayNumber ]! !
 
-!GregorianDayOfMonth class methodsFor: 'instance creation'!
+!GregorianDayOfMonth class methodsFor: 'instance creation' stamp: ''!
 month: aGregorianMonth dayNumber: aDayNumber 
 
 	(aDayNumber < 1 or: [ aDayNumber > aGregorianMonth lastDayNumber ]) 
@@ -4010,334 +4010,334 @@ month: aGregorianMonth dayNumber: aDayNumber
 	^self new initializeMonth: aGregorianMonth dayNumber: aDayNumber
 	! !
 
-!GregorianDayOfMonth class methodsFor: 'instance creation'!
+!GregorianDayOfMonth class methodsFor: 'instance creation' stamp: ''!
 monthNumber: aMonthNumber dayNumber: aDayNumber 
 
 	^self month: (GregorianMonth numbered: aMonthNumber) dayNumber: aDayNumber! !
 
-!GregorianDayOfMonth class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayOfMonth class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 today
 	^FixedGregorianDate today dayOfMonth
 ! !
 
-!GregorianMonth methodsFor: 'accessing'!
+!GregorianMonth methodsFor: 'accessing' stamp: ''!
 amountOfMonthsPerYear
 
 	^self class amountOfMonthsPerYear! !
 
-!GregorianMonth methodsFor: 'accessing'!
+!GregorianMonth methodsFor: 'accessing' stamp: ''!
 name
 	
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'accessing'!
+!GregorianMonth methodsFor: 'accessing' stamp: ''!
 number
 	
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'accessing'!
+!GregorianMonth methodsFor: 'accessing' stamp: ''!
 oneMonth
 	
 	^self class oneMonth! !
 
-!GregorianMonth methodsFor: 'printing'!
+!GregorianMonth methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: self name! !
 
-!GregorianMonth methodsFor: 'month of year creation' stamp: 'HAW 2/19/2019 15:14:03'!
+!GregorianMonth methodsFor: 'month of year creation' stamp: 'HAW 19/Feb/2019 15:14:03'!
 , aYearNumber
 
 	^self ofYear: (GregorianYear number: aYearNumber)! !
 
-!GregorianMonth methodsFor: 'month of year creation'!
+!GregorianMonth methodsFor: 'month of year creation' stamp: ''!
 of: aYearNumber
 
 	^self , aYearNumber! !
 
-!GregorianMonth methodsFor: 'month of year creation'!
+!GregorianMonth methodsFor: 'month of year creation' stamp: ''!
 ofYear: aGregorianYear
 
 	^GregorianMonthOfYear year: aGregorianYear month: self! !
 
-!GregorianMonth methodsFor: 'magnitude protocol'!
+!GregorianMonth methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianMonthDefinition
 
 	^self number < aGregorianMonthDefinition number! !
 
-!GregorianMonth methodsFor: 'interval protocol - private'!
+!GregorianMonth methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^self oneMonth! !
 
-!GregorianMonth methodsFor: 'interval protocol - private'!
+!GregorianMonth methodsFor: 'interval protocol - private' stamp: ''!
 intervalStrategy
 
 	^RoundedTimelineIntervalStrategy new! !
 
-!GregorianMonth methodsFor: 'querying'!
+!GregorianMonth methodsFor: 'querying' stamp: ''!
 distanceTo: aGregorianMonth 
 	| numberOfMonths |
 	numberOfMonths := aGregorianMonth number - self number 
 				+ self amountOfMonthsPerYear rem: self amountOfMonthsPerYear.
 	^TimeUnits month with: numberOfMonths! !
 
-!GregorianMonth methodsFor: 'querying'!
+!GregorianMonth methodsFor: 'querying' stamp: ''!
 relativeMonthsTo: aGregorianMonth 
 	
 	^TimeUnits month with: (aGregorianMonth number - self number)! !
 
-!GregorianMonth methodsFor: 'day of month creation' stamp: 'HAW 4/17/2018 18:38:25'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: 'HAW 17/Apr/2018 18:38:25'!
 / aDayNumber
 
 	^GregorianDayOfMonth month: self dayNumber: aDayNumber! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 eighteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 18! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 eighth
 
 	^GregorianDayOfMonth month: self dayNumber: 8! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 eleventh
 
 	^GregorianDayOfMonth month: self dayNumber: 11! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 fifteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 15! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 fifth
 
 	^GregorianDayOfMonth month: self dayNumber: 5! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 first
 
 	^GregorianDayOfMonth month: self dayNumber: 1! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 fourteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 14! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 fourth
 
 	^GregorianDayOfMonth month: self dayNumber: 4! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 nineteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 19! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 ninth
 
 	^GregorianDayOfMonth month: self dayNumber: 9! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 second
 
 	^GregorianDayOfMonth month: self dayNumber: 2! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 seventeenth
 
 	^GregorianDayOfMonth month: self dayNumber: 17! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 seventh
 
 	^GregorianDayOfMonth month: self dayNumber: 7! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 sixteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 16! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 sixth
 
 	^GregorianDayOfMonth month: self dayNumber: 6! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 tenth
 
 	^GregorianDayOfMonth month: self dayNumber: 10! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 third
 
 	^GregorianDayOfMonth month: self dayNumber: 3! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 thirteenth
 
 	^GregorianDayOfMonth month: self dayNumber: 13! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twelfth
 
 	^GregorianDayOfMonth month: self dayNumber: 12! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentieth
 
 	^GregorianDayOfMonth month: self dayNumber: 20! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyeighth
 
 	^GregorianDayOfMonth month: self dayNumber: 28! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyfifth
 
 	^GregorianDayOfMonth month: self dayNumber: 25! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyfirst
 
 	^GregorianDayOfMonth month: self dayNumber: 21! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyfourth
 
 	^GregorianDayOfMonth month: self dayNumber: 24! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyninth
 
 	^GregorianDayOfMonth month: self dayNumber: 29! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentysecond
 
 	^GregorianDayOfMonth month: self dayNumber: 22! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentyseventh
 
 	^GregorianDayOfMonth month: self dayNumber: 27! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentysixth
 
 	^GregorianDayOfMonth month: self dayNumber: 26! !
 
-!GregorianMonth methodsFor: 'day of month creation'!
+!GregorianMonth methodsFor: 'day of month creation' stamp: ''!
 twentythird
 
 	^GregorianDayOfMonth month: self dayNumber: 23! !
 
-!GregorianMonth methodsFor: 'accessing - day of month'!
+!GregorianMonth methodsFor: 'accessing - day of month' stamp: ''!
 firstDayOfMonth
 
 	^GregorianDayOfMonth month: self dayNumber: 1! !
 
-!GregorianMonth methodsFor: 'accessing - day of month'!
+!GregorianMonth methodsFor: 'accessing - day of month' stamp: ''!
 lastDayOfMonth
 
 	^GregorianDayOfMonth month: self dayNumber: self lastDayNumber! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isApril
 
 	^self = April! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isAugust
 
 	^self = August! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isDecember
 
 	^self = December! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isFebruary
 
 	^self = February! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isJanuary
 
 	^self = January! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isJuly
 
 	^self = July! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isJune
 
 	^self = June! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isMarch
 
 	^self = March! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isMay
 
 	^self = May! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isNovember
 
 	^self = November! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isOctober
 
 	^self = October! !
 
-!GregorianMonth methodsFor: 'testing'!
+!GregorianMonth methodsFor: 'testing' stamp: ''!
 isSeptember
 
 	^self = September! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 lastDayNumber
 	
 	^self numberOfDays amount! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 lastDayNumberIn: aGregorianYear 
 	
 	^(self numberOfDaysIn: aGregorianYear) amount! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstIn: aGregorianYear
 
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'accessing - days'!
+!GregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysIn: aGregorianYear 
 	
 	self subclassResponsibility! !
 
-!GregorianMonth methodsFor: 'enumerating'!
+!GregorianMonth methodsFor: 'enumerating' stamp: ''!
 next: aMeasure 
 
 	| monthNumber monthsToAdd |
@@ -4351,17 +4351,17 @@ next: aMeasure
 			ifFalse: [ self class numbered: self amountOfMonthsPerYear + monthNumber ] ]
 ! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 add: aMonthDefinition 
 
 	^Months at: aMonthDefinition number put: aMonthDefinition! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeFourMonth
 
 	FourMonths := TimeUnits month with: 4! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeMonths
 
 	Months := Array new: self amountOfMonthsPerYear.
@@ -4378,102 +4378,102 @@ initializeMonths
 	self add: self createNovember.
 	self add: self createDecember! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeOneMonth
 
 	OneMonth := TimeUnits month with: 1! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeSixMonths
 
 	SixMonths := TimeUnits month with: 6! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeThreeMonths
 
 	ThreeMonths := TimeUnits month with: 3! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeTwelveMonths
 
 	TwelveMonths := TimeUnits month with: self amountOfMonthsPerYear! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeTwoMonth
 
 	TwoMonths := TimeUnits month with: 2! !
 
-!GregorianMonth class methodsFor: 'initialization - private'!
+!GregorianMonth class methodsFor: 'initialization - private' stamp: ''!
 initializeZeroMonths
 
 	ZeroMonths := TimeUnits month with: 0! !
 
-!GregorianMonth class methodsFor: 'accessing'!
+!GregorianMonth class methodsFor: 'accessing' stamp: ''!
 amountOfMonthsPerYear
 	
 	^12! !
 
-!GregorianMonth class methodsFor: 'accessing'!
+!GregorianMonth class methodsFor: 'accessing' stamp: ''!
 numberOfMonthsPerYear
 	
 	^self twelveMonths! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 april
 
 	^Months at: self aprilNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 august
 	
 	^Months at: self augustNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 current
 
 	^FixedGregorianDate today month! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 december
 
 	^Months at: self decemberNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 february
 
 	^Months at: self februaryNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 january
 
 	^Months at: self januaryNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 july
 	
 	^Months at: self julyNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 june
 
 	^Months at: self juneNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 march
 	
 	^Months at: self marchNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 may
 
 	^Months at: self mayNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 months
 	
 	^Months copy! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 named: aString
 
 	| lowercaseString |
@@ -4483,256 +4483,256 @@ named: aString
 		detect: [:aMonth | aMonth name asLowercase = lowercaseString]
 		ifNone: [InvalidGregorianMonthNameException signalName: aString]! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 november
 
 	^Months at: self novemberNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 numbered: aNumber
 
 	^(aNumber < 1 or: [aNumber > self amountOfMonthsPerYear])
 		ifTrue: [ InvalidGregorianMonthNumberException signalNumber: aNumber ]
 		ifFalse: [ Months at: aNumber ]! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 october
 	
 	^Months at: self octoberNumber! !
 
-!GregorianMonth class methodsFor: 'instance creation'!
+!GregorianMonth class methodsFor: 'instance creation' stamp: ''!
 september
 
 	^Months at: self septemberNumber! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 aprilName
 	
 	^'April'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 augustName
 	
 	^'August'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 decemberName
 	
 	^'December'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 februaryName
 	
 	^'February'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 januaryName
 
 	^'January'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 julyName
 	
 	^'July'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 juneName
 	
 	^'June'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 marchName
 	
 	^'March'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 mayName
 	
 	^'May'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 novemberName
 	
 	^'November'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 octoberName
 	
 	^'October'! !
 
-!GregorianMonth class methodsFor: 'month names'!
+!GregorianMonth class methodsFor: 'month names' stamp: ''!
 septemberName
 	
 	^'September'! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 aprilNumber
 	
 	^4! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 augustNumber
 	
 	^8! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 decemberNumber
 	
 	^12! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 februaryNumber
 	
 	^2! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 januaryNumber
 	
 	^1! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 julyNumber
 	
 	^7! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 juneNumber
 	
 	^6! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 marchNumber
 	
 	^3! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 mayNumber
 	
 	^5! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 novemberNumber
 	
 	^11! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 octoberNumber
 	
 	^10! !
 
-!GregorianMonth class methodsFor: 'month numbers'!
+!GregorianMonth class methodsFor: 'month numbers' stamp: ''!
 septemberNumber
 	
 	^9! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createApril
 
 	^ThirtyDaysGregorianMonth named: self aprilName number: self aprilNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createAugust
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self augustName number: self augustNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createDecember
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self decemberName number: self decemberNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createFebruary
 
 	^FebruaryGregorianMonth new
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createJanuary
 
 	^JanuaryGregorianMonth new
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createJuly
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self julyName number: self julyNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createJune
 
 	^ThirtyDaysGregorianMonth named: self juneName number: self juneNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createMarch
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self marchName number: self marchNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createMay
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self mayName number: self mayNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createNovember
 
 	^ThirtyDaysGregorianMonth named: self novemberName number: self novemberNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createOctober
 
 	^NonSpecificThirtyOneDaysGregorianMonth named: self octoberName number: self octoberNumber
 	! !
 
-!GregorianMonth class methodsFor: 'month creation - private'!
+!GregorianMonth class methodsFor: 'month creation - private' stamp: ''!
 createSeptember
 
 	^ThirtyDaysGregorianMonth named: self septemberName number: self septemberNumber
 	! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 fourMonths
 	
 	^FourMonths! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 oneMonth
 	
 	^OneMonth! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 sixMonths
 	
 	^SixMonths! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 threeMonths
 	
 	^ThreeMonths! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 twelveMonths
 	
 	^TwelveMonths! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 twoMonths
 	
 	^TwoMonths! !
 
-!GregorianMonth class methodsFor: 'common month measurements'!
+!GregorianMonth class methodsFor: 'common month measurements' stamp: ''!
 zeroMonths
 	
 	^ZeroMonths! !
 
-!GregorianMonth class methodsFor: 'initialization'!
+!GregorianMonth class methodsFor: 'initialization' stamp: ''!
 initializeCommonObjects
 
 	self initializeMonths.
@@ -4745,7 +4745,7 @@ initializeCommonObjects
 	self initializeSixMonths.
 	self initializeTwelveMonths! !
 
-!GregorianMonth class methodsFor: 'initialization'!
+!GregorianMonth class methodsFor: 'initialization' stamp: ''!
 initializeGlobalVariables
 
 	Smalltalk at: #January put: self january.
@@ -4761,73 +4761,73 @@ initializeGlobalVariables
 	Smalltalk at: #November put: self november.
 	Smalltalk at: #December put: self december! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing'!
+!FebruaryGregorianMonth methodsFor: 'accessing' stamp: ''!
 name
 	
 	^GregorianMonth februaryName! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing'!
+!FebruaryGregorianMonth methodsFor: 'accessing' stamp: ''!
 number
 	
 	^GregorianMonth februaryNumber! !
 
-!FebruaryGregorianMonth methodsFor: 'enumerating'!
+!FebruaryGregorianMonth methodsFor: 'enumerating' stamp: ''!
 next
 	
 	^self class march! !
 
-!FebruaryGregorianMonth methodsFor: 'enumerating'!
+!FebruaryGregorianMonth methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	^self class january! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing - days'!
+!FebruaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 
 	^GregorianLeapYear numberOfDaysInFebruary! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing - days'!
+!FebruaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^self class january numberOfDays! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing - days'!
+!FebruaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstIn: aGregorianYear
 
 	^self numberOfDaysFromJanuaryFirst! !
 
-!FebruaryGregorianMonth methodsFor: 'accessing - days'!
+!FebruaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysIn: aGregorianYear 
 	
 	^aGregorianYear numberOfDaysInFebruary! !
 
-!FebruaryGregorianMonth class methodsFor: 'initialization'!
+!FebruaryGregorianMonth class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!FebruaryGregorianMonth class methodsFor: 'instance creation'!
+!FebruaryGregorianMonth class methodsFor: 'instance creation' stamp: ''!
 new
 	"Instance of this month should be accessed using GregorianMonth february"
 
 	^uniqueInstance! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing' stamp: ''!
 name
 	
 	^name! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing' stamp: ''!
 number
 	
 	^number! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'initialization'!
+!ThirtyDaysGregorianMonth methodsFor: 'initialization' stamp: ''!
 initializeNamed: aString number: aNumber
 	name := aString.
 	number := aNumber! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'initialization'!
+!ThirtyDaysGregorianMonth methodsFor: 'initialization' stamp: ''!
 initializeNumberOfDaysFromJanuaryFirst
 
 	| previous |
@@ -4836,137 +4836,137 @@ initializeNumberOfDaysFromJanuaryFirst
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'enumerating'!
+!ThirtyDaysGregorianMonth methodsFor: 'enumerating' stamp: ''!
 next
 	
 	^self next: self oneMonth! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'enumerating'!
+!ThirtyDaysGregorianMonth methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	^self previous: self oneMonth! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 
 	^GregorianDay thirtyDays! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	numberOfDaysFromJanuaryFirst isNil ifTrue: [self initializeNumberOfDaysFromJanuaryFirst ].
 	^numberOfDaysFromJanuaryFirst 
 ! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstIn: aGregorianYear
 
 	^aGregorianYear numberOfDaysFromJanuaryFirstFor: self
 
 ! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstInNonLeapYear
 
 	numberOfDaysFromJanuaryFirstInNonLeapYear isNil ifTrue: [self initializeNumberOfDaysFromJanuaryFirst ].
 	^numberOfDaysFromJanuaryFirstInNonLeapYear 
 ! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysIn: aGregorianYear
 
 	^self numberOfDays! !
 
-!ThirtyDaysGregorianMonth methodsFor: 'day of month creation'!
+!ThirtyDaysGregorianMonth methodsFor: 'day of month creation' stamp: ''!
 thirtieth
 
 	^GregorianDayOfMonth month: self dayNumber: 30! !
 
-!ThirtyDaysGregorianMonth class methodsFor: 'instance creation'!
+!ThirtyDaysGregorianMonth class methodsFor: 'instance creation' stamp: ''!
 named: aString number: aNumber
 	"This type of month have to be accessed using GregorianMonth messages #april, #june, #september and #november."
 
 	^self new initializeNamed: aString number: aNumber! !
 
-!ThirtyOneDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyOneDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 
 	^GregorianDay thirtyOneDays! !
 
-!ThirtyOneDaysGregorianMonth methodsFor: 'accessing - days'!
+!ThirtyOneDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysIn: aGregorianYear 
 	
 	^self numberOfDays! !
 
-!ThirtyOneDaysGregorianMonth methodsFor: 'day of month creation'!
+!ThirtyOneDaysGregorianMonth methodsFor: 'day of month creation' stamp: ''!
 thirtieth
 
 	^GregorianDayOfMonth month: self dayNumber: 30! !
 
-!ThirtyOneDaysGregorianMonth methodsFor: 'day of month creation'!
+!ThirtyOneDaysGregorianMonth methodsFor: 'day of month creation' stamp: ''!
 thirtyfirst
 
 	^GregorianDayOfMonth month: self dayNumber: 31! !
 
-!JanuaryGregorianMonth methodsFor: 'accessing'!
+!JanuaryGregorianMonth methodsFor: 'accessing' stamp: ''!
 name
 	
 	^GregorianMonth januaryName! !
 
-!JanuaryGregorianMonth methodsFor: 'accessing'!
+!JanuaryGregorianMonth methodsFor: 'accessing' stamp: ''!
 number
 	
 	^GregorianMonth januaryNumber! !
 
-!JanuaryGregorianMonth methodsFor: 'enumerating'!
+!JanuaryGregorianMonth methodsFor: 'enumerating' stamp: ''!
 next
 	
 	^self class february! !
 
-!JanuaryGregorianMonth methodsFor: 'enumerating'!
+!JanuaryGregorianMonth methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	^self class december! !
 
-!JanuaryGregorianMonth methodsFor: 'accessing - days'!
+!JanuaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^GregorianDay zeroDays
 ! !
 
-!JanuaryGregorianMonth methodsFor: 'accessing - days'!
+!JanuaryGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstIn: aGregorianYear
 
 	^self numberOfDaysFromJanuaryFirst
 ! !
 
-!JanuaryGregorianMonth class methodsFor: 'initialization'!
+!JanuaryGregorianMonth class methodsFor: 'initialization' stamp: ''!
 initializeUniqueInstance
 
 	uniqueInstance := self basicNew! !
 
-!JanuaryGregorianMonth class methodsFor: 'instance creation'!
+!JanuaryGregorianMonth class methodsFor: 'instance creation' stamp: ''!
 new
 	"Instance of this month should be accessed using GregorianMonth january"
 
 	^uniqueInstance! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing' stamp: ''!
 name
 	
 	^name! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing' stamp: ''!
 number
 	
 	^number! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'initialization'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'initialization' stamp: ''!
 initializeNamed: aString number: aNumber
 	name := aString.
 	number := aNumber! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'initialization'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'initialization' stamp: ''!
 initializeNumberOfDaysFromJanuaryFirst
 
 	| previous |
@@ -4975,94 +4975,94 @@ initializeNumberOfDaysFromJanuaryFirst
 	numberOfDaysFromJanuaryFirst := previous numberOfDaysFromJanuaryFirst + previous numberOfDays.
 	numberOfDaysFromJanuaryFirstInNonLeapYear := numberOfDaysFromJanuaryFirst - GregorianDay oneDay! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'enumerating'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'enumerating' stamp: ''!
 next
 	
 	^self next: self oneMonth! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'enumerating'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'enumerating' stamp: ''!
 previous
 	
 	^self previous: self oneMonth! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	numberOfDaysFromJanuaryFirst isNil ifTrue: [self initializeNumberOfDaysFromJanuaryFirst ].
 	^numberOfDaysFromJanuaryFirst 
 ! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstIn: aGregorianYear
 
 	^aGregorianYear numberOfDaysFromJanuaryFirstFor: self
 
 ! !
 
-!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days'!
+!NonSpecificThirtyOneDaysGregorianMonth methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirstInNonLeapYear
 
 	numberOfDaysFromJanuaryFirstInNonLeapYear isNil ifTrue: [self initializeNumberOfDaysFromJanuaryFirst ].
 	^numberOfDaysFromJanuaryFirstInNonLeapYear 
 ! !
 
-!NonSpecificThirtyOneDaysGregorianMonth class methodsFor: 'instance creation - private'!
+!NonSpecificThirtyOneDaysGregorianMonth class methodsFor: 'instance creation - private' stamp: ''!
 named: aString number: aNumber
 	"This type of month have to be accessed using GregorianMonth messages #march, #may, #july, #august, #october, #december."
 
 	^self new initializeNamed: aString number: aNumber! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 amountOfMonthsPerYear
 	
 	^GregorianMonth amountOfMonthsPerYear! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 hash
 
 	^year hash bitXor: month hash! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 month
 	
 	^month! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 monthNumber
 
 	^month number! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 name
 	
 	^month name! !
 
-!GregorianMonthOfYear methodsFor: 'accessing'!
+!GregorianMonthOfYear methodsFor: 'accessing' stamp: ''!
 year
 	
 	^year! !
 
-!GregorianMonthOfYear methodsFor: 'printing'!
+!GregorianMonthOfYear methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	month printOn: aStream.
 	aStream nextPutAll: ' of '.
 	year printOn: aStream! !
 
-!GregorianMonthOfYear methodsFor: 'magnitude protocol'!
+!GregorianMonthOfYear methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianMonth
 
 	^year < aGregorianMonth year 
 		or: [ year = aGregorianMonth year and: [ self month < aGregorianMonth month ] ]! !
 
-!GregorianMonthOfYear methodsFor: 'comparing'!
+!GregorianMonthOfYear methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self class = anObject class 
 		and: [month = anObject month 
 		and: [year = anObject year]]! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 cardinal: aNumber day:  aGregorianDay
 
 	| dates |
@@ -5070,95 +5070,95 @@ cardinal: aNumber day:  aGregorianDay
 	dates := self firstDate to: self lastDate everyDay: aGregorianDay.
 	^dates at: aNumber! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 firstDay
 	
 	^self firstDate day! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 lastDay
 	
 	^self lastDate day! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 lastDayNumber
 	
 	^month lastDayNumberIn: year! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 	
 	^month numberOfDaysIn: year! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	
 	^year numberOfDaysFromBaseDate + self numberOfDaysFromJanuaryFirst! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - days'!
+!GregorianMonthOfYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromJanuaryFirst
 
 	^month numberOfDaysFromJanuaryFirstIn: year
 ! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - dates'!
+!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: ''!
 dates
 	
 	^self firstDate to: self lastDate! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 firstDate
 	
 	^FixedGregorianDate monthOfYear: self dayNumber: 1! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 lastDate
 	
 	^FixedGregorianDate monthOfYear: self dayNumber: self lastDayNumber! !
 
-!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYear methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 onOrLast: aDayNumber 
 
 	^(self isValidDayNumber: aDayNumber) 
 		ifTrue: [ FixedGregorianDate monthOfYear: self dayNumber: aDayNumber ]
 		ifFalse: [ self lastDate ]! !
 
-!GregorianMonthOfYear methodsFor: 'interval protocol - private'!
+!GregorianMonthOfYear methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^GregorianMonth oneMonth! !
 
-!GregorianMonthOfYear methodsFor: 'interval protocol - private' stamp: 'HAW 3/25/2017 20:45:50'!
+!GregorianMonthOfYear methodsFor: 'interval protocol - private' stamp: 'HAW 25/Mar/2017 20:45:50'!
 intervalStrategy
 
 	^DefaultPointInTimeIntervalStrategy new! !
 
-!GregorianMonthOfYear methodsFor: 'testing'!
+!GregorianMonthOfYear methodsFor: 'testing' stamp: ''!
 distanceTo: aGregorianMonth 
 	| years numberOfMonths |
 	years := year distanceTo: aGregorianMonth year.
 	numberOfMonths := month relativeMonthsTo: aGregorianMonth month.
 	^numberOfMonths + years! !
 
-!GregorianMonthOfYear methodsFor: 'testing'!
+!GregorianMonthOfYear methodsFor: 'testing' stamp: ''!
 includes: aPointInTime
 
 	^aPointInTime monthOfYear = self! !
 
-!GregorianMonthOfYear methodsFor: 'testing'!
+!GregorianMonthOfYear methodsFor: 'testing' stamp: ''!
 isValidDayNumber: aDayNumber
 
 	^aDayNumber isInteger 
 		and: [ aDayNumber >= 1 
 		and: [ aDayNumber <= self lastDayNumber ] ]! !
 
-!GregorianMonthOfYear methodsFor: 'initialization'!
+!GregorianMonthOfYear methodsFor: 'initialization' stamp: ''!
 initializeYear: aGregorianYear month: aGregorianMonthDefinition 
 	
 	year := aGregorianYear.
 	month := aGregorianMonthDefinition.! !
 
-!GregorianMonthOfYear methodsFor: 'enumerating'!
+!GregorianMonthOfYear methodsFor: 'enumerating' stamp: ''!
 next: aMeasure 
 	
 	| monthsToAdd newMonth yearsToAdd  |
@@ -5174,12 +5174,12 @@ next: aMeasure
 		month: newMonth
 ! !
 
-!GregorianMonthOfYear methodsFor: 'enumerating'!
+!GregorianMonthOfYear methodsFor: 'enumerating' stamp: ''!
 nextMonth: aGregorianMonth
 
 	^self nextMonth: aGregorianMonth in: GregorianYear oneYear! !
 
-!GregorianMonthOfYear methodsFor: 'enumerating'!
+!GregorianMonthOfYear methodsFor: 'enumerating' stamp: ''!
 nextMonth: aGregorianMonth in: aNumberOfYears
 
 	| monthsToAdd |
@@ -5193,116 +5193,116 @@ nextMonth: aGregorianMonth in: aNumberOfYears
 
 ! !
 
-!GregorianMonthOfYear methodsFor: 'enumerating'!
+!GregorianMonthOfYear methodsFor: 'enumerating' stamp: ''!
 previousMonth: aGregorianMonth 
 
 	^self previousMonth: aGregorianMonth in: GregorianYear oneYear! !
 
-!GregorianMonthOfYear methodsFor: 'enumerating'!
+!GregorianMonthOfYear methodsFor: 'enumerating' stamp: ''!
 previousMonth: aGregorianMonth in: aNumberOfYears
 
 	^self nextMonth: aGregorianMonth in: aNumberOfYears negated! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 aprilOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth april! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 augustOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth august! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 decemberOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth december! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 februaryOf: aGregorianYear 
 	^self year: aGregorianYear month: GregorianMonth february! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 januaryOf: aGregorianYear 
 	
 	^self year: aGregorianYear month: GregorianMonth january! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 julyOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth july	! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 juneOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth june! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 marchOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth march
 	
 	! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 mayOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth may
 	
 	! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 novemberOf: aGregorianYear 
 	
 	^self year: aGregorianYear month: GregorianMonth november	! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 octoberOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth october! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation by month'!
+!GregorianMonthOfYear class methodsFor: 'instance creation by month' stamp: ''!
 septemberOf: aGregorianYear 
 
 	^self year: aGregorianYear month: GregorianMonth september! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 current
 	
 	^FixedGregorianDate today monthOfYear! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation'!
+!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: ''!
 year: aGregorianYear month: aGregorianMonthDefinition 
 	
 	^self new initializeYear: aGregorianYear month: aGregorianMonthDefinition! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation'!
+!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: ''!
 year: aGregorianYear monthNumber: aMonthNumber
 
 	^self year: aGregorianYear month: (GregorianMonth numbered: aMonthNumber)! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation'!
+!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: ''!
 yearNumber: aYearNumber month: aGregorianMonth
 
 	^self year: (GregorianYear number: aYearNumber) month: aGregorianMonth! !
 
-!GregorianMonthOfYear class methodsFor: 'instance creation'!
+!GregorianMonthOfYear class methodsFor: 'instance creation' stamp: ''!
 yearNumber: aYearNumber monthNumber: aMonthNumber
 
 	^self year: (GregorianYear number: aYearNumber) monthNumber: aMonthNumber! !
 
-!GregorianYear methodsFor: 'printing'!
+!GregorianYear methodsFor: 'printing' stamp: ''!
 printOn: aStream
 
 	aStream nextPutAll: 'Year '.
 	self number printOn: aStream! !
 
-!GregorianYear methodsFor: 'magnitude protocol'!
+!GregorianYear methodsFor: 'magnitude protocol' stamp: ''!
 < aGregorianYear
 
 	^self number < aGregorianYear number! !
 
-!GregorianYear methodsFor: 'comparing'!
+!GregorianYear methodsFor: 'comparing' stamp: ''!
 = anObject
 
 	^self == anObject 
@@ -5311,67 +5311,67 @@ printOn: aStream
 
 ! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 april
 
 	^GregorianMonthOfYear year: self month: GregorianMonth april! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 august
 
 	^GregorianMonthOfYear year: self month: GregorianMonth august! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 december
 
 	^GregorianMonthOfYear year: self month: GregorianMonth december! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 february
 
 	^GregorianMonthOfYear year: self month: GregorianMonth february! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 january
 
 	^GregorianMonthOfYear year: self month: GregorianMonth january! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 july
 
 	^GregorianMonthOfYear year: self month: GregorianMonth july! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 june
 
 	^GregorianMonthOfYear year: self month: GregorianMonth june! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 march
 
 	^GregorianMonthOfYear year: self month: GregorianMonth march! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 may
 
 	^GregorianMonthOfYear year: self month: GregorianMonth may! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 november
 
 	^GregorianMonthOfYear year: self month: GregorianMonth november! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 october
 
 	^GregorianMonthOfYear year: self month: GregorianMonth october! !
 
-!GregorianYear methodsFor: 'accessing - months of year'!
+!GregorianYear methodsFor: 'accessing - months of year' stamp: ''!
 september
 
 	^GregorianMonthOfYear year: self month: GregorianMonth september! !
 
-!GregorianYear methodsFor: 'initialization' stamp: 'mx 4/3/2006 13:41'!
+!GregorianYear methodsFor: 'initialization' stamp: 'mx 3/Apr/2006 13:41:00'!
 calculateNumberOfDaysFromBaseDate
 	
 	| myNumber numberOfDays |
@@ -5387,22 +5387,22 @@ calculateNumberOfDaysFromBaseDate
 		
 	^TimeUnits day with: numberOfDays! !
 
-!GregorianYear methodsFor: 'initialization'!
+!GregorianYear methodsFor: 'initialization' stamp: ''!
 initializeNumber: aNumber
 
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing - dates'!
+!GregorianYear methodsFor: 'accessing - dates' stamp: ''!
 dates
 	
 	^self firstDate to: self lastDate! !
 
-!GregorianYear methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYear methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 firstDate
 	
 	^FixedGregorianDate monthOfYear: self firstMonth dayNumber: 1! !
 
-!GregorianYear methodsFor: 'accessing - dates' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYear methodsFor: 'accessing - dates' stamp: 'HAW 25/Mar/2017 20:36:23'!
 lastDate
 	
 	| lastMonth |
@@ -5410,17 +5410,17 @@ lastDate
 	lastMonth := self lastMonth.
 	^FixedGregorianDate monthOfYear: lastMonth dayNumber: lastMonth lastDayNumber! !
 
-!GregorianYear methodsFor: 'interval protocol - private'!
+!GregorianYear methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^self oneYear! !
 
-!GregorianYear methodsFor: 'interval protocol - private' stamp: 'HAW 3/25/2017 20:45:52'!
+!GregorianYear methodsFor: 'interval protocol - private' stamp: 'HAW 25/Mar/2017 20:45:52'!
 intervalStrategy
 
 	^DefaultPointInTimeIntervalStrategy new! !
 
-!GregorianYear methodsFor: 'testing'!
+!GregorianYear methodsFor: 'testing' stamp: ''!
 distanceTo: aGregorianYear 
 	
 	| difference |
@@ -5430,72 +5430,72 @@ distanceTo: aGregorianYear
 		ifFalse: [aGregorianYear number < 0 ifTrue: [difference := difference + 1]].
 	^TimeUnits year with: difference! !
 
-!GregorianYear methodsFor: 'testing'!
+!GregorianYear methodsFor: 'testing' stamp: ''!
 includes: aPointInTime
 
 	^aPointInTime year = self! !
 
-!GregorianYear methodsFor: 'testing'!
+!GregorianYear methodsFor: 'testing' stamp: ''!
 isLeap
 	
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing - days'!
+!GregorianYear methodsFor: 'accessing - days' stamp: ''!
 firstDay
 	
 	^self firstDate day! !
 
-!GregorianYear methodsFor: 'accessing - days'!
+!GregorianYear methodsFor: 'accessing - days' stamp: ''!
 lastDay
 	
 	^self lastDate day! !
 
-!GregorianYear methodsFor: 'accessing - days'!
+!GregorianYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing - days'!
+!GregorianYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing - days'!
+!GregorianYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysInFebruary
 	
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing - months'!
+!GregorianYear methodsFor: 'accessing - months' stamp: ''!
 firstMonth
 	
 	^GregorianMonthOfYear januaryOf: self! !
 
-!GregorianYear methodsFor: 'accessing - months'!
+!GregorianYear methodsFor: 'accessing - months' stamp: ''!
 lastMonth
 	
 	^GregorianMonthOfYear decemberOf: self! !
 
-!GregorianYear methodsFor: 'accessing - months'!
+!GregorianYear methodsFor: 'accessing - months' stamp: ''!
 months
 
 	^self firstMonth to: self lastMonth! !
 
-!GregorianYear methodsFor: 'accessing'!
+!GregorianYear methodsFor: 'accessing' stamp: ''!
 hash
 
 	^self number hash! !
 
-!GregorianYear methodsFor: 'accessing'!
+!GregorianYear methodsFor: 'accessing' stamp: ''!
 number
 
 	self subclassResponsibility! !
 
-!GregorianYear methodsFor: 'accessing'!
+!GregorianYear methodsFor: 'accessing' stamp: ''!
 oneYear
 
 	^self class oneYear! !
 
-!GregorianYear methodsFor: 'enumerating'!
+!GregorianYear methodsFor: 'enumerating' stamp: ''!
 newNumberFrom: numberOfYears
 
 	| newNumber |
@@ -5506,12 +5506,12 @@ newNumberFrom: numberOfYears
 		ifTrue: [ ^-1 ].
 	^newNumber! !
 
-!GregorianYear methodsFor: 'enumerating'!
+!GregorianYear methodsFor: 'enumerating' stamp: ''!
 next: aMeasure
 
 	^self nextNumberOfYears: (aMeasure convertTo: TimeUnits year) amount! !
 
-!GregorianYear methodsFor: 'enumerating'!
+!GregorianYear methodsFor: 'enumerating' stamp: ''!
 nextLeapYear
 
 	| newYear |
@@ -5522,14 +5522,14 @@ nextLeapYear
 	^newYear
 ! !
 
-!GregorianYear methodsFor: 'enumerating'!
+!GregorianYear methodsFor: 'enumerating' stamp: ''!
 nextNumberOfYears: numberOfYears
 
 	| newNumber |
 	newNumber := self newNumberFrom: numberOfYears.
 	^self class number: newNumber! !
 
-!GregorianYear methodsFor: 'enumerating'!
+!GregorianYear methodsFor: 'enumerating' stamp: ''!
 previousLeapYear
 
 	| newYear |
@@ -5540,157 +5540,157 @@ previousLeapYear
 	^newYear
 ! !
 
-!GregorianYear methodsFor: 'accessing - days - private'!
+!GregorianYear methodsFor: 'accessing - days - private' stamp: ''!
 numberOfDaysFromJanuaryFirstFor: aGregorianMonth
 	
 	self subclassResponsibility! !
 
-!GregorianYear class methodsFor: 'instance creation - private'!
+!GregorianYear class methodsFor: 'instance creation - private' stamp: ''!
 createYear: aNumber 
 
 	^(self yearClassOf: aNumber) new initializeNumber: aNumber.
 ! !
 
-!GregorianYear class methodsFor: 'instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYear class methodsFor: 'instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 current
 	
 	^FixedGregorianDate today year! !
 
-!GregorianYear class methodsFor: 'instance creation'!
+!GregorianYear class methodsFor: 'instance creation' stamp: ''!
 number: aNumber
 
 	^(self isValidYearNumber: aNumber)
 		ifTrue: [ self createYear: aNumber ]
 		ifFalse: [ InvalidGregorianYearNumberException signalNumber: aNumber ]! !
 
-!GregorianYear class methodsFor: 'initialization'!
+!GregorianYear class methodsFor: 'initialization' stamp: ''!
 initializeCommonObjects
 
 	self initializeZeroYears.
 	self initializeOneYear! !
 
-!GregorianYear class methodsFor: 'initialization - private'!
+!GregorianYear class methodsFor: 'initialization - private' stamp: ''!
 initializeOneYear
 
 	OneYear := TimeUnits year with: 1! !
 
-!GregorianYear class methodsFor: 'initialization - private'!
+!GregorianYear class methodsFor: 'initialization - private' stamp: ''!
 initializeZeroYears
 
 	ZeroYears := TimeUnits year with: 0! !
 
-!GregorianYear class methodsFor: 'querying'!
+!GregorianYear class methodsFor: 'querying' stamp: ''!
 isValidYearNumber: aNumber
 
 	^aNumber ~= 0 and: [ aNumber isInteger ]! !
 
-!GregorianYear class methodsFor: 'querying'!
+!GregorianYear class methodsFor: 'querying' stamp: ''!
 isYearNumberLeap: aNumber 
 
 	^aNumber \\ 4 = 0 
 		and: [(aNumber \\ 100 ~= 0 or: [aNumber \\ 400 = 0])
 		and: [ self isValidYearNumber: aNumber ] ]! !
 
-!GregorianYear class methodsFor: 'querying'!
+!GregorianYear class methodsFor: 'querying' stamp: ''!
 yearClassOf: aNumber
 
 	^(self isYearNumberLeap: aNumber) 
 		ifTrue: [GregorianLeapYear]
 		ifFalse: [GregorianNonLeapYear]! !
 
-!GregorianYear class methodsFor: 'common year measurements'!
+!GregorianYear class methodsFor: 'common year measurements' stamp: ''!
 oneYear
 
 	^OneYear! !
 
-!GregorianYear class methodsFor: 'common year measurements'!
+!GregorianYear class methodsFor: 'common year measurements' stamp: ''!
 zeroYears
 
 	^ZeroYears! !
 
-!GregorianLeapYear methodsFor: 'initialization'!
+!GregorianLeapYear methodsFor: 'initialization' stamp: ''!
 initializeNumber: aNumber
 
 	number := aNumber.
 	numberOfDaysFromBaseDate := self calculateNumberOfDaysFromBaseDate.! !
 
-!GregorianLeapYear methodsFor: 'testing'!
+!GregorianLeapYear methodsFor: 'testing' stamp: ''!
 isLeap
 	
 	^true! !
 
-!GregorianLeapYear methodsFor: 'accessing'!
+!GregorianLeapYear methodsFor: 'accessing' stamp: ''!
 number
 	
 	^number! !
 
-!GregorianLeapYear methodsFor: 'accessing - days'!
+!GregorianLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 	
 	^GregorianDay threeHundredSixtySixDays! !
 
-!GregorianLeapYear methodsFor: 'accessing - days'!
+!GregorianLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	
 	^numberOfDaysFromBaseDate! !
 
-!GregorianLeapYear methodsFor: 'accessing - days'!
+!GregorianLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysInFebruary
 	
 	^self class numberOfDaysInFebruary! !
 
-!GregorianLeapYear methodsFor: 'accessing - days - private'!
+!GregorianLeapYear methodsFor: 'accessing - days - private' stamp: ''!
 numberOfDaysFromJanuaryFirstFor: aGregorianMonth
 	
 	^aGregorianMonth numberOfDaysFromJanuaryFirst! !
 
-!GregorianLeapYear class methodsFor: 'accessing'!
+!GregorianLeapYear class methodsFor: 'accessing' stamp: ''!
 numberOfDaysInFebruary
 
 	^GregorianDay twentyNineDays! !
 
-!GregorianNonLeapYear methodsFor: 'initialization'!
+!GregorianNonLeapYear methodsFor: 'initialization' stamp: ''!
 initializeNumber: aNumber
 
 	number := aNumber.
 	numberOfDaysFromBaseDate := self calculateNumberOfDaysFromBaseDate.	! !
 
-!GregorianNonLeapYear methodsFor: 'testing'!
+!GregorianNonLeapYear methodsFor: 'testing' stamp: ''!
 isLeap
 	
 	^false! !
 
-!GregorianNonLeapYear methodsFor: 'accessing'!
+!GregorianNonLeapYear methodsFor: 'accessing' stamp: ''!
 number
 	
 	^number! !
 
-!GregorianNonLeapYear methodsFor: 'accessing - days'!
+!GregorianNonLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDays
 	
 	^GregorianDay threeHundredSixtyFiveDays! !
 
-!GregorianNonLeapYear methodsFor: 'accessing - days'!
+!GregorianNonLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysFromBaseDate
 	
 	^numberOfDaysFromBaseDate! !
 
-!GregorianNonLeapYear methodsFor: 'accessing - days'!
+!GregorianNonLeapYear methodsFor: 'accessing - days' stamp: ''!
 numberOfDaysInFebruary
 	
 	^self class numberOfDaysInFebruary! !
 
-!GregorianNonLeapYear methodsFor: 'accessing - days - private'!
+!GregorianNonLeapYear methodsFor: 'accessing - days - private' stamp: ''!
 numberOfDaysFromJanuaryFirstFor: aGregorianMonth
 	
 	^aGregorianMonth numberOfDaysFromJanuaryFirstInNonLeapYear! !
 
-!GregorianNonLeapYear class methodsFor: 'accessing'!
+!GregorianNonLeapYear class methodsFor: 'accessing' stamp: ''!
 numberOfDaysInFebruary
 	
 	^GregorianDay twentyEightDays! !
 
-!TimeOfDay methodsFor: 'printing' stamp: 'HAW 11/14/2019 07:26:20'!
+!TimeOfDay methodsFor: 'printing' stamp: 'HAW 14/Nov/2019 07:26:20'!
 printOn: aStream
 
 	self hours amount printOn: aStream.
@@ -5700,54 +5700,54 @@ printOn: aStream
 	self seconds amount printOn: aStream base: 10 nDigits: 2.
 	! !
 
-!TimeOfDay methodsFor: 'magnitude protocol'!
+!TimeOfDay methodsFor: 'magnitude protocol' stamp: ''!
 < aTime
 
 	^timeFromMidnight < aTime timeFromMidnight! !
 
-!TimeOfDay methodsFor: 'comparing'!
+!TimeOfDay methodsFor: 'comparing' stamp: ''!
 = aTime
 
 	^self class = aTime class and: [ timeFromMidnight = aTime timeFromMidnight ]! !
 
-!TimeOfDay methodsFor: 'interval protocol - private'!
+!TimeOfDay methodsFor: 'interval protocol - private' stamp: ''!
 defaultIntervalIncrement
 
 	^self class oneSecond! !
 
-!TimeOfDay methodsFor: 'interval protocol - private'!
+!TimeOfDay methodsFor: 'interval protocol - private' stamp: ''!
 intervalStrategy
 
 	^RoundedTimelineIntervalStrategy new! !
 
-!TimeOfDay methodsFor: 'querying'!
+!TimeOfDay methodsFor: 'querying' stamp: ''!
 distanceTo: aTimeOfDay 
 
 	^self <= aTimeOfDay
 		ifTrue: [ aTimeOfDay timeFromMidnight - timeFromMidnight ]
 		ifFalse: [ self timeToEndOfDay + aTimeOfDay timeFromMidnight ]! !
 
-!TimeOfDay methodsFor: 'querying'!
+!TimeOfDay methodsFor: 'querying' stamp: ''!
 timeFromMidnight
 	
 	^timeFromMidnight! !
 
-!TimeOfDay methodsFor: 'querying'!
+!TimeOfDay methodsFor: 'querying' stamp: ''!
 timeToEndOfDay
 
 	^self class twentyFourHours - timeFromMidnight! !
 
-!TimeOfDay methodsFor: 'accessing'!
+!TimeOfDay methodsFor: 'accessing' stamp: ''!
 hash
 
 	^timeFromMidnight hash! !
 
-!TimeOfDay methodsFor: 'accessing'!
+!TimeOfDay methodsFor: 'accessing' stamp: ''!
 hours
 	
 	^(timeFromMidnight convertTo: TimeUnits hour) truncated! !
 
-!TimeOfDay methodsFor: 'accessing'!
+!TimeOfDay methodsFor: 'accessing' stamp: ''!
 milliseconds
 	
 	| seconds |
@@ -5755,104 +5755,104 @@ milliseconds
 	seconds := timeFromMidnight convertTo: TimeUnits second.
 	^(seconds - seconds truncated) convertTo: TimeUnits millisecond! !
 
-!TimeOfDay methodsFor: 'accessing'!
+!TimeOfDay methodsFor: 'accessing' stamp: ''!
 minutes
 	
 	^((timeFromMidnight - self hours) convertTo: TimeUnits minute) truncated! !
 
-!TimeOfDay methodsFor: 'accessing'!
+!TimeOfDay methodsFor: 'accessing' stamp: ''!
 seconds
 	
 	^((timeFromMidnight - self hours - self minutes) convertTo: TimeUnits second) truncated! !
 
-!TimeOfDay methodsFor: 'initialization'!
+!TimeOfDay methodsFor: 'initialization' stamp: ''!
 initializeTimeFromMidnight: aTimeMeasure 
 
 	timeFromMidnight := aTimeMeasure! !
 
-!TimeOfDay methodsFor: 'enumerating'!
+!TimeOfDay methodsFor: 'enumerating' stamp: ''!
 next: aTimeMeasure 
 
 	^self class timeFromMidnight: timeFromMidnight + aTimeMeasure! !
 
-!TimeOfDay methodsFor: 'instance creation' stamp: 'HAW 12/17/2018 17:21:12'!
+!TimeOfDay methodsFor: 'instance creation' stamp: 'HAW 17/Dec/2018 17:21:12'!
 : anAmountOfSeconds
 
 	self assertSecondsAreZero.
 	
 	^self class timeFromMidnight: timeFromMidnight + (anAmountOfSeconds * TimeUnits second)! !
 
-!TimeOfDay methodsFor: 'assertions' stamp: 'HAW 12/17/2018 17:22:24'!
+!TimeOfDay methodsFor: 'assertions' stamp: 'HAW 17/Dec/2018 17:22:24'!
 assertSecondsAreZero
 
 	self seconds isZero ifFalse: [ self signalCanNotCreateTimeOfDayUsingSemiColon ].
 	! !
 
-!TimeOfDay methodsFor: 'exceptions' stamp: 'HAW 12/17/2018 17:22:48'!
+!TimeOfDay methodsFor: 'exceptions' stamp: 'HAW 17/Dec/2018 17:22:48'!
 signalCanNotCreateTimeOfDayUsingSemiColon
 	
 	self error: self class canNotCreateTimeOfDayUsingSemiColonErrorDescription! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 firstTimeOfDay
 
 	^firstTimeOfDay
 	! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 lastTimeOfDay
 
 	^lastTimeOfDay
 	! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 midnight
 	
 	^self firstTimeOfDay! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 noon
 	
 	^noon! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 oneMillisecond
 	
 	^oneMillisecond! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 oneSecond
 	
 	^oneSecond! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 twentyFourHours
 	
 	^twentyFourHours! !
 
-!TimeOfDay class methodsFor: 'accessing'!
+!TimeOfDay class methodsFor: 'accessing' stamp: ''!
 zeroHours
 	
 	^zeroHours! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 fromTime: aTime
 
 	^self timeFromMidnight: (TimeUnits millisecond with: aTime asMilliseconds)! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 hours: anHour
 
 	^self timeFromMidnight: (TimeUnits hour with: anHour)! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 hours: anHour minutes: aMinute
 
 	^self timeFromMidnight: 
 		((TimeUnits hour with: anHour) +
 		(TimeUnits minute with: aMinute))! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 hours: anHour minutes: aMinute seconds: aSecond
 
 	^self timeFromMidnight: 
@@ -5860,7 +5860,7 @@ hours: anHour minutes: aMinute seconds: aSecond
 		(TimeUnits minute with: aMinute) +
 		(TimeUnits second with: aSecond))! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 hours: anHour minutes: aMinute seconds: aSecond milliseconds: aMillisecond
 
 	^self timeFromMidnight: 
@@ -5870,12 +5870,12 @@ hours: anHour minutes: aMinute seconds: aSecond milliseconds: aMillisecond
 		(TimeUnits millisecond with: aMillisecond))
 		! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 now
 
 	^self fromTime: Time now! !
 
-!TimeOfDay class methodsFor: 'instance creation'!
+!TimeOfDay class methodsFor: 'instance creation' stamp: ''!
 timeFromMidnight: aTimeMeasure 
 
 	(aTimeMeasure < self zeroHours or: [ aTimeMeasure >= self twentyFourHours ]) 
@@ -5883,7 +5883,7 @@ timeFromMidnight: aTimeMeasure
 	
 	^self new initializeTimeFromMidnight: aTimeMeasure! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeCommonObjects
 
 	self initializeZeroHours.
@@ -5894,33 +5894,33 @@ initializeCommonObjects
 	self initializeLastTimeOfDay.
 	self initializeNoon! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeFirstTimeOfDay
 
 	firstTimeOfDay := self timeFromMidnight: self zeroHours! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeLastTimeOfDay
 
 	lastTimeOfDay :=
 		self timeFromMidnight: (self twentyFourHours - (TimeUnits millisecond with: 1))! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeNoon
 
 	noon := self hours: 12! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeOneMillisecond
 
 	oneMillisecond := TimeUnits millisecond with: 1! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeOneSecond
 
 	oneSecond := TimeUnits second with: 1! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeTimeOfDay
 
 	self initializeZeroHours.
@@ -5931,22 +5931,22 @@ initializeTimeOfDay
 	self initializeLastTimeOfDay.
 	self initializeNoon! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeTwentyFourHours
 
 	twentyFourHours := TimeUnits hour with: 24! !
 
-!TimeOfDay class methodsFor: 'initialization'!
+!TimeOfDay class methodsFor: 'initialization' stamp: ''!
 initializeZeroHours
 
 	zeroHours := TimeUnits hour with: 0! !
 
-!TimeOfDay class methodsFor: 'exceptions' stamp: 'HAW 12/17/2018 17:23:38'!
+!TimeOfDay class methodsFor: 'exceptions' stamp: 'HAW 17/Dec/2018 17:23:38'!
 canNotCreateTimeOfDayUsingSemiColonErrorDescription
 	
 	^'Can not create a time of day using #: when seconds are not zero'! !
 
-!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 3/25/2017 18:34:42'!
+!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 18:34:42'!
 testDo
 
 	| universe |
@@ -5955,26 +5955,26 @@ testDo
 		raise: NotIterateUniverseException
 		withExceptionDo: [ :exception | self assert: exception description = 'The universe Every Days can''t be iterated' ]! !
 
-!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testFrom
 
 	self assert: (AllDatesUniverse new from) = FixedGregorianDate theBeginningOfTime
 ! !
 
-!AllDatesUniverseTest methodsFor: 'test'!
+!AllDatesUniverseTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	| universe |
 	universe := AllDatesUniverse new.
 	self assert: universe printString = 'Every Days'! !
 
-!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!AllDatesUniverseTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testTo
 
 	self assert: (AllDatesUniverse new to) = FixedGregorianDate theEndOfTime
 ! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCreation
 	"The 16 of September move to following Monday.
 	
@@ -5986,7 +5986,7 @@ testCreation
 	
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 19))! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayMovesToTheNextMonday
 	"The 02 of April move to following Monday.
 	
@@ -6000,7 +6000,7 @@ testIncludesDayMovesToTheNextMonday
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 04 dayNumber: 02)).
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 04 dayNumber: 05))! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayMovesToThePreviousMonday
 	"The 02 of April move to previous Monday.
 	
@@ -6014,7 +6014,7 @@ testIncludesDayMovesToThePreviousMonday
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 04 dayNumber: 02)).
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 03 dayNumber: 31))! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayWhenDayIsMonday
 	"The 02 of April move to Monday.
 
@@ -6026,7 +6026,7 @@ testIncludesDayWhenDayIsMonday
 	
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2007 monthNumber: 04 dayNumber: 02))! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!ArgentineLaw23555RuleTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayWhenDayIsSaturday
 	"The 02 of April move to Monday.
 
@@ -6042,7 +6042,7 @@ testIncludesDayWhenDayIsSaturday
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 04 dayNumber: 03)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 04 dayNumber: 04))! !
 
-!ArgentineLaw23555RuleTest methodsFor: 'test'!
+!ArgentineLaw23555RuleTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	| rule |
@@ -6051,7 +6051,7 @@ testPrintOn
 	
 	self assert: rule printString = 'September 16 transferable holiday by Argentine Law 23555'! !
 
-!CardinalDayMonthRuleTest methodsFor: 'test'!
+!CardinalDayMonthRuleTest methodsFor: 'test' stamp: ''!
 testDifferentMonth
 
 	| rule months |
@@ -6062,7 +6062,7 @@ testDifferentMonth
 	months do: [ :aMonthOfYear | self deny: (rule includes: (aMonthOfYear cardinal: 3 day: GregorianDay monday)) ].
 ! !
 
-!CardinalDayMonthRuleTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!CardinalDayMonthRuleTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayMovesToTheThirdMonday
 	"The 17 of August move to the third Monday of the month. 
 	
@@ -6076,7 +6076,7 @@ testIncludesDayMovesToTheThirdMonday
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 08 dayNumber:  16)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 08 dayNumber:  17))! !
 
-!CardinalDayMonthRuleTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!CardinalDayMonthRuleTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDayWhenDayIsSaturday
 	"The 17 of August move to the third Monday of the month. 
 	
@@ -6090,7 +6090,7 @@ testIncludesDayWhenDayIsSaturday
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2002 monthNumber: 08 dayNumber:  18)).
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2002 monthNumber: 08 dayNumber:  19))! !
 
-!CardinalDayMonthRuleTest methodsFor: 'test'!
+!CardinalDayMonthRuleTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	| rule |
@@ -6098,7 +6098,7 @@ testPrintOn
 	rule := CardinalDayMonthRule cardinal: 3 day: GregorianDay monday month: GregorianMonth august.
 	self assert: rule printString = '3 Monday of August'! !
 
-!DayOfMonthRuleTest methodsFor: 'test'!
+!DayOfMonthRuleTest methodsFor: 'test' stamp: ''!
 testAccessing
 
 	| rule decoratedRule |
@@ -6109,7 +6109,7 @@ testAccessing
 	self assert: rule decoratedRule = decoratedRule.
 	self assert: rule printString = decoratedRule printString! !
 
-!DayOfMonthRuleTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!DayOfMonthRuleTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludes
 
 	| rule includedDate |
@@ -6121,14 +6121,14 @@ testIncludes
 		assert: (rule includes: includedDate);
 		deny: (rule includes: includedDate next)! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testAdd
 
 	self 
 		should: [ (DefinedByRules for: #(1 2 3) ) add: 3 ]
 		raise: Error! !
 
-!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRules
 
 	| set date anotherDate |
@@ -6143,7 +6143,7 @@ testAddRules
 	self deny: (set includes: 0).
 	self deny: (set includes: 3)! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testAlwaysFulfills
 
 	| set |
@@ -6155,7 +6155,7 @@ testAlwaysFulfills
 	self assert: (set includes: set).
 	self assert: (set includes: 'not including')! !
 
-!DefinedByRulesTest methodsFor: 'test' stamp: 'mx 4/2/2006 19:23'!
+!DefinedByRulesTest methodsFor: 'test' stamp: 'mx 2/Apr/2006 19:23:00'!
 testAsOrderedCollection
 
 	| set |
@@ -6166,7 +6166,7 @@ testAsOrderedCollection
 	self assert: (set asOrderedCollection includesAllOf: #(2 4 6 8 10))
 ! !
 
-!DefinedByRulesTest methodsFor: 'test' stamp: 'mx 4/2/2006 19:23'!
+!DefinedByRulesTest methodsFor: 'test' stamp: 'mx 2/Apr/2006 19:23:00'!
 testAsSortedCollection
 
 	| set |
@@ -6177,7 +6177,7 @@ testAsSortedCollection
 	self assert: (set asSortedCollection includesAllOf: #(2 4 6 8 10))
 ! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testComposite
 
 	| universe set |
@@ -6191,13 +6191,13 @@ testComposite
 	self assert: set notEmpty.
 	self assert: set size = 2! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testCreation
 
 	self assert: (DefinedByRules for: #()) universe isEmpty.
 	self assert: (DefinedByRules for: #(1 2 3) ) universe notEmpty.! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testDo
 
 	| universe expectedNumber |
@@ -6210,7 +6210,7 @@ testDo
 		self assert: aNumber = expectedNumber.
 		expectedNumber := expectedNumber + 2 ]! !
 
-!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 3/27/2017 10:05:42'!
+!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 27/Mar/2017 10:05:42'!
 testInvalidDo
 
 	| universe |
@@ -6223,14 +6223,14 @@ testInvalidDo
 			self assert: anException description notNil.
 			self assert: anException universe = NaturalNumbersTestUniverse new ]! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testIsEmpty
 
 	self assert: (DefinedByRules for: #()) isEmpty.
 	self assert: (DefinedByRules for: #(1 2 3) ) isEmpty.
 ! !
 
-!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 3/27/2017 10:05:47'!
+!DefinedByRulesTest methodsFor: 'test' stamp: 'HAW 27/Mar/2017 10:05:47'!
 testRemoveAllRules
 
 	| set  |
@@ -6247,7 +6247,7 @@ testRemoveAllRules
 	self assert: set rules isEmpty
 	! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testRemoveIfAbsent
 
 	self 
@@ -6258,7 +6258,7 @@ testRemoveIfAbsent
 		should: [(DefinedByRules for: #(1 2 3)) remove: 2 ifAbsent: []]
 		raise: Error! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testSize
 
 	| set |
@@ -6269,12 +6269,12 @@ testSize
 	self assert: set size = 5
 ! !
 
-!DefinedByRulesTest methodsFor: 'test'!
+!DefinedByRulesTest methodsFor: 'test' stamp: ''!
 testSpecies
 
 	self assert: (DefinedByRules for: #()) species = OrderedCollection! !
 
-!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 3/27/2017 10:05:51'!
+!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 27/Mar/2017 10:05:51'!
 testExcludedFromTo
 
 	| set |
@@ -6289,7 +6289,7 @@ testExcludedFromTo
 	self assert: (set excludedFrom: 1 to: 2) isEmpty.
 	3 to: 10 do: [ :aNumber | self assert: ((set excludedFrom: 0 to: 10) includes: aNumber) ].	! !
 
-!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 3/27/2017 10:05:28'!
+!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 27/Mar/2017 10:05:28'!
 testExcludedIn
 
 	| set |
@@ -6304,7 +6304,7 @@ testExcludedIn
 	self assert: (set excludedIn: (1 to: 2)) isEmpty.
 	3 to: 10 do: [:aNumber | self assert: ((set excludedIn: (0 to: 10)) includes: aNumber)]! !
 
-!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 3/27/2017 10:05:36'!
+!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 27/Mar/2017 10:05:36'!
 testExcludes
 
 	| set |
@@ -6320,7 +6320,7 @@ testExcludes
 	
 	! !
 
-!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 3/27/2017 10:06:04'!
+!DefinedByRulesTest methodsFor: 'test excludes' stamp: 'HAW 27/Mar/2017 10:06:04'!
 testExcludesAll
 
 	| set |
@@ -6335,7 +6335,7 @@ testExcludesAll
 	
 	! !
 
-!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 3/27/2017 10:05:32'!
+!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 27/Mar/2017 10:05:32'!
 testIncludedFromTo
 
 	| set |
@@ -6353,7 +6353,7 @@ testIncludedFromTo
 	self assert: ((set includedFrom: 2 to: 3) asOrderedCollection includesAllOf: (OrderedCollection with: 2)).
 	self assert: (set includedFrom: 3 to: 4) isEmpty! !
 
-!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 3/27/2017 10:05:56'!
+!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 27/Mar/2017 10:05:56'!
 testIncludedIn
 
 	| set |
@@ -6371,7 +6371,7 @@ testIncludedIn
 	self assert: ((set includedIn: (2 to: 3)) asOrderedCollection includesAllOf: (OrderedCollection with: 2)).
 	self assert: (set includedIn: (3 to: 4)) isEmpty! !
 
-!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 3/27/2017 10:05:23'!
+!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 27/Mar/2017 10:05:23'!
 testIncludes
 
 	| set |
@@ -6384,7 +6384,7 @@ testIncludes
 	self assert: (set includes: 1).
 	self assert: (set includes: 2)! !
 
-!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 3/27/2017 10:06:13'!
+!DefinedByRulesTest methodsFor: 'test includes' stamp: 'HAW 27/Mar/2017 10:06:13'!
 testIncludesAll
 
 	| set |
@@ -6397,7 +6397,7 @@ testIncludesAll
 	self assert: (set includesAll: (Array with: 2 with: 1)).
 	self deny: (set includesAll: (Array with: 2 with: 1 with: 3))! !
 
-!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 3/27/2017 10:05:59'!
+!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 27/Mar/2017 10:05:59'!
 testRemoveRule
 
 	| set rule1 |
@@ -6411,7 +6411,7 @@ testRemoveRule
 	self deny: (set includes: 1).
 ! !
 
-!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 3/27/2017 10:05:20'!
+!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 27/Mar/2017 10:05:20'!
 testRulesCopy
 
 	| set rules |
@@ -6426,7 +6426,7 @@ testRulesCopy
 	
 	! !
 
-!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 3/27/2017 10:06:08'!
+!DefinedByRulesTest methodsFor: 'test rules' stamp: 'HAW 27/Mar/2017 10:06:08'!
 testRulesThatInclude
 
 	| set rule1 rule2 |
@@ -6444,7 +6444,7 @@ testRulesThatInclude
 
 	self assert: (set rulesThatInclude: 3) isEmpty! !
 
-!FilteredGregorianDateTest methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:38:14'!
+!FilteredGregorianDateTest methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:38:14'!
 setUp
 
 	super setUp.
@@ -6456,7 +6456,7 @@ setUp
 	today := FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 05.
 	defaultFilteredDate := FilteredGregorianDate date: today timeLineFilter: argentineTimeLineFilter! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:38:23'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:38:23'!
 testAccessing
 
 	| valid date |
@@ -6484,7 +6484,7 @@ testAccessing
 		assert: valid numberOfDaysToEndOfYear = date numberOfDaysToEndOfYear;
 		assert: valid numberOfDaysFromJanuaryFirst = date numberOfDaysFromJanuaryFirst! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:38:40'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:38:40'!
 testEquals
 
 	| filteredDate date |
@@ -6495,7 +6495,7 @@ testEquals
 	self assert: filteredDate = date.
 	self assert: filteredDate hash = date hash! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:38:50'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:38:50'!
 testImmutableValue
 
 	| filteredDate date |
@@ -6505,7 +6505,7 @@ testImmutableValue
 
 	self assert: filteredDate immutableValue = date! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:02'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:02'!
 testMonday
 
 	| date |
@@ -6513,12 +6513,12 @@ testMonday
 	date := FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 18.
 	FilteredGregorianDate date: date timeLineFilter: argentineTimeLineFilter! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 19) month number = 7! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:11'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:11'!
 testNext
 
 	| valid date |
@@ -6527,14 +6527,14 @@ testNext
 	valid := FilteredGregorianDate date: date timeLineFilter: argentineTimeLineFilter.
 	self assert: (valid next: GregorianDay twoDays) = (date next: GregorianDay twoDays)! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'mx 4/3/2006 20:24'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'mx 3/Apr/2006 20:24:00'!
 testNextFiltered
 
 	self assert:
 		defaultFilteredDate nextFiltered =
 			(argentineTimeLineFilter next: (GregorianTimespan from: today duration: GregorianDay oneDay))! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'mx 4/3/2006 20:24'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'mx 3/Apr/2006 20:24:00'!
 testPreviousFiltered
 
 	self assert:
@@ -6542,7 +6542,7 @@ testPreviousFiltered
 			argentineTimeLineFilter
 				next: (GregorianTimespan from: today duration: GregorianDay oneDay negated))! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:23'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:23'!
 testPrintOn
 
 	| valid date |
@@ -6551,7 +6551,7 @@ testPrintOn
 	valid := FilteredGregorianDate date: date timeLineFilter: argentineTimeLineFilter.
 	self assert: valid printString = date printString! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:34'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:34'!
 testSaturday
 
 	| date |
@@ -6566,7 +6566,7 @@ testSaturday
 				assert: exception timeLineFilter = argentineTimeLineFilter;
 				deny: exception description isEmpty ]! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:45'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:45'!
 testSunday
 
 	| date |
@@ -6581,7 +6581,7 @@ testSunday
 				assert: exception timeLineFilter = argentineTimeLineFilter;
 				deny: exception description isEmpty ]! !
 
-!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:39:54'!
+!FilteredGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:39:54'!
 testToday
 
 	| date |
@@ -6589,12 +6589,12 @@ testToday
 	date := FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 19.
 	FilteredGregorianDate date: date timeLineFilter: argentineTimeLineFilter! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'querying'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'querying' stamp: ''!
 includes: aMagnitude
 
 	^aMagnitude even! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: 'mx 4/2/2006 19:41'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: 'mx 2/Apr/2006 19:41:00'!
 testFrom
 
 	| rule |
@@ -6605,7 +6605,7 @@ testFrom
 	self assert: rule from = 1
 ! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'test'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: ''!
 testIncludes
 
 	| rule |
@@ -6620,7 +6620,7 @@ testIncludes
 	
 ! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'test'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: ''!
 testInstanceCreating
 
 	self assert: (IntervalConstrainedInclusionRule on: (1 to: 10) apply: self) interval = (1 to: 10).
@@ -6629,14 +6629,14 @@ testInstanceCreating
 	self assert: (IntervalConstrainedInclusionRule on: (1 to: 10) apply: self) decoratedRule = self.
 	self assert: (IntervalConstrainedInclusionRule from: 1 to: 10 apply: self) decoratedRule = self! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: 'mx 4/2/2006 19:42'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: 'mx 2/Apr/2006 19:42:00'!
 testPrintString
 
 	self assert: (IntervalConstrainedInclusionRule on: (1 to: 10) apply: self) printString = 
 		'From: 1 to: 10 -> IntervalConstrainedInclusionRuleTest>>#testPrintString'
 ! !
 
-!IntervalConstrainedInclusionRuleTest methodsFor: 'test'!
+!IntervalConstrainedInclusionRuleTest methodsFor: 'test' stamp: ''!
 testTo
 
 	| rule |
@@ -6647,7 +6647,7 @@ testTo
 	self assert: rule to = 10
 ! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 11/10/2021 21:21:11'!
+!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 10/Nov/2021 21:21:11'!
 testDatesBetween
 
 	| timeLineFilter days |
@@ -6663,7 +6663,7 @@ testDatesBetween
 	self deny: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self deny: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextNegativeDuration
 
 	| timeLineFilter date |
@@ -6675,7 +6675,7 @@ testNextNegativeDuration
 	self assert: (timeLineFilter negated next: (GregorianTimespan from: date duration: (TimeUnits day with: -1))) = date previous.
 	self assert: (timeLineFilter negated next: (GregorianTimespan from: date duration: (TimeUnits day with: -2))) = (date previous: GregorianDay twoDays)! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test enumeration' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextPositiveDuration
 
 	| timeLineFilter date |
@@ -6688,7 +6688,7 @@ testNextPositiveDuration
 	self assert: (timeLineFilter negated next: (GregorianTimespan from: date duration: (TimeUnits day with: 2))) = (date next: (TimeUnits day with: 3)).
 	self assert: (timeLineFilter negated next: (GregorianTimespan from: date duration: (TimeUnits day with: 0))) = date! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludedFromTo
 
 	| timeLineFilter excluded |
@@ -6703,7 +6703,7 @@ testExcludedFromTo
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludedIn
 
 	| timeLineFilter excluded |
@@ -6718,7 +6718,7 @@ testExcludedIn
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludes
 
 	| timeLineFilter |
@@ -6729,7 +6729,7 @@ testExcludes
 	self assert: (timeLineFilter negated excludes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (timeLineFilter negated excludes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying excludes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludesAll
 
 	| timeLineFilter excluded |
@@ -6742,7 +6742,7 @@ testExcludesAll
 				to: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11)).
 	self assert: (timeLineFilter negated excludesAll: excluded)! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludedFromTo
 
 	| timeLineFilter included |
@@ -6764,7 +6764,7 @@ testIncludedFromTo
 	self deny: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludedIn
 
 	| timeLineFilter included |
@@ -6785,7 +6785,7 @@ testIncludedIn
 	self deny: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludes
 
 	| timeLineFilter |
@@ -6802,7 +6802,7 @@ testIncludes
 	self deny: (timeLineFilter negated includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self assert: (timeLineFilter negated includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11))! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test querying includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesAll
 
 	| timeLineFilter included |
@@ -6817,7 +6817,7 @@ testIncludesAll
 	self assert: (timeLineFilter negated includesAll: included).
 	self assert: (timeLineFilter excludesAll: included)! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test'!
+!NegatedTimeLineFilterTest methodsFor: 'test' stamp: ''!
 testName
 
 	| timeLineFilter |
@@ -6826,7 +6826,7 @@ testName
 	self assert: timeLineFilter negated name = 'K Lendar'.
 	self assert: timeLineFilter negated negated name = 'K Lendar'! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test'!
+!NegatedTimeLineFilterTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	| timeLineFilterUnnamed timeLineFilterNamed negatedTimeLineFilterUnnamed negatedTimeLineFilterNamed |
@@ -6839,7 +6839,7 @@ testPrintOn
 	self assert: negatedTimeLineFilterUnnamed printString = 'unnamed time line filter'.
 	self assert: negatedTimeLineFilterNamed printString = 'Argentino'! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test negated calendar'!
+!NegatedTimeLineFilterTest methodsFor: 'test negated calendar' stamp: ''!
 testNegated
 
 	| timeLineFilter |
@@ -6850,7 +6850,7 @@ testNegated
 	"I want to be sure that it is the same object, not just equal"
 	self assert: timeLineFilter negated negated == timeLineFilter! !
 
-!NegatedTimeLineFilterTest methodsFor: 'test streaming' stamp: 'HAW 3/25/2017 20:36:23'!
+!NegatedTimeLineFilterTest methodsFor: 'test streaming' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testStream
 
 	| timeLineFilter stream |
@@ -6868,7 +6868,7 @@ testStream
 	self assert: stream next = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 09).
 	self assert: stream next = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11)! !
 
-!RelativeGregorianDateTest methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:23'!
 setUp
 
 	timeLineFilter := TimeLineFilter new.
@@ -6885,7 +6885,7 @@ setUp
 
 	absoluteDate := FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 06! !
 
-!RelativeGregorianDateTest methodsFor: 'test absolute date' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test absolute date' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAbsoluteDate
 
 	| absolute |
@@ -6897,90 +6897,90 @@ testAbsoluteDate
 	self deny: absolute = relativeDate absoluteDate.
 	self assert: absolute next = relativeDate absoluteDate! !
 
-!RelativeGregorianDateTest methodsFor: 'test'!
+!RelativeGregorianDateTest methodsFor: 'test' stamp: ''!
 testAcceptAVisitor
 
 	self assert: (relativeDate accept: self) = self! !
 
-!RelativeGregorianDateTest methodsFor: 'test'!
+!RelativeGregorianDateTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	self assert: relativeDate printString = 'January 6, 2004'! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testAsSmalltalkDate
 
 	self assert: relativeDate asSmalltalkDate = absoluteDate asSmalltalkDate
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 1/15/2019 19:13:05'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 15/Jan/2019 19:13:05'!
 testAt
 
 	self assert: (relativeDate at: 19:12:50)= (absoluteDate at: 19:12:50)
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testAtMidnight
 
 	self assert: relativeDate atMidnight = absoluteDate atMidnight
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testAtNoon
 
 	self assert: relativeDate atNoon = absoluteDate atNoon
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testAtTimeOfDay
 
 	self assert: (relativeDate atTimeOfDay: (TimeOfDay hours: 1))= (absoluteDate atTimeOfDay: (TimeOfDay hours: 1))
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testDay
 
 	self assert: relativeDate day = absoluteDate day.
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testDayNumber
 
 	self assert: relativeDate dayNumber = absoluteDate dayNumber.
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testDayOfMonth
 
 	self assert: relativeDate dayOfMonth = absoluteDate dayOfMonth
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDaysFrom
 
 	self assert: (relativeDate distanceFrom: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)) =
 		(absoluteDate distanceFrom: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01))! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDaysTo
 
 	self assert: (relativeDate distanceTo: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)) =
 		(absoluteDate distanceTo: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01))! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testDefaultIntervalIncrement
 
 	self assert: relativeDate defaultIntervalIncrement = absoluteDate defaultIntervalIncrement
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testEqual
 
 	self assert: relativeDate=absoluteDate.
 	self assert: absoluteDate=relativeDate.
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testHash
 
 	| anotherRelativeDate |
@@ -6997,37 +6997,37 @@ testHash
 		assert: relativeDate hash = anotherRelativeDate hash;
 		assert: relativeDate hash = absoluteDate hash! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testIntervalStrategy
 
 	self assert: relativeDate intervalStrategy = absoluteDate intervalStrategy
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testIsFirstDayOfMonth
 
 	self assert: relativeDate isFirstDayOfMonth = absoluteDate isFirstDayOfMonth.
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testIsFirstDayOfYear
 
 	self assert: relativeDate isFirstDayOfYear = absoluteDate isFirstDayOfYear.
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testIsLastDayOfMonth
 
 	self assert: relativeDate isLastDayOfMonth = absoluteDate isLastDayOfMonth
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testIsLastDayOfYear
 
 	self assert: relativeDate isLastDayOfYear = absoluteDate isLastDayOfYear
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLessThan
 
 	self assert: (relativeDate < (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)) =
@@ -7035,77 +7035,77 @@ testLessThan
 	self assert: (relativeDate < (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)) =
 		(absoluteDate < (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testMonth
 
 	self assert: relativeDate month = absoluteDate month
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testMonthOfYear
 
 	self assert: relativeDate monthOfYear = absoluteDate monthOfYear
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNext
 
 	self assert: relativeDate next= absoluteDate next.
 	self assert: (relativeDate next: GregorianDay twoDays) = (absoluteDate next: GregorianDay twoDays)
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNextDay
 
 	self assert: (relativeDate nextDay: GregorianDay saturday) = (absoluteDate nextDay: GregorianDay saturday)
 
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNumberOfDaysFromBaseDate
 
 	self assert: relativeDate numberOfDaysFromBaseDate = absoluteDate numberOfDaysFromBaseDate
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNumberOfDaysFromBeginningOfMonth
 
 	self assert: relativeDate numberOfDaysFromBeginningOfMonth = absoluteDate numberOfDaysFromBeginningOfMonth
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNumberOfDaysFromJanuaryFirst
 
 	self assert: relativeDate numberOfDaysFromJanuaryFirst = absoluteDate numberOfDaysFromJanuaryFirst
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNumberOfDaysToEndOfMonth
 
 	self assert: relativeDate numberOfDaysToEndOfMonth = absoluteDate numberOfDaysToEndOfMonth
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testNumberOfDaysToEndOfYear
 
 	self assert: relativeDate numberOfDaysToEndOfYear = absoluteDate numberOfDaysToEndOfYear
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testPrevious
 
 	self assert: relativeDate previous= absoluteDate previous.
 	self assert: (relativeDate previous: GregorianDay twoDays) = (absoluteDate previous: GregorianDay twoDays)
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testPreviousDay
 
 	self assert: (relativeDate previousDay: GregorianDay saturday) = (absoluteDate previousDay: GregorianDay saturday)
 
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEvery
 
 	| dates1 dates2 |
@@ -7119,7 +7119,7 @@ testToEvery
 
 	self assert: dates1 = dates2! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDay
 
 	| dates1 dates2 |
@@ -7133,7 +7133,7 @@ testToEveryDay
 
 	self assert: dates1 = dates2! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayNumber
 
 	| dates1 dates2 |
@@ -7147,7 +7147,7 @@ testToEveryDayNumber
 
 	self assert: dates1 = dates2! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayNumbers
 
 	| dates1 dates2 |
@@ -7161,18 +7161,18 @@ testToEveryDayNumbers
 
 	self assert: dates1 = dates2! !
 
-!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol'!
+!RelativeGregorianDateTest methodsFor: 'test gregorian date protocol' stamp: ''!
 testYear
 
 	self assert: relativeDate year = absoluteDate year
 	! !
 
-!RelativeGregorianDateTest methodsFor: 'visiting'!
+!RelativeGregorianDateTest methodsFor: 'visiting' stamp: ''!
 visitRelativeGregorianDate: aRelativeGregorianDate
 
 	^self! !
 
-!SpecificDayRuleTest methodsFor: 'test'!
+!SpecificDayRuleTest methodsFor: 'test' stamp: ''!
 testAccessing
 
 	| rule decoratedRule |
@@ -7183,7 +7183,7 @@ testAccessing
 	self assert: rule decoratedRule = decoratedRule.
 	self assert: rule printString = decoratedRule printString! !
 
-!SpecificDayRuleTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!SpecificDayRuleTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludes
 
 	| rule includedDate |
@@ -7195,7 +7195,7 @@ testIncludes
 		assert: (rule includes: includedDate);
 		deny: (rule includes: includedDate next)! !
 
-!SpecificObjectInclusionRuleTest methodsFor: 'testing'!
+!SpecificObjectInclusionRuleTest methodsFor: 'testing' stamp: ''!
 testAccessing
 
 	| rule |
@@ -7205,7 +7205,7 @@ testAccessing
 	self assert: rule object=1.
 ! !
 
-!SpecificObjectInclusionRuleTest methodsFor: 'testing'!
+!SpecificObjectInclusionRuleTest methodsFor: 'testing' stamp: ''!
 testIncludes
 
 	| rule |
@@ -7215,12 +7215,12 @@ testIncludes
 	self assert: (rule includes: 1).
 	self deny: (rule includes: 2)! !
 
-!SpecificObjectInclusionRuleTest methodsFor: 'testing'!
+!SpecificObjectInclusionRuleTest methodsFor: 'testing' stamp: ''!
 testPrintOn
 
 	self assert: (SpecificObjectInclusionRule for: 1) printString notNil! !
 
-!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAtEnd
 
 	| timeLineFilter stream |
@@ -7232,7 +7232,7 @@ testAtEnd
 	"It never reaches the end..."
 	10 timesRepeat: [ self deny: stream atEnd ]! !
 
-!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCurrent
 
 	| timeLineFilter stream januaryThirdOf2004 januaryTenOf2004 |
@@ -7248,7 +7248,7 @@ testCurrent
 	self assert: stream next = januaryTenOf2004.
 	self assert: stream current = januaryTenOf2004! !
 
-!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDo
 
 	| timeLineFilter stream date |
@@ -7264,7 +7264,7 @@ testDo
 		"This is ugly!!.. but I have to doit this way because the stream has no end"
 		date month = GregorianMonth february ifTrue: [ ^self ]]! !
 
-!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterStreamTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testReset
 
 	| timeLineFilter stream januaryFirstOf2004 januaryThirdOf2004 januaryTenOf2004 |
@@ -7283,7 +7283,7 @@ testReset
 	self assert: stream next = januaryThirdOf2004.
 	self assert: stream next = januaryTenOf2004! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddArgentineLaw23555Rule
 
 	| timeLineFilter |
@@ -7294,7 +7294,7 @@ testAddArgentineLaw23555Rule
 	self assert: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 19)).
 	self deny: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 15))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddCardinalDayMonthRuleRule
 
 	| timeLineFilter |
@@ -7305,7 +7305,7 @@ testAddCardinalDayMonthRuleRule
 	self assert: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 19)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 15))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddDateRule
 
 	| timeLineFilter |
@@ -7316,7 +7316,7 @@ testAddDateRule
 	self assert: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddDayOfMonthRule
 
 	| timeLineFilter |
@@ -7328,7 +7328,7 @@ testAddDayOfMonthRule
 	self assert: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2005 monthNumber: 01 dayNumber: 03)).
 	self deny: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddDayRule
 
 	| timeLineFilter |
@@ -7339,7 +7339,7 @@ testAddDayRule
 	self assert: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRuleFrom
 
 	| timeLineFilter |
@@ -7353,7 +7353,7 @@ testAddRuleFrom
 	self assert: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self deny: (timeLineFilter includes:  (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRuleFromTo
 
 	| timeLineFilter |
@@ -7368,7 +7368,7 @@ testAddRuleFromTo
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRules
 
 	| timeLineFilter rule1 rule2 rule3 september14Of2005 september15Of2005 september16Of2005 |
@@ -7387,7 +7387,7 @@ testAddRules
 	self assert: (timeLineFilter includes: september15Of2005).
 	self assert: (timeLineFilter includes: september16Of2005)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRulesFrom
 
 	| timeLineFilter |
@@ -7404,7 +7404,7 @@ testAddRulesFrom
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 27)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 28))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAddRulesFromTo
 
 	| timeLineFilter |
@@ -7425,7 +7425,7 @@ testAddRulesFromTo
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self deny: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDateRule
 
 	| rule |
@@ -7434,7 +7434,7 @@ testDateRule
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 01 dayNumber: 01))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 11/10/2021 21:21:22'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 10/Nov/2021 21:21:22'!
 testDatesBetween
 
 	| timeLineFilter days |
@@ -7450,7 +7450,7 @@ testDatesBetween
 	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (days includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDayOfMonthRule
 
 	| rule |
@@ -7459,7 +7459,7 @@ testDayOfMonthRule
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 02))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDayRule
 
 	| rule |
@@ -7468,7 +7468,7 @@ testDayRule
 	self assert: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludedFromTo
 
 	| timeLineFilter excluded january4Of2004  january11Of2004 |
@@ -7488,7 +7488,7 @@ testExcludedFromTo
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 09)).
 	self assert: (excluded includes: january11Of2004)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludedIn
 
 	| timeLineFilter excluded january4Of2004 january11Of2004 |
@@ -7508,7 +7508,7 @@ testExcludedIn
 	self assert: (excluded includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 09)).
 	self assert: (excluded includes: january11Of2004)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludes
 
 	| timeLineFilter |
@@ -7525,7 +7525,7 @@ testExcludes
 	self deny: (timeLineFilter excludes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10)).
 	self assert: (timeLineFilter excludes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testExcludesAll
 
 	| timeLineFilter excluded |
@@ -7538,7 +7538,7 @@ testExcludesAll
 			to: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11)).
 	self assert: (timeLineFilter excludesAll: excluded)! !
 
-!TimeLineFilterTest methodsFor: 'test'!
+!TimeLineFilterTest methodsFor: 'test' stamp: ''!
 testFromString
 
 	| timeLineFilter |
@@ -7547,12 +7547,12 @@ testFromString
 		
 	self assert: timeLineFilter printString = 'Pedro Duque'! !
 
-!TimeLineFilterTest methodsFor: 'test'!
+!TimeLineFilterTest methodsFor: 'test' stamp: ''!
 testHash
 
 	self assert: (TimeLineFilter named: 'Pedro Duque') hash = (TimeLineFilter named: 'Pedro Duque') hash! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludedFromTo
 
 	| timeLineFilter included |
@@ -7567,7 +7567,7 @@ testIncludedFromTo
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludedIn
 
 	| timeLineFilter included |
@@ -7582,7 +7582,7 @@ testIncludedIn
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (included includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludes
 
 	| timeLineFilter |
@@ -7593,7 +7593,7 @@ testIncludes
 	self assert: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)).
 	self assert: (timeLineFilter includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesAll
 
 	| timeLineFilter included |
@@ -7606,7 +7606,7 @@ testIncludesAll
 			to: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 11)).
 	self assert: (timeLineFilter includesAll: included)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNegatedIncludes
 
 	| timeLineFilter |
@@ -7623,7 +7623,7 @@ testNegatedIncludes
 	self assert: (timeLineFilter negated includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 09)).
 	self assert: (timeLineFilter negated excludes: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 10))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNegatedNext
 
 	| timeLineFilter timespan nextDate |
@@ -7636,7 +7636,7 @@ testNegatedNext
 	nextDate := timeLineFilter negated next: timespan.
 	self assert: nextDate = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 04)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextNegativeDuration
 
 	| timeLineFilter date |
@@ -7650,7 +7650,7 @@ testNextNegativeDuration
 	self assert: (timeLineFilter next: (GregorianTimespan from: date duration: (TimeUnits day with: -2))) =
 		((date previousDay: GregorianDay saturday) previousDay: GregorianDay saturday)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextPositiveDuration
 
 	| timeLineFilter date |
@@ -7664,7 +7664,7 @@ testNextPositiveDuration
 		((date nextDay: GregorianDay saturday) nextDay: GregorianDay saturday).
 	self assert: (timeLineFilter next: (GregorianTimespan from: date duration: (TimeUnits day with: 0))) = date! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 11/10/2021 21:22:02'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 10/Nov/2021 21:22:02'!
 testNumberOfDatesBetweenTwoDates
 
 	| timeLineFilter rule1 rule2 rule3 |
@@ -7679,7 +7679,7 @@ testNumberOfDatesBetweenTwoDates
 	self assert: (timeLineFilter negated numberOfDatesBetween: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 01)
 		and: (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 20)) = (TimeUnits day with: 17)! !
 
-!TimeLineFilterTest methodsFor: 'test'!
+!TimeLineFilterTest methodsFor: 'test' stamp: ''!
 testPrintOn
 
 	| timeLineFilterUnnamed timeLineFilterNamed |
@@ -7690,7 +7690,7 @@ testPrintOn
 	self assert: timeLineFilterUnnamed printString = 'unnamed time line filter'.
 	self assert: timeLineFilterNamed printString = 'Argentino'! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testRemoveAllRules
 
 	| timeLineFilter date anotherDate |
@@ -7707,7 +7707,7 @@ testRemoveAllRules
 	self deny: (timeLineFilter includes: anotherDate).
 	self assert: timeLineFilter rules isEmpty! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testRuleFromTo
 
 	| rule |
@@ -7725,7 +7725,7 @@ testRuleFromTo
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2007 monthNumber: 01 dayNumber: 01)).
 	self deny: (rule includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 01 dayNumber: 01))! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testRules
 
 	| timeLineFilter rule1 rule2 rule3 rulesCollection |
@@ -7740,7 +7740,7 @@ testRules
 
 	self assert: timeLineFilter rules = rulesCollection! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testRulesThatIncludeADate
 
 	| timeLineFilter rule1 rule2 rule3 september14Of2005 september15Of2005 september16Of2005 |
@@ -7767,7 +7767,7 @@ testRulesThatIncludeADate
 	self deny: (timeLineFilter rulesThatInclude: september15Of2005) = (OrderedCollection with: rule3).
 	self assert: (timeLineFilter rulesThatInclude: september16Of2005) = (OrderedCollection with: rule3)! !
 
-!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!TimeLineFilterTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testStream
 
 	| timeLineFilter stream |
@@ -7778,7 +7778,7 @@ testStream
 	stream := timeLineFilter streamFrom: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
 	3 timesRepeat: [ self assert: stream next day = GregorianDay saturday ]! !
 
-!UniverseTest methodsFor: 'test' stamp: 'HAW 3/25/2017 18:35:00'!
+!UniverseTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 18:35:00'!
 testDo
 
 	self 
@@ -7788,12 +7788,12 @@ testDo
 			self assert: anException description = 'The universe an AllUniverse can''t be iterated'.
 			self assert: anException universe = AllUniverse new ]! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test comparing'!
+!FebruaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: FebruaryGregorianMonth new = FebruaryGregorianMonth new.! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test comparing'!
+!FebruaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	| month1 month2 |
@@ -7805,7 +7805,7 @@ testGreaterThan
 	self assert: month2 > month1.
 	self deny: month1 > month2.! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test comparing'!
+!FebruaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	| month1 month2 |
@@ -7816,12 +7816,12 @@ testLessThan
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	self assert: FebruaryGregorianMonth new hash = FebruaryGregorianMonth new hash! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testLastDayNumber
 
 	| month |
@@ -7831,7 +7831,7 @@ testLastDayNumber
 	self assert: month lastDayNumber=29
 ! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	| month |
@@ -7839,7 +7839,7 @@ testName
 	month := FebruaryGregorianMonth new.
 	self assert: month name = 'February'! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumber
 
 	| month |
@@ -7847,12 +7847,12 @@ testNumber
 	month := FebruaryGregorianMonth new.
 	self assert: month number=2.! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysFromBeginningOfYear
 
 	self assert: GregorianMonth february numberOfDaysFromJanuaryFirst = GregorianMonth january numberOfDays! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 19:11:51'!
+!FebruaryGregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 19:11:51'!
 testNumberOfDaysIn
 
 	| month |
@@ -7862,17 +7862,17 @@ testNumberOfDaysIn
 	self assert: (month numberOfDaysIn: (GregorianYear number: 2004))=(SimpleMeasure amount: 29 unit: TimeUnits day).
 	self assert: (month numberOfDaysIn: (GregorianYear number: 2003))=(SimpleMeasure amount: 28 unit: TimeUnits day)! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test enumerating'!
+!FebruaryGregorianMonthTest methodsFor: 'test enumerating' stamp: ''!
 testNext
 
 	self assert: GregorianMonth february next = GregorianMonth march.! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test enumerating'!
+!FebruaryGregorianMonthTest methodsFor: 'test enumerating' stamp: ''!
 testPrevious
 
 	self assert: GregorianMonth february previous = GregorianMonth january! !
 
-!FebruaryGregorianMonthTest methodsFor: 'test printing'!
+!FebruaryGregorianMonthTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| month |
@@ -7880,37 +7880,37 @@ testPrintString
 	month := FebruaryGregorianMonth new.
 	self assert: month printString = 'February'! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 oneDay
 	
 	^GregorianDay oneDay! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 tenDays
 	
 	^TimeUnits day with: 10! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 thirtyDays
 	
 	^TimeUnits day with: 30! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 thirtyOneDays
 	
 	^TimeUnits day with: 31! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 twoDays
 	
 	^TimeUnits day with: 2! !
 
-!FixedGregorianDateTest methodsFor: 'day measurements'!
+!FixedGregorianDateTest methodsFor: 'day measurements' stamp: ''!
 zeroDays
 	
 	^TimeUnits day with: 0! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 test29OfFebruaryToEveryDayOfMonth
 	| dates |
 	dates := (FixedGregorianDate yearNumber: 2003 monthNumber: 01 dayNumber: 10) 
@@ -7920,7 +7920,7 @@ test29OfFebruaryToEveryDayOfMonth
 	self assert: (dates includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 02 dayNumber: 29)).
 	self assert: (dates includes: (FixedGregorianDate yearNumber: 2008 monthNumber: 02 dayNumber: 29))! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testTo
 
 	| interval |
@@ -7933,7 +7933,7 @@ testTo
 	self assert: interval by = self oneDay.
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToBy
 
 	| interval |
@@ -7947,7 +7947,7 @@ testToBy
 	self assert: interval by = self twoDays.
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToByDo
 
 	| daysTo januaryFirst2004 |
@@ -7964,7 +7964,7 @@ testToByDo
 	self assert: daysTo=368.
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToByReverse
 
 	| coll number |
@@ -7976,7 +7976,7 @@ testToByReverse
 		number := number - 2].
 	self assert: number = -1! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryBeginningDifferentDay
 						
 	| aMonday expectedDayNumbers interval |
@@ -7995,7 +7995,7 @@ testToEveryBeginningDifferentDay
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryBeginningSameDay
 						
 	| aMonday expectedDayNumbers interval |
@@ -8014,7 +8014,7 @@ testToEveryBeginningSameDay
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayBeginningDifferentDay
 						
 	| aMonday expectedDayNumbers interval |
@@ -8033,7 +8033,7 @@ testToEveryDayBeginningDifferentDay
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayBeginningSameDay
 						
 	| aMonday expectedDayNumbers interval |
@@ -8052,7 +8052,7 @@ testToEveryDayBeginningSameDay
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayNumber
 						
 	| expectedMonths interval |
@@ -8071,7 +8071,7 @@ testToEveryDayNumber
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayNumbers
 						
 	| expectedDayNumbers interval |
@@ -8089,7 +8089,7 @@ testToEveryDayNumbers
 		index + 1 ].
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToEveryDayOfMonth
 
 	| dates |
@@ -8106,7 +8106,7 @@ testToEveryDayOfMonth
 	self assert: (dates includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 01 dayNumber: 10)).
 	self assert: (dates includes: (FixedGregorianDate yearNumber: 2006 monthNumber: 01 dayNumber: 10))! !
 
-!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToNegativeBy
 
 	| interval number |
@@ -8118,7 +8118,7 @@ testToNegativeBy
 		number := number - 2].
 	self assert: number = 0! !
 
-!FixedGregorianDateTest methodsFor: 'test converting' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test converting' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAsSmalltalkDate
 
 	| gregorianDate date |
@@ -8130,7 +8130,7 @@ testAsSmalltalkDate
 	self assert: gregorianDate month number = date monthIndex.
 	self assert: gregorianDate dayNumber = date dayOfMonth.! !
 
-!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 1/15/2019 19:10:51'!
+!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 15/Jan/2019 19:10:51'!
 testAt
 
 	| january_15_2019_at_19_03_10 |
@@ -8141,7 +8141,7 @@ testAt
 	self assert: january_15_2019_at_19_03_10 date equals: January/15/2019.
 	self assert: january_15_2019_at_19_03_10 timeOfDay equals: 19:03:10! !
 
-!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAtMidnight
 
 	self  assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) atMidnight =
@@ -8149,7 +8149,7 @@ testAtMidnight
 			date: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1)
 			timeOfDay: (TimeOfDay  hours: 00))! !
 
-!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAtNoon
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) atNoon =
@@ -8157,7 +8157,7 @@ testAtNoon
 			date: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1)
 			timeOfDay: (TimeOfDay  hours: 12))! !
 
-!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test datetime creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testAtTimeOfDay
 
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) atTimeOfDay: (TimeOfDay hours: 10)) =
@@ -8165,7 +8165,7 @@ testAtTimeOfDay
 			date: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1)
 			timeOfDay: (TimeOfDay  hours: 10))! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDay
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) day = GregorianDay friday.
@@ -8179,20 +8179,20 @@ testDay
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDayNumber
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) dayNumber=1.
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDayOfMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) dayOfMonth =
 		(GregorianDayOfMonth monthNumber: 10 dayNumber: 1)
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testHash
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) hash =
@@ -8200,18 +8200,18 @@ testHash
 
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) month = GregorianMonth october! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testMonthOfYear
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) monthOfYear =
 		(GregorianMonthOfYear yearNumber: 2004 monthNumber: 10)! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysFromBaseDate
 
 	self assert: (FixedGregorianDate yearNumber: 1901 monthNumber: 1 dayNumber: 1) numberOfDaysFromBaseDate = (TimeUnits day with: 0).
@@ -8220,7 +8220,7 @@ testNumberOfDaysFromBaseDate
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysFromBeginningOfMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) numberOfDaysFromBeginningOfMonth = (TimeUnits day with: 0).
@@ -8231,7 +8231,7 @@ testNumberOfDaysFromBeginningOfMonth
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysFromJanuaryFirst
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) numberOfDaysFromJanuaryFirst = (TimeUnits day with: 0).
@@ -8242,7 +8242,7 @@ testNumberOfDaysFromJanuaryFirst
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysToEndOfMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) numberOfDaysToEndOfMonth = (TimeUnits day with: 30).
@@ -8253,7 +8253,7 @@ testNumberOfDaysToEndOfMonth
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysToEndOfYear
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) numberOfDaysToEndOfYear = (TimeUnits day with: 365).
@@ -8263,13 +8263,13 @@ testNumberOfDaysToEndOfYear
 	
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testYear
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 1) year = (GregorianYear number: 2004).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCreation
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) monthOfYear=(GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)).
@@ -8285,7 +8285,7 @@ testCreation
 	self assert: (FixedGregorianDate yearNumber: 2004 month: GregorianMonth january dayNumber: 1) dayNumber=1.
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testInvalidCreation
 
 	self
@@ -8363,7 +8363,7 @@ testInvalidCreation
 		raise: InvalidGregorianDateException
 		withExceptionDo: [:exception | self assert: exception description = 'The day -1 is invalid for the month January of Year 2004']! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDaysFrom
 						
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) distanceFrom: 
@@ -8383,7 +8383,7 @@ testDaysFrom
 						(FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)) = (TimeUnits day with: -366).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDaysTo
 						
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) distanceTo: 
@@ -8403,7 +8403,7 @@ testDaysTo
 						(FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1)) = (TimeUnits day with: -366).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsApril
 
 	| date |
@@ -8411,7 +8411,7 @@ testIsApril
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 07.
 	self assert: date isApril! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsAugust
 
 	| date |
@@ -8419,7 +8419,7 @@ testIsAugust
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 08 dayNumber: 07.
 	self assert: date isAugust! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsDecember
 
 	| date |
@@ -8427,7 +8427,7 @@ testIsDecember
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 12 dayNumber: 07.
 	self assert: date isDecember! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsFebruary
 
 	| date |
@@ -8435,19 +8435,19 @@ testIsFebruary
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 02 dayNumber: 07.
 	self assert: date isFebruary! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsFirstDayOfMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01) isFirstDayOfMonth.
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 02) isFirstDayOfMonth! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsFirstDayOfYear
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01) isFirstDayOfYear.
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 02 dayNumber: 01) isFirstDayOfYear! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsFriday
 
 	| date |
@@ -8455,7 +8455,7 @@ testIsFriday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 07.
 	self assert: date isFriday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsJanuary
 
 	| date |
@@ -8463,7 +8463,7 @@ testIsJanuary
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 01 dayNumber: 07.
 	self assert: date isJanuary! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsJuly
 
 	| date |
@@ -8471,7 +8471,7 @@ testIsJuly
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 07 dayNumber: 07.
 	self assert: date isJuly! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsJune
 
 	| date |
@@ -8479,7 +8479,7 @@ testIsJune
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 06 dayNumber: 07.
 	self assert: date isJune! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsLastDayOfMonth
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 31) isLastDayOfMonth.
@@ -8490,7 +8490,7 @@ testIsLastDayOfMonth
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 02 dayNumber: 28) isLastDayOfMonth.
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 03 dayNumber: 30) isLastDayOfMonth! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsLastDayOfYear
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31) isLastDayOfYear.
@@ -8499,7 +8499,7 @@ testIsLastDayOfYear
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 11 dayNumber: 30) isLastDayOfYear.
 	self deny: (FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 31) isLastDayOfYear! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsMarch
 
 	| date |
@@ -8507,7 +8507,7 @@ testIsMarch
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 03 dayNumber: 07.
 	self assert: date isMarch! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsMay
 
 	| date |
@@ -8515,7 +8515,7 @@ testIsMay
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 05 dayNumber: 07.
 	self assert: date isMay! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsMonday
 
 	| date |
@@ -8523,7 +8523,7 @@ testIsMonday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 03.
 	self assert: date isMonday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsNovember
 
 	| date |
@@ -8531,7 +8531,7 @@ testIsNovember
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 11 dayNumber: 07.
 	self assert: date isNovember! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsOctober
 
 	| date |
@@ -8539,7 +8539,7 @@ testIsOctober
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 10 dayNumber: 07.
 	self assert: date isOctober! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsSaturday
 
 	| date |
@@ -8547,7 +8547,7 @@ testIsSaturday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 08.
 	self assert: date isSaturday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsSeptember
 
 	| date |
@@ -8555,7 +8555,7 @@ testIsSeptember
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 09 dayNumber: 07.
 	self assert: date isSeptember! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsSunday
 
 	| date |
@@ -8563,7 +8563,7 @@ testIsSunday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 02.
 	self assert: date isSunday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsThursday
 
 	| date |
@@ -8571,7 +8571,7 @@ testIsThursday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 06.
 	self assert: date isThursday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsTuesday
 
 	| date |
@@ -8579,7 +8579,7 @@ testIsTuesday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 04.
 	self assert: date isTuesday! !
 
-!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsWednesday
 
 	| date |
@@ -8587,7 +8587,7 @@ testIsWednesday
 	date := FixedGregorianDate yearNumber: 2006 monthNumber: 04 dayNumber: 05.
 	self assert: date isWednesday! !
 
-!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testEqual
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) = 
@@ -8599,7 +8599,7 @@ testEqual
 
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testGreaterThan
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 2 dayNumber: 1) > 
@@ -8612,7 +8612,7 @@ testGreaterThan
 						(FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 31).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test comparing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLessThan
 
 	self assert: (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) < 
@@ -8625,13 +8625,13 @@ testLessThan
 						(FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testImmutableValue
 
 	self assert: (FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 19) immutableValue =
 		(FixedGregorianDate yearNumber: 2005 monthNumber: 07 dayNumber: 19)! !
 
-!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDate
 
 	self 
@@ -8639,7 +8639,7 @@ testIncludesDate
 			includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1) ]
 		raise: Exception! !
 
-!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDateTime
 
 	self assert: ((FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)
@@ -8653,21 +8653,21 @@ testIncludesDateTime
 		includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31) atLastTimeOfDay).
 	! !
 
-!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesMonthOfYear
 
 	self 
 		should: [ (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1) includes: (GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) ]
 		raise: Exception! !
 
-!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesYear
 
 	self 
 		should: [ (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1) includes: (GregorianYear number: 2005) ]
 		raise: Exception! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNext
 
 	| day |
@@ -8686,7 +8686,7 @@ testNext
 
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextDay
 
 	| day |
@@ -8702,7 +8702,7 @@ testNextDay
 	self assert: (day nextDay: GregorianDay sunday)=(FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 4).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextDayOfMonth
 
 	| day |
@@ -8715,7 +8715,7 @@ testNextDayOfMonth
 		nextDayOfMonth: (GregorianDayOfMonth monthNumber: 04 dayNumber: 04)) =
 			(FixedGregorianDate yearNumber: 2004 monthNumber: 4 dayNumber: 4)! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextInNumberOfDays
 
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) next: self tenDays) = 
@@ -8734,7 +8734,7 @@ testNextInNumberOfDays
 						(FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextInWeeks
 
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) next: (TimeUnits week with: 1)) = 
@@ -8744,7 +8744,7 @@ testNextInWeeks
 						
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNextMonth
 
 	| day |
@@ -8765,7 +8765,7 @@ testNextMonth
 	self assert: (day nextMonth: (TimeUnits month with: 12))=(FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPrevious
 
 	| day |
@@ -8781,7 +8781,7 @@ testPrevious
 
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPreviousDay
 
 	| day |
@@ -8797,7 +8797,7 @@ testPreviousDay
 	self assert: (day previousDay: GregorianDay sunday)=(FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 28).
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPreviousDayOfMonth
 
 	| day |
@@ -8810,7 +8810,7 @@ testPreviousDayOfMonth
 		previousDayOfMonth: (GregorianDayOfMonth monthNumber: 03 dayNumber: 03)) 	=
 			(FixedGregorianDate yearNumber: 2003 monthNumber: 3 dayNumber: 3)! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPreviousInNumberOfDays
 
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 11) previous: self tenDays) = 
@@ -8827,7 +8827,7 @@ testPreviousInNumberOfDays
 						
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPreviousInWeeks
 
 	self assert: ((FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) previous: (TimeUnits week with: 1)) = 
@@ -8837,51 +8837,51 @@ testPreviousInWeeks
 						
 ! !
 
-!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testPrintString
 
 	| date |
 	date := FixedGregorianDate yearNumber: 2004 monthNumber: 10 dayNumber: 01.
 	self assert: date printString = 'October 1, 2004'! !
 
-!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testTheBeginningAndTheEndOfTime
 
 	self assert: FixedGregorianDate theBeginningOfTime = (FixedGregorianDate yearNumber: SmallInteger minVal monthNumber: 1 dayNumber: 1).
 	self assert: FixedGregorianDate theEndOfTime = (FixedGregorianDate yearNumber: SmallInteger maxVal monthNumber: 12 dayNumber: 31)! !
 
-!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testTomorrow
 
 	| today |
 	today := FixedGregorianDate today.
 	self assert: FixedGregorianDate tomorrow = today next! !
 
-!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test printing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testYesterday
 
 	| today |
 	today := FixedGregorianDate today.
 	self assert: FixedGregorianDate yesterday = today previous! !
 
-!FixedGregorianDateTest methodsFor: 'test visitor accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!FixedGregorianDateTest methodsFor: 'test visitor accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testVisitorAccessing
 
 	| date |
 	date := FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 12.
 	self assert: (date accept: self) = (FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 12)! !
 
-!FixedGregorianDateTest methodsFor: 'test visitor accessing'!
+!FixedGregorianDateTest methodsFor: 'test visitor accessing' stamp: ''!
 visitGregorianDate: aGregorianDate
 
 	^aGregorianDate! !
 
-!GregorianDateTimeTest methodsFor: 'accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 januaryFirst2004
 	
 	^FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1! !
 
-!GregorianDateTimeTest methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:23'!
 setUp
 
 	december31Of2003 := GregorianDateTime
@@ -8921,14 +8921,14 @@ setUp
 		date: (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03)
 		timeOfDay: (TimeOfDay  hours: 00)! !
 
-!GregorianDateTimeTest methodsFor: 'test accessing'!
+!GregorianDateTimeTest methodsFor: 'test accessing' stamp: ''!
 testAccessing
 
 	self assert: (GregorianDateTime date: self januaryFirst2004 timeOfDay: (TimeUnits hour with: 0)) date = self januaryFirst2004.
 	self assert: (GregorianDateTime date: self januaryFirst2004 timeOfDay: (TimeUnits hour with: 0)) timeOfDay = (TimeUnits hour with: 0).
 	self assert: (GregorianDateTime date: self januaryFirst2004 timeOfDay: (TimeUnits hour with: 0)) dayNumber = 1.! !
 
-!GregorianDateTimeTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testSpecialDateTimes
 
 	self assert: GregorianDateTime theBeginningOfTime =
@@ -8936,7 +8936,7 @@ testSpecialDateTimes
 	self assert: GregorianDateTime theEndOfTime =
 		(GregorianDateTime date: FixedGregorianDate theEndOfTime timeOfDay: TimeOfDay lastTimeOfDay)! !
 
-!GregorianDateTimeTest methodsFor: 'test enumerating'!
+!GregorianDateTimeTest methodsFor: 'test enumerating' stamp: ''!
 testAdd
 
 	self assert: (januaryFirstOf2004On23Hours59Minutes59Seconds next: (TimeUnits second with: 1)) = januarySecondOf2004.
@@ -8945,19 +8945,19 @@ testAdd
 	self assert: (januaryFirstOf2004 next: (TimeUnits second with: -1)) = december31Of2003On23Hours59Minutes59Seconds.
 	self assert: (januaryFirstOf2004On23Hours59Minutes59Seconds next: TimeOfDay twentyFourHours negated) = december31Of2003On23Hours59Minutes59Seconds! !
 
-!GregorianDateTimeTest methodsFor: 'test enumerating'!
+!GregorianDateTimeTest methodsFor: 'test enumerating' stamp: ''!
 testFirstTimeOfDay
 
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds firstTimeOfDay = januaryFirstOf2004.
 	self assert: januaryFirstOf2004 firstTimeOfDay = januaryFirstOf2004! !
 
-!GregorianDateTimeTest methodsFor: 'test enumerating' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test enumerating' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLastTimeOfDay
 
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds lastTimeOfDay date = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds lastTimeOfDay timeOfDay = TimeOfDay lastTimeOfDay! !
 
-!GregorianDateTimeTest methodsFor: 'test enumerating'!
+!GregorianDateTimeTest methodsFor: 'test enumerating' stamp: ''!
 testSubtract
 
 	self assert: (januaryFirstOf2004On23Hours59Minutes59Seconds previous: (TimeUnits second with: 1)) =  januaryFirstOf2004On23Hours59Minutes58Seconds.
@@ -8967,7 +8967,7 @@ testSubtract
 	self assert: (januaryFirstOf2004 previous: (TimeUnits day with: -1)) = januarySecondOf2004.
 	self assert: (januaryFirstOf2004On23Hours59Minutes59Seconds previous: TimeOfDay twentyFourHours negated) = januarySecondOf2004On23Hours59Minutes59Seconds! !
 
-!GregorianDateTimeTest methodsFor: 'test comparing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test comparing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testComparing
 
 	| januaryFirstOf2004Other |	
@@ -8978,7 +8978,7 @@ testComparing
 	self deny: januaryFirstOf2004 = januarySecondOf2004.
 	self deny: januarySecondOf2004 = januarySecondOf2004On00Hours00Minutes01Seconds! !
 
-!GregorianDateTimeTest methodsFor: 'test comparing'!
+!GregorianDateTimeTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds > januaryFirstOf2004.
@@ -8986,13 +8986,13 @@ testGreaterThan
 	self deny: januaryFirstOf2004 > januaryFirstOf2004On23Hours59Minutes59Seconds.
 	self deny: januaryFirstOf2004On23Hours59Minutes59Seconds > januarySecondOf2004! !
 
-!GregorianDateTimeTest methodsFor: 'test comparing'!
+!GregorianDateTimeTest methodsFor: 'test comparing' stamp: ''!
 testHash
 
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds hash =
 		januaryFirstOf2004On23Hours59Minutes59Seconds hash! !
 
-!GregorianDateTimeTest methodsFor: 'test comparing'!
+!GregorianDateTimeTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	self assert: januaryFirstOf2004On23Hours59Minutes58Seconds < januaryFirstOf2004On23Hours59Minutes59Seconds.
@@ -9000,7 +9000,7 @@ testLessThan
 	self deny: januaryFirstOf2004On23Hours59Minutes59Seconds < januaryFirstOf2004On23Hours59Minutes58Seconds.
 	self deny: januaryFirstOf2004On23Hours59Minutes58Seconds < januaryFirstOf2004On00Hours00Minutes01Seconds! !
 
-!GregorianDateTimeTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 18:31:23'!
+!GregorianDateTimeTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 18:31:23'!
 testNow
 
 	| now nowInTwoSeconds |
@@ -9012,12 +9012,12 @@ testNow
 	self assert: now < nowInTwoSeconds.
 	self assert: ((now distanceTo: nowInTwoSeconds) - (TimeUnits second with: 1)) abs <= (TimeUnits millisecond with: 10)! !
 
-!GregorianDateTimeTest methodsFor: 'test printing' stamp: 'HAW 1/15/2019 19:23:31'!
+!GregorianDateTimeTest methodsFor: 'test printing' stamp: 'HAW 15/Jan/2019 19:23:31'!
 testPrintString
 
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds printString = 'January 1, 2004 at 23:59:59'! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testReverse
 
 	| collection date hours |
@@ -9037,7 +9037,7 @@ testReverse
 	self assert: date = (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 31).
 	self assert: hours = 22! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -9046,7 +9046,7 @@ testTo
 	self assert: interval to = januarySecondOf2004.
 	self assert: interval by = TimeOfDay oneSecond! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -9055,7 +9055,7 @@ testToBy
 	self assert: interval to = januarySecondOf2004.
 	self assert: interval by = (TimeUnits hour with: 1)! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToByDo
 
 	| interval date hours |
@@ -9073,7 +9073,7 @@ testToByDo
 	self assert: date = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 03).
 	self assert: hours = 0! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: ''!
 testToByMinutesDo
 
 	| interval minutes |
@@ -9082,7 +9082,7 @@ testToByMinutesDo
 
 	self assert: (TimeUnits minute with: minutes - 1) = (TimeUnits hour with: 48)! !
 
-!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDateTimeTest methodsFor: 'test interval protocol' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToNegativeByDo
 
 	| interval date hours |
@@ -9100,19 +9100,19 @@ testToNegativeByDo
 	self assert: date = (FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01).
 	self assert: hours = 1! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testSameDateAs
 
 	self assert: (januaryFirstOf2004 sameDayAs: januaryFirstOf2004On23Hours59Minutes59Seconds).
 	self deny: (januaryFirstOf2004On23Hours59Minutes59Seconds sameDayAs: januarySecondOf2004)! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testSameTimeOfDayAs
 
 	self assert: (januaryFirstOf2004 sameTimeOfDayAs: januarySecondOf2004).
 	self deny: (januaryFirstOf2004 sameTimeOfDayAs: januaryFirstOf2004On23Hours59Minutes59Seconds)! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testTimeFrom
 
 	self assert: (januaryFirstOf2004On00Hours00Minutes01Seconds distanceFrom: januaryFirstOf2004) = (TimeUnits second with: 1).
@@ -9123,14 +9123,14 @@ testTimeFrom
 	self assert: (januaryFirstOf2004 distanceFrom: januarySecondOf2004) = (TimeUnits day with: -1).
 	self assert: (januaryFirstOf2004 distanceFrom: januaryThirdOf2004) = (TimeUnits day with: -2)! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testTimeFromMidnight
 
 	self assert: januaryFirstOf2004On03Hours timeFromMidnight = (TimeOfDay hours: 03) timeFromMidnight.
 	self assert: januaryFirstOf2004 timeFromMidnight = (TimeOfDay hours: 00) timeFromMidnight.
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds timeFromMidnight = (TimeOfDay hours: 23 minutes: 59 seconds: 59) timeFromMidnight! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testTimeTo
 
 	self assert: (januaryFirstOf2004 distanceTo: januaryFirstOf2004On00Hours00Minutes01Seconds) = (TimeUnits second with: 1).
@@ -9141,14 +9141,14 @@ testTimeTo
 	self assert: (januarySecondOf2004 distanceTo: januaryFirstOf2004) = (TimeUnits day with: -1).
 	self assert: (januaryThirdOf2004 distanceTo: januaryFirstOf2004) = (TimeUnits day with: -2)! !
 
-!GregorianDateTimeTest methodsFor: 'test querying'!
+!GregorianDateTimeTest methodsFor: 'test querying' stamp: ''!
 testTimeToEndOfDay
 
 	self assert: januaryFirstOf2004On03Hours timeToEndOfDay = (TimeUnits hour with: 21).
 	self assert: januaryFirstOf2004 timeToEndOfDay = (TimeUnits hour with: 24).
 	self assert: januaryFirstOf2004On23Hours59Minutes59Seconds timeToEndOfDay = (TimeUnits second with: 1)! !
 
-!GregorianDateTimeTest methodsFor: 'test with day'!
+!GregorianDateTimeTest methodsFor: 'test with day' stamp: ''!
 testWithDay
 
 	| pointInTime |
@@ -9163,7 +9163,7 @@ testWithDay
 	self assert: pointInTime < (pointInTime next: GregorianDay oneDay).
 	self deny: pointInTime > (pointInTime previous: GregorianDay oneDay)! !
 
-!GregorianDateTimeTest methodsFor: 'test with day of month'!
+!GregorianDateTimeTest methodsFor: 'test with day of month' stamp: ''!
 testWithDayOfMonth
 
 	| pointInTime |
@@ -9177,37 +9177,37 @@ testWithDayOfMonth
 	self assert: pointInTime < (pointInTime next: GregorianDay oneDay).
 	self deny: pointInTime > (pointInTime previous: GregorianDay oneDay)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testComma
 
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1), 2005) = (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1).
 	self assert: January first, 2006 = (FixedGregorianDate yearNumber: 2006 monthNumber: 1 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDateOfYear
 
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1) ofYear: (GregorianYear number: 2005)) =
 		(FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 4/17/2018 18:42:57'!
+!GregorianDayOfMonthTest methodsFor: 'test date creation' stamp: 'HAW 17/Apr/2018 18:42:57'!
 testDivisionSymbolCanBeUseToCreateADate
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) / 2018 equals: (FixedGregorianDate yearNumber: 2018 monthNumber: 1 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test comparing'!
+!GregorianDayOfMonthTest methodsFor: 'test comparing' stamp: ''!
 testComparing
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) < (GregorianDayOfMonth monthNumber: 1 dayNumber: 2).
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 31) < (GregorianDayOfMonth monthNumber: 2 dayNumber: 1).
 	self deny: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) < (GregorianDayOfMonth monthNumber: 1 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test comparing'!
+!GregorianDayOfMonthTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) = (GregorianDayOfMonth monthNumber: 1 dayNumber: 1).
 	self deny: (GregorianDayOfMonth monthNumber: 1 dayNumber: 2) = (GregorianDayOfMonth monthNumber: 1 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test instance creation'!
+!GregorianDayOfMonthTest methodsFor: 'test instance creation' stamp: ''!
 testCreation
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) month = GregorianMonth january.
@@ -9219,7 +9219,7 @@ testCreation
 	self assert: (GregorianDayOfMonth month: GregorianMonth february dayNumber: 29) month = GregorianMonth february.
 	self assert: (GregorianDayOfMonth month: GregorianMonth february dayNumber: 29) dayNumber = 29! !
 
-!GregorianDayOfMonthTest methodsFor: 'test instance creation'!
+!GregorianDayOfMonthTest methodsFor: 'test instance creation' stamp: ''!
 testInvalidCreation
 
 	self 
@@ -9245,13 +9245,13 @@ testInvalidCreation
 			self assert: anException dayNumber = 32.
 			self assert: anException description = 'Day of month 32 invalid for January' ]! !
 
-!GregorianDayOfMonthTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayOfMonthTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToday
 
 	self assert: GregorianDayOfMonth today = FixedGregorianDate today dayOfMonth
 ! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testDaysFrom
 
 	self assert: ((GregorianDayOfMonth monthNumber: 12 dayNumber: 31)
@@ -9259,7 +9259,7 @@ testDaysFrom
 	self assert: ((GregorianDayOfMonth monthNumber: 12 dayNumber: 31)
 		distanceFrom: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1)) = (TimeUnits day with: 365)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testDaysTo
 
 	self assert: ((GregorianDayOfMonth monthNumber: 12 dayNumber: 31)
@@ -9271,19 +9271,19 @@ testDaysTo
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 10)
 		distanceTo: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1)) = (TimeUnits day with: 357)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testIsFirstDayOfMonth
 
 	self assert: (GregorianDayOfMonth monthNumber: 01 dayNumber: 01) isFirstDayOfMonth.
 	self deny: (GregorianDayOfMonth monthNumber: 01 dayNumber: 02) isFirstDayOfMonth! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testIsFirstDayOfYear
 
 	self assert: (GregorianDayOfMonth monthNumber: 01 dayNumber: 01) isFirstDayOfYear.
 	self deny: (GregorianDayOfMonth monthNumber: 01 dayNumber: 02) isFirstDayOfYear! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testIsLastDayOfMonth
 
 	self assert: (GregorianDayOfMonth monthNumber: 01 dayNumber: 31) isLastDayOfMonth.
@@ -9293,52 +9293,52 @@ testIsLastDayOfMonth
 	self deny: (GregorianDayOfMonth monthNumber: 02 dayNumber: 28) isLastDayOfMonth.
 	self deny: (GregorianDayOfMonth monthNumber: 03 dayNumber: 30) isLastDayOfMonth! !
 
-!GregorianDayOfMonthTest methodsFor: 'test querying'!
+!GregorianDayOfMonthTest methodsFor: 'test querying' stamp: ''!
 testIsLastDayOfYear
 
 	self assert: (GregorianDayOfMonth monthNumber: 12 dayNumber: 31) isLastDayOfYear.
 	self deny: (GregorianDayOfMonth monthNumber: 12 dayNumber: 30) isLastDayOfYear.
 	self deny: (GregorianDayOfMonth monthNumber: 11 dayNumber: 30) isLastDayOfYear! !
 
-!GregorianDayOfMonthTest methodsFor: 'test accessing'!
+!GregorianDayOfMonthTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) hash = (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) hash! !
 
-!GregorianDayOfMonthTest methodsFor: 'test accessing'!
+!GregorianDayOfMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysFromBeginningOfMonth
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) numberOfDaysFromBeginningOfMonth = (TimeUnits day with: 0).
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 31) numberOfDaysFromBeginningOfMonth = (TimeUnits day with: 30).
 	self assert: (GregorianDayOfMonth monthNumber: 2 dayNumber: 29) numberOfDaysFromBeginningOfMonth = (TimeUnits day with: 28)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test accessing'!
+!GregorianDayOfMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysFromJanuaryFirst
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) numberOfDaysFromJanuaryFirst = (TimeUnits day with: 0).
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 31) numberOfDaysFromJanuaryFirst = (TimeUnits day with: 30).
 	self assert: (GregorianDayOfMonth monthNumber: 12 dayNumber: 31) numberOfDaysFromJanuaryFirst = (TimeUnits day with: 365)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test accessing'!
+!GregorianDayOfMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysToEndOfMonth
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) numberOfDaysToEndOfMonth = (TimeUnits day with: 30).
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 31) numberOfDaysToEndOfMonth = (TimeUnits day with: 0).
 	self assert: (GregorianDayOfMonth monthNumber: 2 dayNumber: 28) numberOfDaysToEndOfMonth = (TimeUnits day with: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test accessing'!
+!GregorianDayOfMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysToEndOfYear
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) numberOfDaysToEndOfYear = (TimeUnits day with: 365).
 	self assert: (GregorianDayOfMonth monthNumber: 12 dayNumber: 31) numberOfDaysToEndOfYear = (TimeUnits day with: 0)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test enumerating'!
+!GregorianDayOfMonthTest methodsFor: 'test enumerating' stamp: ''!
 testNext
 
 	self assert: (GregorianDayOfMonth monthNumber: 12 dayNumber: 31) next = (GregorianDayOfMonth monthNumber: 1 dayNumber: 1).
 	self assert: (GregorianDayOfMonth monthNumber: 2 dayNumber: 29) next = (GregorianDayOfMonth monthNumber: 3 dayNumber: 1)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test enumerating'!
+!GregorianDayOfMonthTest methodsFor: 'test enumerating' stamp: ''!
 testNextANumberOfDays
 
 	self assert: ((GregorianDayOfMonth monthNumber: 12 dayNumber: 31) next: (TimeUnits day with: 7)) = (GregorianDayOfMonth monthNumber: 1 dayNumber: 7).
@@ -9347,13 +9347,13 @@ testNextANumberOfDays
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1) next: (TimeUnits day with: -1)) = (GregorianDayOfMonth monthNumber: 12 dayNumber: 31).
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1) next: (TimeUnits day with: -32)) = (GregorianDayOfMonth monthNumber: 11 dayNumber: 30)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test enumerating'!
+!GregorianDayOfMonthTest methodsFor: 'test enumerating' stamp: ''!
 testPrevious
 
 	self assert: (GregorianDayOfMonth monthNumber: 1 dayNumber: 1) previous = (GregorianDayOfMonth monthNumber: 12 dayNumber: 31).
 	self assert: (GregorianDayOfMonth monthNumber: 3 dayNumber: 1) previous = (GregorianDayOfMonth monthNumber: 2 dayNumber: 29)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test enumerating'!
+!GregorianDayOfMonthTest methodsFor: 'test enumerating' stamp: ''!
 testPreviousANumberOfDays
 
 	self assert: ((GregorianDayOfMonth monthNumber: 12 dayNumber: 31) previous: (TimeUnits day with: 7)) = (GregorianDayOfMonth monthNumber: 12 dayNumber: 24).
@@ -9362,12 +9362,12 @@ testPreviousANumberOfDays
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1) previous: (TimeUnits day with: -1)) = (GregorianDayOfMonth monthNumber: 1 dayNumber: 2).
 	self assert: ((GregorianDayOfMonth monthNumber: 1 dayNumber: 1) previous: (TimeUnits day with: -32)) = (GregorianDayOfMonth monthNumber: 2 dayNumber: 2)! !
 
-!GregorianDayOfMonthTest methodsFor: 'test printing'!
+!GregorianDayOfMonthTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	self assert: (GregorianDayOfMonth monthNumber: 12 dayNumber: 31) printString = 'December 31'! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -9380,7 +9380,7 @@ testTo
 	self assert: interval by = GregorianDay oneDay.
 ! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -9394,7 +9394,7 @@ testToBy
 	self assert: interval by = GregorianDay twoDays.
 ! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToByDo
 
 	| daysTo januaryFirst dayOfMonth |
@@ -9410,7 +9410,7 @@ testToByDo
 		
 	self assert: daysTo = 366! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToEveryDayNumber
 
 	| expectedMonths interval |
@@ -9428,7 +9428,7 @@ testToEveryDayNumber
 		self assert: aDayMonth dayNumber = 31.
 		index + 1 ]! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToEveryDayNumbers
 
 	| expectedDayNumbers interval |
@@ -9445,7 +9445,7 @@ testToEveryDayNumbers
 		self assert: aDayMonth dayNumber = (expectedDayNumbers at: index).
 		index + 1 ]! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeBy
 
 	| interval number|
@@ -9461,7 +9461,7 @@ testToNegativeBy
 	
 	self assert: number = 0! !
 
-!GregorianDayOfMonthTest methodsFor: 'test interval protocol'!
+!GregorianDayOfMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToReverse
 
 	| interval |
@@ -9479,7 +9479,7 @@ testToReverse
 	self assert: interval reverse first = interval to.
 	self assert: interval reverse last = interval from! !
 
-!GregorianDayTest methodsFor: 'initialization'!
+!GregorianDayTest methodsFor: 'initialization' stamp: ''!
 setUp
 
 	sunday := (GregorianDay named: 'Sunday' positionInWeek: 1).
@@ -9490,7 +9490,7 @@ setUp
 	friday := (GregorianDay named: 'Friday' positionInWeek: 6).
 	saturday := (GregorianDay named: 'Saturday' positionInWeek: 7)! !
 
-!GregorianDayTest methodsFor: 'test printing'!
+!GregorianDayTest methodsFor: 'test printing' stamp: ''!
 testCommonDaysMeasure
 
 	self assert: GregorianDay minusOneDay = (TimeUnits day with: -1).
@@ -9507,7 +9507,7 @@ testCommonDaysMeasure
 	self assert: GregorianDay threeHundredSixtySixDays = (TimeUnits day with: 366)
 	! !
 
-!GregorianDayTest methodsFor: 'test printing'!
+!GregorianDayTest methodsFor: 'test printing' stamp: ''!
 testDayCreation
 
 	| otherSunday otherMonday otherTuesday otherWednesday otherThursday otherFriday otherSaturday |
@@ -9534,7 +9534,7 @@ testDayCreation
 	self assert: otherSaturday name = saturday name.
 	self assert: otherSaturday positionInWeek = saturday positionInWeek! !
 
-!GregorianDayTest methodsFor: 'test printing'!
+!GregorianDayTest methodsFor: 'test printing' stamp: ''!
 testDayPositionedInWeek
 
 	| day |
@@ -9558,18 +9558,18 @@ testDayPositionedInWeek
 			self assert: anException dayNumber = 8.
 			self assert: anException description notNil ]! !
 
-!GregorianDayTest methodsFor: 'test printing'!
+!GregorianDayTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	self assert: (GregorianDay named: 'Monday') printString = 'Monday'! !
 
-!GregorianDayTest methodsFor: 'test accessing'!
+!GregorianDayTest methodsFor: 'test accessing' stamp: ''!
 testDays
 
 	self assert: GregorianDay days size=7
 	! !
 
-!GregorianDayTest methodsFor: 'test accessing'!
+!GregorianDayTest methodsFor: 'test accessing' stamp: ''!
 testGlobalVariables
 
 	self assert: Monday = GregorianDay monday.
@@ -9581,7 +9581,7 @@ testGlobalVariables
 	self assert: Sunday = GregorianDay sunday.
 	! !
 
-!GregorianDayTest methodsFor: 'test accessing'!
+!GregorianDayTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	self assert: GregorianDay sunday name = 'Sunday'.
@@ -9593,7 +9593,7 @@ testName
 	self assert: GregorianDay saturday name = 'Saturday'
 	! !
 
-!GregorianDayTest methodsFor: 'test accessing'!
+!GregorianDayTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysSinceSunday
 
 	| currentNumberOfDays |
@@ -9604,7 +9604,7 @@ testNumberOfDaysSinceSunday
 		currentNumberOfDays := currentNumberOfDays + GregorianDay oneDay. ]
 ! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testDaysFrom
 
 	self assert: (GregorianDay monday distanceFrom: GregorianDay monday) = GregorianDay zeroDays.
@@ -9616,7 +9616,7 @@ testDaysFrom
 	self assert: (GregorianDay monday distanceFrom: GregorianDay sunday) = GregorianDay oneDay.
 ! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testDaysTo
 
 	self assert: (GregorianDay monday distanceTo: GregorianDay monday) = GregorianDay zeroDays.
@@ -9628,42 +9628,42 @@ testDaysTo
 	self assert: (GregorianDay monday distanceTo: GregorianDay sunday) = (TimeUnits day with: 6).
 ! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsFriday
 
 	self assert: GregorianDay friday isFriday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsMonday
 
 	self assert: GregorianDay monday isMonday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsSaturday
 
 	self assert: GregorianDay saturday isSaturday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsSunday
 
 	self assert: GregorianDay sunday isSunday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsThursday
 
 	self assert: GregorianDay thursday isThursday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsTuesday
 
 	self assert: GregorianDay tuesday isTuesday! !
 
-!GregorianDayTest methodsFor: 'test querying'!
+!GregorianDayTest methodsFor: 'test querying' stamp: ''!
 testIsWednesday
 
 	self assert: GregorianDay wednesday isWednesday! !
 
-!GregorianDayTest methodsFor: 'test comparing'!
+!GregorianDayTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: GregorianDay monday = GregorianDay monday.
@@ -9675,14 +9675,14 @@ testEqual
 	self assert: GregorianDay sunday = GregorianDay sunday 
 	! !
 
-!GregorianDayTest methodsFor: 'test creation'!
+!GregorianDayTest methodsFor: 'test creation' stamp: ''!
 testInvalidNameCreation
 
 	self should: [ GregorianDay named: 'Pedro Duque, otro' ]
 		raise: InvalidGregorianDayNameException
 		withExceptionDo: [ :exception | exception description = 'Pedro Duque, otro es un nombre de d¦a inv¦°lido' ]! !
 
-!GregorianDayTest methodsFor: 'test enumerating'!
+!GregorianDayTest methodsFor: 'test enumerating' stamp: ''!
 testNext
 
 	self assert: GregorianDay monday next=GregorianDay tuesday.
@@ -9690,7 +9690,7 @@ testNext
 	self assert: GregorianDay saturday next=GregorianDay sunday.
 	! !
 
-!GregorianDayTest methodsFor: 'test enumerating'!
+!GregorianDayTest methodsFor: 'test enumerating' stamp: ''!
 testNextInANumberOfDays
 
 	self assert: (GregorianDay monday next: GregorianDay oneDay)=GregorianDay tuesday.
@@ -9701,14 +9701,14 @@ testNextInANumberOfDays
 	self assert: (GregorianDay sunday next: (TimeUnits day with: 21))=GregorianDay sunday.
 ! !
 
-!GregorianDayTest methodsFor: 'test enumerating'!
+!GregorianDayTest methodsFor: 'test enumerating' stamp: ''!
 testPrevious
 
 	self assert: GregorianDay monday previous=GregorianDay sunday.
 	self assert: GregorianDay tuesday previous=GregorianDay monday.
 ! !
 
-!GregorianDayTest methodsFor: 'test enumerating'!
+!GregorianDayTest methodsFor: 'test enumerating' stamp: ''!
 testPreviousInANumberOfDays
 
 	self assert: (GregorianDay monday previous: GregorianDay oneDay)=GregorianDay sunday.
@@ -9723,7 +9723,7 @@ testPreviousInANumberOfDays
 	self assert: (GregorianDay saturday previous: (TimeUnits day with: 14))=GregorianDay saturday.
 ! !
 
-!GregorianDayTest methodsFor: 'test instance creation'!
+!GregorianDayTest methodsFor: 'test instance creation' stamp: ''!
 testSinceSunday
 
 	| currentDay |
@@ -9733,12 +9733,12 @@ testSinceSunday
 		self assert: (GregorianDay sinceSunday: aNumberOfDays)=currentDay.
 		currentDay := currentDay next ]! !
 
-!GregorianDayTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianDayTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testToday
 
 	self assert: GregorianDay today = FixedGregorianDate today day! !
 
-!GregorianDayTest methodsFor: 'test interval protocol'!
+!GregorianDayTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -9750,7 +9750,7 @@ testTo
 	self assert: interval size = 7.
 	! !
 
-!GregorianDayTest methodsFor: 'test interval protocol'!
+!GregorianDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -9763,7 +9763,7 @@ testToBy
 	self assert: interval size = 3.
 	! !
 
-!GregorianDayTest methodsFor: 'test interval protocol'!
+!GregorianDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToDo
 
 	| interval currentDayNumber |
@@ -9776,7 +9776,7 @@ testToDo
 
 	self assert: currentDayNumber = 8! !
 
-!GregorianDayTest methodsFor: 'test interval protocol'!
+!GregorianDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeBy
 
 	| interval |
@@ -9788,7 +9788,7 @@ testToNegativeBy
 	self assert: interval size = 7.
 	! !
 
-!GregorianDayTest methodsFor: 'test interval protocol'!
+!GregorianDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeByDo
 
 	| interval currentDayNumber |
@@ -9801,47 +9801,47 @@ testToNegativeByDo
 	
 	self assert: currentDayNumber = 0! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 ceroMonths
 	
 	^TimeUnits month with: 0! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 elevenMonths
 
 	^TimeUnits month with: 11! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 oneMonth
 	
 	^TimeUnits month with: 1! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 oneYear
 	
 	^TimeUnits year with: 1! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 thirteenMonths
 
 	^TimeUnits month with: 13! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 twelveMonths
 	
 	^TimeUnits month with: 12! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 twoMonths
 
 	^TimeUnits month with: 2! !
 
-!GregorianMonthOfYearTest methodsFor: 'month measurements'!
+!GregorianMonthOfYearTest methodsFor: 'month measurements' stamp: ''!
 twoYears
 	
 	^TimeUnits year with: 2! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCardinalDay
 	"To obtain a certain day of the month, for example the second Wednesday."
 
@@ -9850,29 +9850,29 @@ testCardinalDay
 	self assert: (monthOfYear cardinal: 2 day: GregorianDay wednesday) =
 		(FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 14)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDates
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) dates first = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1).
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) dates last = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 31)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testFirstDate
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) firstDate = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testFirstDay
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) firstDay = GregorianDay thursday! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) hash = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) hash.
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) hash = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) hash! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLastDate
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) lastDate = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 31).
@@ -9882,14 +9882,14 @@ testLastDate
 
 	! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testLastDay
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) lastDay = GregorianDay saturday.
 	self assert: (GregorianMonthOfYear februaryOf: (GregorianYear number: 2004)) lastDay = GregorianDay sunday.
 	self assert: (GregorianMonthOfYear februaryOf: (GregorianYear number: 2003)) lastDay = GregorianDay friday! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testLastDayNumber
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) lastDayNumber =
@@ -9919,7 +9919,7 @@ testLastDayNumber
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) lastDayNumber =
 		(GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) numberOfDays amount! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) name = 'January'.
@@ -9958,7 +9958,7 @@ testName
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) name = 'December'.
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2003)) name = 'December'! !
 
-!GregorianMonthOfYearTest methodsFor: 'test accessing'!
+!GregorianMonthOfYearTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDays
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) numberOfDays = (TimeUnits day with: 31).
@@ -9975,7 +9975,7 @@ testNumberOfDays
 	self assert: (GregorianMonthOfYear novemberOf: (GregorianYear number: 2004)) numberOfDays = (TimeUnits day with: 30).
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) numberOfDays = (TimeUnits day with: 31)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test instance creation'!
+!GregorianMonthOfYearTest methodsFor: 'test instance creation' stamp: ''!
 testCreation
 
 	self assert: (GregorianMonthOfYear yearNumber: 2004 monthNumber:1) year = (GregorianYear number: 2004).
@@ -10023,12 +10023,12 @@ testCreation
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) year = (GregorianYear number: 2004).
 	self assert: (GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) monthNumber = 12! !
 
-!GregorianMonthOfYearTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCurrent
 
 	self assert: GregorianMonthOfYear current = FixedGregorianDate today monthOfYear! !
 
-!GregorianMonthOfYearTest methodsFor: 'test instance creation'!
+!GregorianMonthOfYearTest methodsFor: 'test instance creation' stamp: ''!
 testInvalidCreation
 
 	self should: [ GregorianMonthOfYear yearNumber: 0 monthNumber:1 ] raise: InvalidGregorianYearNumberException.
@@ -10045,7 +10045,7 @@ testInvalidCreation
 		withExceptionDo: [ :anException |
 				self assert: anException number = 0 ]! !
 
-!GregorianMonthOfYearTest methodsFor: 'test comparing'!
+!GregorianMonthOfYearTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)).
@@ -10054,7 +10054,7 @@ testEqual
 	self deny: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)).
 	self deny: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test comparing'!
+!GregorianMonthOfYearTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) > (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)).
@@ -10063,7 +10063,7 @@ testGreaterThan
 	
 	self deny: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) > (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test comparing'!
+!GregorianMonthOfYearTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	self assert: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) < (GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)).
@@ -10072,7 +10072,7 @@ testLessThan
 	
 	self deny: (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003)) < (GregorianMonthOfYear januaryOf: (GregorianYear number: 2003))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDate
 
 	self assert: ((GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)).
@@ -10081,7 +10081,7 @@ testIncludesDate
 	self deny: ((GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 2 dayNumber: 1)).
 	self deny: ((GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDateTime
 
 	self assert: ((GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1) atMidnight).
@@ -10092,21 +10092,21 @@ testIncludesDateTime
 	self deny: ((GregorianMonthOfYear yearNumber: 2005 monthNumber: 1)
 		includes: (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31) atLastTimeOfDay)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testIncludesMonthOfYear
 
 	self 
 		should: [ (GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) ]
 		raise: Exception! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testIncludesYear
 
 	self 
 		should: [ (GregorianMonthOfYear yearNumber: 2005 monthNumber: 1) includes: (GregorianYear number: 2005) ]
 		raise: Exception! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testMonthsFrom
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) distanceFrom: 
@@ -10121,7 +10121,7 @@ testMonthsFrom
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2005)) distanceFrom:  
 		(GregorianMonthOfYear januaryOf: (GregorianYear number: 2004))) = self twelveMonths! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testMonthsTo
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) distanceTo:  
@@ -10136,14 +10136,14 @@ testMonthsTo
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) distanceTo:  
 		(GregorianMonthOfYear januaryOf: (GregorianYear number: 2005))) = self twelveMonths! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testNext
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) next) = (GregorianMonthOfYear februaryOf: (GregorianYear number: 2004)).
 	self assert: ((GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) next) = (GregorianMonthOfYear januaryOf: (GregorianYear number: 2005))
 	! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testNextANumberOfMonths
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) next: self oneMonth) =
@@ -10167,7 +10167,7 @@ testNextANumberOfMonths
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) next: (TimeUnits month with: 1.5)) =
 		(GregorianMonthOfYear februaryOf: (GregorianYear number: 2004))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testNextMonthDefinedAs
 
 	| month |
@@ -10187,13 +10187,13 @@ testNextMonthDefinedAs
 	self assert: (month nextMonth: GregorianMonth january) =  (GregorianMonthOfYear januaryOf: (GregorianYear number: 1)).
 	self assert: (month nextMonth: GregorianMonth december) =  (GregorianMonthOfYear decemberOf: (GregorianYear number: -1))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testPrevious
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) previous) =  (GregorianMonthOfYear decemberOf: (GregorianYear number: 2003)).
 	self assert: ((GregorianMonthOfYear decemberOf: (GregorianYear number: 2004)) previous) =  (GregorianMonthOfYear novemberOf: (GregorianYear number: 2004))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testPreviousANumberOfMonths
 
 	self assert: ((GregorianMonthOfYear januaryOf: (GregorianYear number: 2004)) previous: self oneMonth) =
@@ -10221,7 +10221,7 @@ testPreviousANumberOfMonths
 	self assert: ((GregorianMonthOfYear julyOf: (GregorianYear number: 2004)) previous: self twelveMonths) =
 		(GregorianMonthOfYear julyOf: (GregorianYear number: 2003))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test querying'!
+!GregorianMonthOfYearTest methodsFor: 'test querying' stamp: ''!
 testPreviousMonthDefinedAs
 
 	| month |
@@ -10242,7 +10242,7 @@ testPreviousMonthDefinedAs
 	self assert: (month previousMonth: GregorianMonth january) =  (GregorianMonthOfYear januaryOf: (GregorianYear number: -1)).
 	self assert: (month previousMonth: GregorianMonth december) =  (GregorianMonthOfYear decemberOf: (GregorianYear number: -1))! !
 
-!GregorianMonthOfYearTest methodsFor: 'test printing'!
+!GregorianMonthOfYearTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| year |
@@ -10250,7 +10250,7 @@ testPrintString
 	year := GregorianYear number: 2004.
 	self assert: (GregorianMonthOfYear januaryOf: year ) printString = (GregorianMonth january printString, ' of ', year printString)! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -10263,7 +10263,7 @@ testTo
 	self assert: interval by = self oneMonth
 	! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -10277,7 +10277,7 @@ testToBy
 	self assert: interval by = self twoMonths
 	! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToByDo
 
 	| number |
@@ -10293,7 +10293,7 @@ testToByDo
 		
 	self assert: number = 13! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToByYearsDo
 
 	| yearNumber |
@@ -10310,7 +10310,7 @@ testToByYearsDo
 		
 	self assert: yearNumber = 2011! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeBy
 
 	| interval number |
@@ -10323,7 +10323,7 @@ testToNegativeBy
 		number := number - 2].
 	self assert: number = 0! !
 
-!GregorianMonthOfYearTest methodsFor: 'test interval protocol'!
+!GregorianMonthOfYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToReverse
 
 	| coll number |
@@ -10336,32 +10336,32 @@ testToReverse
 		number := number - 2].
 	self assert: number = -1! !
 
-!GregorianMonthTest methodsFor: 'month measurements'!
+!GregorianMonthTest methodsFor: 'month measurements' stamp: ''!
 ceroMonths
 	
 	^TimeUnits month with: 0! !
 
-!GregorianMonthTest methodsFor: 'month measurements'!
+!GregorianMonthTest methodsFor: 'month measurements' stamp: ''!
 elevenMonths
 
 	^TimeUnits month with: 11! !
 
-!GregorianMonthTest methodsFor: 'month measurements'!
+!GregorianMonthTest methodsFor: 'month measurements' stamp: ''!
 oneMonth
 
 	^TimeUnits month with: 1! !
 
-!GregorianMonthTest methodsFor: 'month measurements'!
+!GregorianMonthTest methodsFor: 'month measurements' stamp: ''!
 twelveMonths
 	
 	^TimeUnits month with: 12! !
 
-!GregorianMonthTest methodsFor: 'month measurements'!
+!GregorianMonthTest methodsFor: 'month measurements' stamp: ''!
 twoMonths
 	
 	^TimeUnits month with: 2! !
 
-!GregorianMonthTest methodsFor: 'initialization'!
+!GregorianMonthTest methodsFor: 'initialization' stamp: ''!
 setUp
 
 	january := GregorianMonth january.
@@ -10377,125 +10377,125 @@ setUp
 	november := GregorianMonth november.
 	december := GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testApril
 
 	self
 		assert: GregorianMonth april number = 4;
 		assert: (GregorianMonth named: GregorianMonth april name) = GregorianMonth april! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testAugust
 
 	self
 		assert: GregorianMonth august number = 8;
 		assert: (GregorianMonth named: GregorianMonth august name) = GregorianMonth august! !
 
-!GregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testCurrent
 
 	self assert: GregorianMonth current = FixedGregorianDate today month! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testDecember
 
 	self
 		assert: GregorianMonth december number = 12;
 		assert: (GregorianMonth named: GregorianMonth december name) = GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testFebruary
 
 	self
 		assert: GregorianMonth february number = 2;
 		assert: (GregorianMonth named: GregorianMonth february name) = GregorianMonth february! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testFirstDayOfMonth
 
 	self assert: GregorianMonth january firstDayOfMonth = (GregorianDayOfMonth monthNumber: 01 dayNumber: 01).
 	self assert: GregorianMonth february firstDayOfMonth = (GregorianDayOfMonth monthNumber: 02 dayNumber: 01).
 	self assert: GregorianMonth march firstDayOfMonth = (GregorianDayOfMonth monthNumber: 03 dayNumber: 01)! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testJanuary
 
 	self
 		assert: GregorianMonth january number = 1;
 		assert: (GregorianMonth named: GregorianMonth january name) = GregorianMonth january! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testJuly
 
 	self
 		assert: GregorianMonth july number = 7;
 		assert: (GregorianMonth named: GregorianMonth july name) = GregorianMonth july! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testJune
 
 	self
 		assert: GregorianMonth june number = 6;
 		assert: (GregorianMonth named: GregorianMonth june name) = GregorianMonth june! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testLastDayOfMonth
 
 	self assert: GregorianMonth january lastDayOfMonth = (GregorianDayOfMonth monthNumber: 01 dayNumber: 31).
 	self assert: GregorianMonth february lastDayOfMonth 	= (GregorianDayOfMonth monthNumber: 02 dayNumber: 29).
 	self assert: GregorianMonth march lastDayOfMonth = (GregorianDayOfMonth monthNumber: 03 dayNumber: 31)! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testMarch
 
 	self
 		assert: GregorianMonth march number = 3;
 		assert: (GregorianMonth named: GregorianMonth march name) = GregorianMonth march! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testMay
 
 	self
 		assert: GregorianMonth may number = 5;
 		assert: (GregorianMonth named: GregorianMonth may name) = GregorianMonth may! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNovember
 
 	self
 		assert: GregorianMonth november number = 11;
 		assert: (GregorianMonth named: GregorianMonth november name) = GregorianMonth november! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testOctober
 
 	self
 		assert: GregorianMonth october number = 10;
 		assert: (GregorianMonth named: GregorianMonth october name) = GregorianMonth october! !
 
-!GregorianMonthTest methodsFor: 'test accessing'!
+!GregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testSeptember
 
 	self
 		assert: GregorianMonth september number = 9;
 		assert: (GregorianMonth named: GregorianMonth september name) = GregorianMonth september! !
 
-!GregorianMonthTest methodsFor: 'test - month of year creation'!
+!GregorianMonthTest methodsFor: 'test - month of year creation' stamp: ''!
 testComma
 
 	self assert: (GregorianMonth february, 2003) = (GregorianMonthOfYear yearNumber: 2003 monthNumber: 2 )! !
 
-!GregorianMonthTest methodsFor: 'test - month of year creation'!
+!GregorianMonthTest methodsFor: 'test - month of year creation' stamp: ''!
 testOf
 
 	self assert: (GregorianMonth february of: 2003) = 	(GregorianMonthOfYear yearNumber: 2003 monthNumber: 2 )! !
 
-!GregorianMonthTest methodsFor: 'test - month of year creation'!
+!GregorianMonthTest methodsFor: 'test - month of year creation' stamp: ''!
 testOfYear
 
 	self assert: (GregorianMonth february ofYear: (GregorianYear number: 2003)) = (GregorianMonthOfYear yearNumber: 2003 monthNumber: 2 )! !
 
-!GregorianMonthTest methodsFor: 'test'!
+!GregorianMonthTest methodsFor: 'test' stamp: ''!
 testCommonMonthsMeasure
 
 	self assert: GregorianMonth zeroMonths = (TimeUnits month with: 0).
@@ -10505,7 +10505,7 @@ testCommonMonthsMeasure
 	self assert: GregorianMonth sixMonths = (TimeUnits month with: 6).
 	self assert: GregorianMonth twelveMonths = (TimeUnits month with: 12)! !
 
-!GregorianMonthTest methodsFor: 'test'!
+!GregorianMonthTest methodsFor: 'test' stamp: ''!
 testGlobalVariables
 
 	self assert: January = GregorianMonth january.
@@ -10521,7 +10521,7 @@ testGlobalVariables
 	self assert: November = GregorianMonth november.
 	self assert: December = GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test'!
+!GregorianMonthTest methodsFor: 'test' stamp: ''!
 testMonthCreation
 
 	| otherJanuary otherFebruary otheMarch otherApril otherMay otherJune otherJuly otherAugust otherSeptember ohterOctober otherNovember otherDecember |
@@ -10563,7 +10563,7 @@ testMonthCreation
 	self assert: december name = otherDecember name.
 	self assert: december number = otherDecember number! !
 
-!GregorianMonthTest methodsFor: 'test'!
+!GregorianMonthTest methodsFor: 'test' stamp: ''!
 testNamed
 
 	self
@@ -10575,12 +10575,12 @@ testNamed
 					assert: exception name = 'Not exist';
 					assert: exception description notEmpty]! !
 
-!GregorianMonthTest methodsFor: 'test'!
+!GregorianMonthTest methodsFor: 'test' stamp: ''!
 testNumberOfMonthsPerYear
 
 	self assert: GregorianMonth numberOfMonthsPerYear = (TimeUnits month with: 12)! !
 
-!GregorianMonthTest methodsFor: 'test day of month creation'!
+!GregorianMonthTest methodsFor: 'test day of month creation' stamp: ''!
 testDayOfMonthCreation
 	
 	self assert: GregorianMonth january first = (GregorianDayOfMonth monthNumber: 1 dayNumber: 1).
@@ -10613,12 +10613,12 @@ testDayOfMonthCreation
 	self assert: GregorianMonth january twentyeighth = (GregorianDayOfMonth monthNumber: 1 dayNumber: 28).
 	self assert: GregorianMonth january twentyninth = (GregorianDayOfMonth monthNumber: 1 dayNumber: 29)! !
 
-!GregorianMonthTest methodsFor: 'test day of month creation' stamp: 'HAW 4/17/2018 18:37:03'!
+!GregorianMonthTest methodsFor: 'test day of month creation' stamp: 'HAW 17/Apr/2018 18:37:03'!
 testDivisionSymbolCanBeUseToCreateADayOfMonth
 
 	self assert: GregorianMonth january / 1 equals: GregorianMonth january first! !
 
-!GregorianMonthTest methodsFor: 'test comparing'!
+!GregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	self assert: GregorianMonth february > GregorianMonth january.
@@ -10627,7 +10627,7 @@ testGreaterThan
 	self deny: GregorianMonth january > GregorianMonth february.
 	self deny: GregorianMonth january > GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test comparing'!
+!GregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testIdentity
 
 	self assert: GregorianMonth january == GregorianMonth january.
@@ -10636,7 +10636,7 @@ testIdentity
 	self deny: GregorianMonth january == GregorianMonth february.
 	self deny: GregorianMonth february == GregorianMonth january! !
 
-!GregorianMonthTest methodsFor: 'test comparing'!
+!GregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	self assert: GregorianMonth january < GregorianMonth february.
@@ -10645,67 +10645,67 @@ testLessThan
 	self deny: GregorianMonth february < GregorianMonth january.
 	self deny: GregorianMonth december < GregorianMonth january! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsApril
 
 	self assert: GregorianMonth april isApril! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsAugust
 
 	self assert: GregorianMonth august isAugust! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsDecember
 
 	self assert: GregorianMonth december isDecember! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsFebruary
 
 	self assert: GregorianMonth february isFebruary! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsJanuary
 
 	self assert: GregorianMonth january isJanuary! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsJuly
 
 	self assert: GregorianMonth july isJuly! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsJune
 
 	self assert: GregorianMonth june isJune! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsMarch
 
 	self assert: GregorianMonth march isMarch! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsMay
 
 	self assert: GregorianMonth may isMay! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsNovember
 
 	self assert: GregorianMonth november isNovember! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsOctober
 
 	self assert: GregorianMonth october isOctober! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testIsSeptember
 
 	self assert: GregorianMonth september isSeptember! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testMonthsFrom
 
 	self assert: (GregorianMonth january distanceFrom: GregorianMonth january) = self ceroMonths.
@@ -10715,7 +10715,7 @@ testMonthsFrom
 	self assert: (GregorianMonth december distanceFrom: GregorianMonth january) = self elevenMonths.
 	self assert: (GregorianMonth december distanceFrom: GregorianMonth november) = self oneMonth	! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testMonthsTo
 
 	self assert: (GregorianMonth january distanceTo: GregorianMonth january) = self ceroMonths.
@@ -10725,34 +10725,34 @@ testMonthsTo
 	self assert: (GregorianMonth december distanceTo: GregorianMonth january) = self oneMonth.
 	self assert: (GregorianMonth december distanceTo: GregorianMonth november) = self elevenMonths! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testNext
 
 	self assert: GregorianMonth december next = GregorianMonth january.
 	self assert: GregorianMonth january next = GregorianMonth february.
 	self assert: GregorianMonth february next = GregorianMonth march! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testNextInANumberOfMonths
 
 	self assert: (GregorianMonth december next: self oneMonth) = GregorianMonth january.
 	self assert: (GregorianMonth december next: self twelveMonths) = GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testPrevious
 
 	self assert: GregorianMonth january previous = GregorianMonth december.
 	self assert: GregorianMonth february previous = GregorianMonth january.
 	self assert: GregorianMonth december previous = GregorianMonth november! !
 
-!GregorianMonthTest methodsFor: 'test querying'!
+!GregorianMonthTest methodsFor: 'test querying' stamp: ''!
 testPreviousInANumberOfMonths
 
 	self assert: (GregorianMonth january previous: self oneMonth) = GregorianMonth december.
 	self assert: (GregorianMonth january previous: self twelveMonths) = GregorianMonth january.
 	self assert: (GregorianMonth february previous: self twoMonths) = GregorianMonth december! !
 
-!GregorianMonthTest methodsFor: 'test interval protocol'!
+!GregorianMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -10763,7 +10763,7 @@ testTo
 	self assert: interval to = GregorianMonth december.
 	self assert: interval by = self oneMonth! !
 
-!GregorianMonthTest methodsFor: 'test interval protocol'!
+!GregorianMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -10774,7 +10774,7 @@ testToBy
 	self assert: interval to = GregorianMonth december.
 	self assert: interval by = self twoMonths! !
 
-!GregorianMonthTest methodsFor: 'test interval protocol'!
+!GregorianMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToByDo
 
 	| number |
@@ -10800,7 +10800,7 @@ testToByDo
 	
 	self assert: number = 7! !
 
-!GregorianMonthTest methodsFor: 'test interval protocol'!
+!GregorianMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeByDo
 
 	| number |
@@ -10815,7 +10815,7 @@ testToNegativeByDo
 		
 	self assert: number = 0! !
 
-!GregorianMonthTest methodsFor: 'test interval protocol'!
+!GregorianMonthTest methodsFor: 'test interval protocol' stamp: ''!
 testToReverse
 
 	| coll number |
@@ -10828,19 +10828,19 @@ testToReverse
 		
 	self assert: number = -1! !
 
-!GregorianTimespanTest methodsFor: 'initialization' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianTimespanTest methodsFor: 'initialization' stamp: 'HAW 25/Mar/2017 20:36:23'!
 setUp
 
 	januaryFirstOf2004 := FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 01.
 	january31Of2004 := FixedGregorianDate yearNumber: 2004 monthNumber: 01 dayNumber: 31! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'mx 4/3/2006 20:24'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'mx 3/Apr/2006 20:24:00'!
 testAccessing
 
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) from = januaryFirstOf2004.
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) duration = GregorianDay oneDay! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:46:02'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:46:02'!
 testAsInterval
 
 	| timespan interval |
@@ -10854,17 +10854,17 @@ testAsInterval
 	
 	self assert: timespan asInterval = interval! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/12/2021 12:19:40'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 12/Nov/2021 12:19:40'!
 testCanCreateATimespanAfterATimeMeasure
 	
 	self assert: January/4/2020 equals: (3*TimeUnits day after: January/1/2020) to! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/12/2021 12:19:48'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 12/Nov/2021 12:19:48'!
 testCanCreateATimespanBeforeATimeMeasure
 	
 	self assert: January/1/2020 equals:  (3*TimeUnits day before: January/4/2020) to! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testEqual
 
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay)
@@ -10874,7 +10874,7 @@ testEqual
 	self deny: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay)
 		= (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay twoDays)! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:45:58'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:45:58'!
 testFromInterval
 
 	| interval timespan |
@@ -10884,18 +10884,18 @@ testFromInterval
 	
 	self assert: (GregorianTimespan fromInterval: interval) = timespan! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'mx 4/3/2006 20:24'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'mx 3/Apr/2006 20:24:00'!
 testHash
 
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) hash
 		= (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) hash! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 11/5/2021 20:42:22'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 5/Nov/2021 20:42:22'!
 testPrintString
 
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) printString = '1 * day from January 1, 2004'! !
 
-!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianTimespanTest methodsFor: 'testing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testTo
 
 	self assert: (GregorianTimespan from: januaryFirstOf2004 duration: GregorianDay oneDay) to
@@ -10907,43 +10907,43 @@ testTo
 	self assert: (GregorianTimespan from: GregorianDay sunday duration: GregorianDay twoDays) to = GregorianDay tuesday.
 	self assert: (GregorianTimespan from: (GregorianYear number: 2004) duration: (TimeUnits year with: 10)) to = (GregorianYear number: 2014)! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 oneYear
 	
 	^TimeUnits year with: 1! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 sixMonths
 
 	^TimeUnits month with: 6! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 tenYears
 	
 	^TimeUnits year with: 10! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 thirteenMonths
 	
 	^TimeUnits month with: 13! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 twoYears
 	
 	^TimeUnits year with: 2! !
 
-!GregorianYearTest methodsFor: 'year measurements'!
+!GregorianYearTest methodsFor: 'year measurements' stamp: ''!
 zeroYears
 	
 	^TimeUnits year with: 0! !
 
-!GregorianYearTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 18:23:53'!
+!GregorianYearTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 18:23:53'!
 testCurrent
 
 	self assert: GregorianYear current number=Date today yearNumber
 ! !
 
-!GregorianYearTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 18:23:11'!
+!GregorianYearTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 18:23:11'!
 testInvalidYear
 
 	self 
@@ -10960,7 +10960,7 @@ testInvalidYear
 			self assert: anException number = 1.5.
 			self assert: anException description = ('{1} is an invalid number for a year' format: { 1.5 }) ]! !
 
-!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testDates
 
 	self assert: (GregorianYear number: 2004) dates first=(FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1).
@@ -10971,7 +10971,7 @@ testDates
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testDaysInFebruary
 
 	self assert: (GregorianYear number: 2004) numberOfDaysInFebruary=GregorianDay twentyNineDays.
@@ -10979,7 +10979,7 @@ testDaysInFebruary
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testFirstDate
 
 	self assert: (GregorianYear number: 2004) firstDate = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1).
@@ -10987,7 +10987,7 @@ testFirstDate
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testFirstDay
 
 	self assert: (GregorianYear number: 2004) firstDay = (FixedGregorianDate yearNumber: 2004 monthNumber: 1 dayNumber: 1) day.
@@ -10995,7 +10995,7 @@ testFirstDay
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testFirstMonth
 
 	self assert: (GregorianYear number: 2004) firstMonth = (GregorianMonthOfYear yearNumber: 2004 monthNumber: 1).
@@ -11003,13 +11003,13 @@ testFirstMonth
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	self assert: (GregorianYear number: 2004) hash = (GregorianYear number: 2004) hash.
 ! !
 
-!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLastDate
 
 	self assert: (GregorianYear number: 2004) lastDate = (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31).
@@ -11017,7 +11017,7 @@ testLastDate
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testLastDay
 
 	self assert: (GregorianYear number: 2004) lastDay = (FixedGregorianDate yearNumber: 2004 monthNumber: 12 dayNumber: 31) day.
@@ -11025,7 +11025,7 @@ testLastDay
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testLastMonth
 
 	self assert: (GregorianYear number: 2004) lastMonth = (GregorianMonthOfYear yearNumber: 2004 monthNumber: 12).
@@ -11033,7 +11033,7 @@ testLastMonth
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testMonths
 
 	self assert: (GregorianYear number: 2004) months size=12.
@@ -11042,7 +11042,7 @@ testMonths
 	
 ! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testNumber
 
 	self assert: (GregorianYear number: 2004) number=2004.
@@ -11050,7 +11050,7 @@ testNumber
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDays
 
 	self assert: (GregorianYear number: 2004) numberOfDays=(TimeUnits day with: 366).
@@ -11058,7 +11058,7 @@ testNumberOfDays
 
 	! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysFromBaseDate
 
 	self assert: (GregorianYear number: 1901) numberOfDaysFromBaseDate=(TimeUnits day with: 0).
@@ -11066,19 +11066,19 @@ testNumberOfDaysFromBaseDate
 
 ! !
 
-!GregorianYearTest methodsFor: 'test accessing'!
+!GregorianYearTest methodsFor: 'test accessing' stamp: ''!
 testZeroYears
 
 	self assert: GregorianYear zeroYears = self zeroYears! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testDistanceTo
 
 	self assert:
 		((GregorianYear createYear: 2005) absoluteDistanceTo: (GregorianYear number: 2008)) =
 			(TimeUnits year with: 3)! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	self assert: ((GregorianYear number: 2004) to: (GregorianYear number: 2010)) from=(GregorianYear number: 2004).
@@ -11088,7 +11088,7 @@ testTo
 
 	! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	self assert: ((GregorianYear number: 2004) to: (GregorianYear number: 2010) by: self twoYears ) from=(GregorianYear number: 2004).
@@ -11098,7 +11098,7 @@ testToBy
 
 	! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToByDo
 
 	| number |
@@ -11111,7 +11111,7 @@ testToByDo
 	self assert: number=2012.
 	! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToByReverse
 
 	| coll number |
@@ -11125,7 +11125,7 @@ testToByReverse
 	self assert: number=2002.
 	! !
 
-!GregorianYearTest methodsFor: 'test interval protocol'!
+!GregorianYearTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeBy
 
 	| interval number |
@@ -11139,14 +11139,14 @@ testToNegativeBy
 	self assert: number=2003.
 	! !
 
-!GregorianYearTest methodsFor: 'test comparing'!
+!GregorianYearTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: (GregorianYear number: 2004) = (GregorianYear number: 2004).
 	self deny: (GregorianYear number: 2004) = (GregorianYear number: 2003).
 ! !
 
-!GregorianYearTest methodsFor: 'test comparing'!
+!GregorianYearTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	self assert: (GregorianYear number: 2004) > (GregorianYear number: 2003).
@@ -11154,7 +11154,7 @@ testGreaterThan
 	
 	! !
 
-!GregorianYearTest methodsFor: 'test comparing'!
+!GregorianYearTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	self assert: (GregorianYear number: 2004) < (GregorianYear number: 2005).
@@ -11162,7 +11162,7 @@ testLessThan
 	
 	! !
 
-!GregorianYearTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDate
 
 	self assert: ((GregorianYear number: 2005) includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1)).
@@ -11175,7 +11175,7 @@ testIncludesDate
 	self deny: ((GregorianYear number: 2004) includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 31)).
 	! !
 
-!GregorianYearTest methodsFor: 'test includes' stamp: 'HAW 3/25/2017 20:36:23'!
+!GregorianYearTest methodsFor: 'test includes' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIncludesDateTime
 
 	self assert: ((GregorianYear number: 2005) includes: (FixedGregorianDate yearNumber: 2005 monthNumber: 1 dayNumber: 1) atMidnight).
@@ -11188,7 +11188,7 @@ testIncludesDateTime
 	self deny: ((GregorianYear number: 2004) includes: (FixedGregorianDate yearNumber: 2003 monthNumber: 12 dayNumber: 31) atLastTimeOfDay).
 	! !
 
-!GregorianYearTest methodsFor: 'test includes'!
+!GregorianYearTest methodsFor: 'test includes' stamp: ''!
 testIncludesMonthOfYear
 
 	self assert: ((GregorianYear number: 2005) includes: (GregorianMonthOfYear yearNumber: 2005 monthNumber: 1)).
@@ -11201,14 +11201,14 @@ testIncludesMonthOfYear
 	self deny: ((GregorianYear number: 2004) includes: (GregorianMonthOfYear yearNumber: 2003 monthNumber: 12)).	
 	! !
 
-!GregorianYearTest methodsFor: 'test includes' stamp: 'mx 4/5/2006 01:55'!
+!GregorianYearTest methodsFor: 'test includes' stamp: 'mx 5/Apr/2006 01:55:00'!
 testIncludesYear
 
 	self 
 		should: [ (GregorianYear number: 2005) includes: (GregorianYear number: 2005) ]
 		raise: Exception! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testInvalidNextANumberOfYears
 
 	| anyUnit |
@@ -11219,7 +11219,7 @@ testInvalidNextANumberOfYears
 	self should: [ (GregorianYear number: 2004) next: (anyUnit with: 1) ] raise: CanNotConvertMeasureException.
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testInvalidPreviousANumberOfYears
 
 	| anyUnit |
@@ -11235,7 +11235,7 @@ testInvalidPreviousANumberOfYears
 	
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testIsLeap
 
 	self assert: (GregorianYear number: 2004) isLeap.
@@ -11248,7 +11248,7 @@ testIsLeap
 
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testNext
 
 	self assert: (GregorianYear number: 2004) next=(GregorianYear number: 2005).
@@ -11257,7 +11257,7 @@ testNext
 
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testNextANumberOfYears
 
 	self assert: ((GregorianYear number: 2004) next: self zeroYears) =(GregorianYear number: 2004).
@@ -11269,7 +11269,7 @@ testNextANumberOfYears
 	self should: [ (GregorianYear number: 2004) next: self sixMonths ]
 		raise: InvalidGregorianYearNumberException! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testNextLeapYear
 
 	self assert: (GregorianYear number: 2003) nextLeapYear= (GregorianYear number: 2004).
@@ -11278,7 +11278,7 @@ testNextLeapYear
 
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testPrevious
 
 	self assert: (GregorianYear number: 2004) previous=(GregorianYear number: 2003).
@@ -11287,7 +11287,7 @@ testPrevious
 
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testPreviousANumberOfYears
 
 	self assert: ((GregorianYear number: 2004) previous: self zeroYears) =(GregorianYear number: 2004).
@@ -11302,7 +11302,7 @@ testPreviousANumberOfYears
 	
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testPreviousLeapYear
 
 	self assert: (GregorianYear number: 2005) previousLeapYear= (GregorianYear number: 2004).
@@ -11311,7 +11311,7 @@ testPreviousLeapYear
 
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testYearsFrom
 
 	self assert: ((GregorianYear number: 2004) distanceFrom: (GregorianYear number: 2003)) = self oneYear.
@@ -11322,7 +11322,7 @@ testYearsFrom
 	self assert: ((GregorianYear number: 1) distanceFrom: (GregorianYear number: -1)) = self oneYear.
 	! !
 
-!GregorianYearTest methodsFor: 'test querying'!
+!GregorianYearTest methodsFor: 'test querying' stamp: ''!
 testYearsTo
 
 	self assert: ((GregorianYear number: 2004) distanceTo: (GregorianYear number: 2005)) = self oneYear.
@@ -11334,7 +11334,7 @@ testYearsTo
 	self assert: ((GregorianYear number: 1) distanceTo: (GregorianYear number: -10))  = self tenYears negated.
 	! !
 
-!GregorianYearTest methodsFor: 'test months of year'!
+!GregorianYearTest methodsFor: 'test months of year' stamp: ''!
 testMonthsOfYearsAccessing
 
 	| currentYear |
@@ -11352,18 +11352,18 @@ testMonthsOfYearsAccessing
 	self assert: currentYear november = (GregorianMonthOfYear year: currentYear month: GregorianMonth november).
 	self assert: currentYear december = (GregorianMonthOfYear year: currentYear month: GregorianMonth december)! !
 
-!GregorianYearTest methodsFor: 'test printing'!
+!GregorianYearTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	self assert: (GregorianYear number: 2004) printString = 'Year 2004'
 ! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test comparing'!
+!JanuaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	self assert: JanuaryGregorianMonth new = JanuaryGregorianMonth new.! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test comparing'!
+!JanuaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	| month1 month2 |
@@ -11373,7 +11373,7 @@ testGreaterThan
 
 	self deny: month1 > month2.! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test comparing'!
+!JanuaryGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	| month1 month2 |
@@ -11384,12 +11384,12 @@ testLessThan
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	self assert: JanuaryGregorianMonth new hash = JanuaryGregorianMonth new hash! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testLastDayNumber
 
 	| month |
@@ -11399,7 +11399,7 @@ testLastDayNumber
 	self assert: month lastDayNumber=31
 ! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	| month |
@@ -11407,7 +11407,7 @@ testName
 	month := JanuaryGregorianMonth new.
 	self assert: month name = 'January'! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumber
 
 	| month |
@@ -11415,12 +11415,12 @@ testNumber
 	month := JanuaryGregorianMonth new.
 	self assert: month number=1.! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysFromBeginningOfYear
 
 	self assert: GregorianMonth january numberOfDaysFromJanuaryFirst= GregorianDay zeroDays! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 3/25/2017 19:11:51'!
+!JanuaryGregorianMonthTest methodsFor: 'test accessing' stamp: 'HAW 25/Mar/2017 19:11:51'!
 testNumberOfDaysIn
 
 	| month |
@@ -11430,17 +11430,17 @@ testNumberOfDaysIn
 	self assert: (month numberOfDaysIn: (GregorianYear number: 2004))=(SimpleMeasure amount: 31 unit: TimeUnits day).
 	self assert: (month numberOfDaysIn: (GregorianYear number: 2003))=(SimpleMeasure amount: 31 unit: TimeUnits day)! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test enumerating'!
+!JanuaryGregorianMonthTest methodsFor: 'test enumerating' stamp: ''!
 testNext
 
 	self assert: GregorianMonth january next = GregorianMonth february.! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test enumerating'!
+!JanuaryGregorianMonthTest methodsFor: 'test enumerating' stamp: ''!
 testPrevious
 
 	self assert: GregorianMonth january previous = GregorianMonth december! !
 
-!JanuaryGregorianMonthTest methodsFor: 'test printing'!
+!JanuaryGregorianMonthTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| month |
@@ -11448,7 +11448,7 @@ testPrintString
 	month := JanuaryGregorianMonth new.
 	self assert: month printString = 'January'! !
 
-!MoreThanOnePointInTimeIntervalStrategyTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!MoreThanOnePointInTimeIntervalStrategyTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testIsValidIntervalFromToBy
 
 	self deny: (
@@ -11466,7 +11466,7 @@ testIsValidIntervalFromToBy
 
 ! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	| month1 month2 |
@@ -11479,7 +11479,7 @@ testEqual
 	self deny: month1 = month2.
 	! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	| month1 month2 |
@@ -11490,7 +11490,7 @@ testGreaterThan
 	self assert: month2 > month1.
 	self deny: month1 > month2.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThanFebruary
 
 	| month1 month2 |
@@ -11501,7 +11501,7 @@ testGreaterThanFebruary
 	self assert: month2 > month1.
 	self deny: month1 > month2.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	| month1 month2 |
@@ -11512,7 +11512,7 @@ testLessThan
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThanFebruary
 
 	| month1 month2 |
@@ -11523,7 +11523,7 @@ testLessThanFebruary
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	| month |
@@ -11531,7 +11531,7 @@ testHash
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month hash = month hash! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testLastDayNumber
 
 	| month |
@@ -11539,7 +11539,7 @@ testLastDayNumber
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month lastDayNumber = 31! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	| month |
@@ -11547,7 +11547,7 @@ testName
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month name='xxx'! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumber
 
 	| month |
@@ -11555,7 +11555,7 @@ testNumber
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month number=1.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysIn
 
 	| month |
@@ -11563,14 +11563,14 @@ testNumberOfDaysIn
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: (month numberOfDaysIn: nil)=GregorianDay thirtyOneDays.! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysFromJanuaryFirst
 
 	| date |
 	date := FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 12.
 	self assert: date numberOfDaysFromJanuaryFirst = (SimpleMeasure amount: 254 unit: TimeUnits day)! !
 
-!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test printing'!
+!NonSpecificThirtyOneDaysGregorianMonthTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| month |
@@ -11578,19 +11578,19 @@ testPrintString
 	month := NonSpecificThirtyOneDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month printString='xxx'! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test' stamp: ''!
 testDayOfMonthCreation
 
 	self assert: (GregorianMonth april thirtieth) = (GregorianDayOfMonth monthNumber: 4 dayNumber: 30).! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test' stamp: 'HAW 3/25/2017 20:36:23'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test' stamp: 'HAW 25/Mar/2017 20:36:23'!
 testNumberOfDaysFromJanuaryFirst
 
 	| date |
 	date := FixedGregorianDate yearNumber: 2005 monthNumber: 09 dayNumber: 12.
 	self assert: date numberOfDaysFromJanuaryFirst = (SimpleMeasure amount: 254 unit: TimeUnits day)! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testEqual
 
 	| month1 month2 |
@@ -11603,7 +11603,7 @@ testEqual
 	self deny: month1 = month2.
 	! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	| month1 month2 |
@@ -11614,7 +11614,7 @@ testGreaterThan
 	self assert: month2 > month1.
 	self deny: month1 > month2.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThanFebruary
 
 	| month1 month2 |
@@ -11625,7 +11625,7 @@ testGreaterThanFebruary
 	self assert: month2 > month1.
 	self deny: month1 > month2.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	| month1 month2 |
@@ -11636,7 +11636,7 @@ testLessThan
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test comparing' stamp: ''!
 testLessThanFebruary
 
 	| month1 month2 |
@@ -11647,7 +11647,7 @@ testLessThanFebruary
 	self assert: month1 < month2.
 	self deny: month2 < month1.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testHash
 
 	| month |
@@ -11655,7 +11655,7 @@ testHash
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month hash = month hash! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testLastDayNumber
 
 	| month |
@@ -11663,7 +11663,7 @@ testLastDayNumber
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 4.
 	self assert: month lastDayNumber = 30! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testName
 
 	| month |
@@ -11671,7 +11671,7 @@ testName
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month name='xxx'! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumber
 
 	| month |
@@ -11679,7 +11679,7 @@ testNumber
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month number=1.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test accessing' stamp: ''!
 testNumberOfDaysIn
 
 	| month |
@@ -11687,7 +11687,7 @@ testNumberOfDaysIn
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: (month numberOfDaysIn: nil)=GregorianDay thirtyDays.! !
 
-!ThirtyDaysGregorianMonthTest methodsFor: 'test printing'!
+!ThirtyDaysGregorianMonthTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| month |
@@ -11695,17 +11695,17 @@ testPrintString
 	month := ThirtyDaysGregorianMonth named: 'xxx' number: 1.
 	self assert: month printString='xxx'! !
 
-!ThirtyOneDaysGregorianMonthTest methodsFor: 'test'!
+!ThirtyOneDaysGregorianMonthTest methodsFor: 'test' stamp: ''!
 testThirtieth
 
 	self assert: GregorianMonth january thirtieth = (GregorianDayOfMonth month: GregorianMonth january dayNumber: 30)! !
 
-!ThirtyOneDaysGregorianMonthTest methodsFor: 'test'!
+!ThirtyOneDaysGregorianMonthTest methodsFor: 'test' stamp: ''!
 testThirtyfirst
 
 	self assert: GregorianMonth january thirtyfirst = (GregorianDayOfMonth month: GregorianMonth january dayNumber: 31)! !
 
-!TimeOfDayTest methodsFor: 'test enumerating'!
+!TimeOfDayTest methodsFor: 'test enumerating' stamp: ''!
 testAdd
 
 	| time |
@@ -11717,7 +11717,7 @@ testAdd
 	self assert: (time next: (TimeUnits second with: 1)) timeFromMidnight = (TimeUnits second with: 1).
 	self assert: (time next: (TimeUnits millisecond with: 1)) timeFromMidnight = (TimeUnits millisecond with: 1)! !
 
-!TimeOfDayTest methodsFor: 'test enumerating'!
+!TimeOfDayTest methodsFor: 'test enumerating' stamp: ''!
 testSubtract
 
 	| time |
@@ -11730,29 +11730,29 @@ testSubtract
 	self assert: (time previous: (TimeUnits millisecond with: 1)) timeFromMidnight = (TimeUnits millisecond with: (59*60000+59999))
 ! !
 
-!TimeOfDayTest methodsFor: 'test comparing'!
+!TimeOfDayTest methodsFor: 'test comparing' stamp: ''!
 testComparing
 
 	self assert: (TimeOfDay hours: 0) = (TimeOfDay hours: 0)! !
 
-!TimeOfDayTest methodsFor: 'test comparing'!
+!TimeOfDayTest methodsFor: 'test comparing' stamp: ''!
 testGreaterThan
 
 	self assert: TimeOfDay lastTimeOfDay > TimeOfDay firstTimeOfDay.
 	self deny: TimeOfDay lastTimeOfDay > TimeOfDay lastTimeOfDay! !
 
-!TimeOfDayTest methodsFor: 'test comparing'!
+!TimeOfDayTest methodsFor: 'test comparing' stamp: ''!
 testHash
 
 	self assert: (TimeOfDay hours: 0) hash = TimeOfDay zeroHours hash! !
 
-!TimeOfDayTest methodsFor: 'test comparing'!
+!TimeOfDayTest methodsFor: 'test comparing' stamp: ''!
 testLessThan
 
 	self assert: (TimeOfDay hours: 0) < (TimeOfDay timeFromMidnight: (TimeUnits millisecond with: 1)).
 	self deny: (TimeOfDay timeFromMidnight: (TimeUnits millisecond with: 1)) < (TimeOfDay hours: 0)! !
 
-!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 12/17/2018 17:14:55'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 17/Dec/2018 17:14:55'!
 testCanCreateAsWrittenInEnglish
 
 	| timeOfDay |
@@ -11764,7 +11764,7 @@ testCanCreateAsWrittenInEnglish
 	self assert: timeOfDay seconds equals: 30*TimeUnits second.
 	! !
 
-!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 12/17/2018 17:21:33'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 17/Dec/2018 17:21:33'!
 testCanNotCreateTimeOfDayWithSemiColonWhenReceiverHasSeconds
 
 	self 
@@ -11773,7 +11773,7 @@ testCanNotCreateTimeOfDayWithSemiColonWhenReceiverHasSeconds
 		withExceptionDo: [ :anError |
 			self assert: anError messageText equals: TimeOfDay canNotCreateTimeOfDayUsingSemiColonErrorDescription]! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: ''!
 testCreation
 
 	| time |
@@ -11786,7 +11786,7 @@ testCreation
 	self assert: time milliseconds = (TimeUnits millisecond with: 0)
 ! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: ''!
 testCreationHour
 
 	| time |
@@ -11798,7 +11798,7 @@ testCreationHour
 	self assert: time seconds = (TimeUnits second with: 0).
 	self assert: time milliseconds = (TimeUnits millisecond with: 0)! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: ''!
 testCreationMilliseconds
 
 	| time |
@@ -11811,7 +11811,7 @@ testCreationMilliseconds
 	self assert: time milliseconds = (TimeUnits millisecond with: 1)
 ! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: ''!
 testCreationMinute
 
 	| time |
@@ -11824,7 +11824,7 @@ testCreationMinute
 	self assert: time milliseconds = (TimeUnits millisecond with: 0)
 ! !
 
-!TimeOfDayTest methodsFor: 'test instance creation'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: ''!
 testCreationSecond
 
 	| time |
@@ -11837,7 +11837,7 @@ testCreationSecond
 	self assert: time milliseconds = (TimeUnits millisecond with: 0)
 ! !
 
-!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 8/20/2025 12:09:41'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'NPM 22/Apr/2026 09:44:32'!
 testInvalidCreation
 
 	self 
@@ -11845,7 +11845,7 @@ testInvalidCreation
 		raise: InvalidTimeOfDayException
 		withExceptionDo: [:anException |
 			self assert: anException time = (TimeUnits hour with: 24).
-			self assert: anException description = 'The time 24 * hour is invalid for one day' ].
+			self assert: anException description = 'The time 24 * hours is invalid for one day' ].
 		
 	self 
 		should: [ TimeOfDay timeFromMidnight: (TimeUnits millisecond with: -1) ] 
@@ -11854,7 +11854,7 @@ testInvalidCreation
 			self assert: anException time = (TimeUnits millisecond with: -1).
 			self assert: anException description = 'The time -1 * millisecond is invalid for one day' ]! !
 
-!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 3/25/2017 18:32:05'!
+!TimeOfDayTest methodsFor: 'test instance creation' stamp: 'HAW 25/Mar/2017 18:32:05'!
 testNow
 
 	| now nowInTwoSeconds |
@@ -11866,12 +11866,12 @@ testNow
 	self assert: now < nowInTwoSeconds.
 	self assert: ((now distanceTo: nowInTwoSeconds) - (TimeUnits second with: 1)) abs <= (TimeUnits millisecond with: 10)! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testFirstTimeOfDay
 
 	self assert: TimeOfDay firstTimeOfDay = (TimeOfDay hours: 0)! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testLastTimeOfDay
 
 	self assert: TimeOfDay lastTimeOfDay = (TimeOfDay timeFromMidnight: (
@@ -11880,27 +11880,27 @@ testLastTimeOfDay
 		(TimeUnits second with: 59) + 
 		(TimeUnits millisecond with: 999)))! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testOneMillisecond
 
 	self assert: TimeOfDay oneMillisecond = (TimeUnits millisecond with: 1)! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testOneSecond
 
 	self assert: TimeOfDay oneSecond = (TimeUnits second with: 1)! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testTwentyFourHours
 
 	self assert: TimeOfDay twentyFourHours= (TimeUnits hour with: 24)! !
 
-!TimeOfDayTest methodsFor: 'test accessing'!
+!TimeOfDayTest methodsFor: 'test accessing' stamp: ''!
 testZeroHours
 
 	self assert: TimeOfDay zeroHours = (TimeUnits hour with: 0)! !
 
-!TimeOfDayTest methodsFor: 'test printing'!
+!TimeOfDayTest methodsFor: 'test printing' stamp: ''!
 testPrintString
 
 	| time |
@@ -11909,7 +11909,7 @@ testPrintString
 	
 	self assert: time printString = '10:11:12'! !
 
-!TimeOfDayTest methodsFor: 'test interval protocol'!
+!TimeOfDayTest methodsFor: 'test interval protocol' stamp: ''!
 testReverse
 
 	| collection hour |
@@ -11922,7 +11922,7 @@ testReverse
 	
 	self assert: hour = -2! !
 
-!TimeOfDayTest methodsFor: 'test interval protocol'!
+!TimeOfDayTest methodsFor: 'test interval protocol' stamp: ''!
 testTo
 
 	| interval |
@@ -11933,7 +11933,7 @@ testTo
 	self assert: interval to = TimeOfDay lastTimeOfDay.
 	self assert: interval by = TimeOfDay oneSecond! !
 
-!TimeOfDayTest methodsFor: 'test interval protocol'!
+!TimeOfDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToBy
 
 	| interval |
@@ -11944,7 +11944,7 @@ testToBy
 	self assert: interval to = TimeOfDay lastTimeOfDay.
 	self assert: interval by = (TimeUnits hour with: 1)! !
 
-!TimeOfDayTest methodsFor: 'test interval protocol'!
+!TimeOfDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToByDo
 
 	| interval hour |
@@ -11957,7 +11957,7 @@ testToByDo
 	
 	self assert: hour = 24! !
 
-!TimeOfDayTest methodsFor: 'test interval protocol'!
+!TimeOfDayTest methodsFor: 'test interval protocol' stamp: ''!
 testToNegativeByDo
 
 	| interval time |
@@ -11970,31 +11970,31 @@ testToNegativeByDo
 	
 	self assert: time = (TimeUnits minute with: -30)! !
 
-!TimeOfDayTest methodsFor: 'test querying'!
+!TimeOfDayTest methodsFor: 'test querying' stamp: ''!
 testTimeFrom
 
 	self assert: (TimeOfDay firstTimeOfDay distanceFrom: TimeOfDay lastTimeOfDay) = (TimeUnits millisecond with: 1).
 	self assert: (TimeOfDay lastTimeOfDay distanceFrom: TimeOfDay firstTimeOfDay) = (TimeOfDay twentyFourHours - (TimeUnits millisecond with: 1))! !
 
-!TimeOfDayTest methodsFor: 'test querying'!
+!TimeOfDayTest methodsFor: 'test querying' stamp: ''!
 testTimeFromMidnight
 
 	self assert: TimeOfDay firstTimeOfDay timeFromMidnight = (TimeUnits hour with: 0).
 	self assert: TimeOfDay lastTimeOfDay timeFromMidnight = (TimeOfDay twentyFourHours - (TimeUnits millisecond with: 1))! !
 
-!TimeOfDayTest methodsFor: 'test querying'!
+!TimeOfDayTest methodsFor: 'test querying' stamp: ''!
 testTimeTo
 
 	self assert: (TimeOfDay firstTimeOfDay distanceTo: TimeOfDay lastTimeOfDay) = (TimeOfDay twentyFourHours - (TimeUnits millisecond with: 1)).
 	self assert: (TimeOfDay lastTimeOfDay distanceTo: TimeOfDay firstTimeOfDay) = (TimeUnits millisecond with: 1)! !
 
-!TimeOfDayTest methodsFor: 'test querying'!
+!TimeOfDayTest methodsFor: 'test querying' stamp: ''!
 testTimeToEndOfDay
 
 	self assert: TimeOfDay firstTimeOfDay timeToEndOfDay = TimeOfDay twentyFourHours.
 	self assert: TimeOfDay lastTimeOfDay timeToEndOfDay = (TimeUnits millisecond with: 1)! !
 
-!TimeUnitsTest methodsFor: 'test'!
+!TimeUnitsTest methodsFor: 'test' stamp: ''!
 testAllUnits
 
 	self assert: (TimeUnits allUnits includes: TimeUnits day).
@@ -12006,7 +12006,7 @@ testAllUnits
 	self assert: (TimeUnits allUnits includes: TimeUnits month).
 	self assert: (TimeUnits allUnits includes: TimeUnits year)! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testDay
 
 	self assert: TimeUnits day = TimeUnits day.
@@ -12014,87 +12014,87 @@ testDay
 
 ! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testHour
 
 	self assert: TimeUnits hour=TimeUnits hour.
 	self assert: TimeUnits hour name = 'hour'
 	! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testMillisecond
 
 	self assert: TimeUnits millisecond = TimeUnits millisecond.
 	self assert: TimeUnits millisecond name = 'millisecond'	! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testMinute
 
 	self assert: TimeUnits minute = TimeUnits minute.
 	self assert: TimeUnits minute name = 'minute'	! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testMonth
 
 	self assert: TimeUnits month = TimeUnits month.
 	self assert: TimeUnits month name = 'month'! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testSecond
 
 	self assert: TimeUnits second = TimeUnits second.
 	self assert: TimeUnits second name = 'second'! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testWeek
 
 	self assert: TimeUnits week = TimeUnits week.
 	self assert: TimeUnits week name = 'week'! !
 
-!TimeUnitsTest methodsFor: 'test units'!
+!TimeUnitsTest methodsFor: 'test units' stamp: ''!
 testYear
 
 	self assert: TimeUnits year = TimeUnits year.
 	self assert: TimeUnits year name = 'year'! !
 
-!Object methodsFor: '*Chalten-Time Extensions'!
+!Object methodsFor: '*Chalten-Time Extensions' stamp: ''!
 isGregorianDate
 
 	^false! !
 
-!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 5/1/2020 23:22:12'!
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 1/May/2020 23:22:12'!
 after: aPointInTime
 
 	^GregorianTimespan from: aPointInTime duration: self! !
 
-!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 5/1/2020 23:31:27'!
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 1/May/2020 23:31:27'!
 before: aPointInTime
 
 	^GregorianTimespan from: aPointInTime duration: self negated ! !
 
-!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 11/10/2021 16:10:59'!
+!SimpleMeasure methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 10/Nov/2021 16:10:59'!
 from: aPointInTime countingIn: aTimeLineFilter
 
 	^RelativeGregorianDate
 		timespan: (self after: aPointInTime)
 		using: aTimeLineFilter ! !
 
-!Delay class methodsFor: '*Chalten-TimeModel' stamp: 'HAW 8/22/2017 17:45:30'!
-for: anAmountOfTime
-
-	^self forSeconds: (anAmountOfTime convertTo: TimeUnits second) amount! !
-
-!Time methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 8/22/2017 16:40:45'!
+!Time methodsFor: '*Chalten-Time Extensions' stamp: 'HAW 22/Aug/2017 16:40:45'!
 asMilliseconds
 	"Answer the number of milliseconds since midnight"
 
 	^ self asDurationSinceMidnight totalMilliseconds
 ! !
 
-!SmallInteger methodsFor: '*Chalten-Extensions' stamp: 'HAW 12/17/2018 18:10:57'!
+!SmallInteger methodsFor: '*Chalten-Extensions' stamp: 'HAW 17/Dec/2018 18:10:57'!
 : anAmountOfMinutes
 
 	^TimeOfDay hours: self minutes: anAmountOfMinutes ! !
+
+!Delay class methodsFor: '*Chalten-TimeModel' stamp: 'HAW 22/Aug/2017 17:45:30'!
+for: anAmountOfTime
+
+	^self forSeconds: (anAmountOfTime convertTo: TimeUnits second) amount! !
 DefaultPointInTimeIntervalStrategy initialize!
 MoreThanOnePointInTimeIntervalStrategy initialize!
 RoundedTimelineIntervalStrategy initialize!
